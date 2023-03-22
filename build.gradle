@@ -1,0 +1,65 @@
+import java.text.SimpleDateFormat
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = '1.3.40'
+    repositories {
+//        maven { url "https://jitpack.io" }//github
+        mavenCentral()
+        google()
+    }
+    dependencies {
+//        classpath 'com.android.tools.build:gradle:3.6.2'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'//黄油刀
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id 'com.android.application' version '7.2.0' apply false
+    id 'com.android.library' version '7.2.0' apply false
+    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+rootProject.ext {
+    version_name = getVersionName() //供module的build.gradle中以rootProject.version_name使用.
+    version_code = getVersionCode() //供module的build.gradle中以rootProject.version_code使用.
+    System.out.println("全局值构建完毕!!!!") //打印.
+}
+//获取版本名.
+def getVersionName() {
+    //格式:[yyyy-MM-dd HH:mm:ss]
+//    String currentTime = new Date().format("yyMMddHH", TimeZone.getTimeZone("UTC")) //方法一.
+//    String currentTime = new SimpleDateFormat("yyMMddHH").format(System.currentTimeMillis()) //方法二.
+    String currentTime = new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) //方法三.
+    //String versionName = project.findProperty('jenkins_build_date') ?: currentTime //尝试获取jenkins打包时传入的日期.
+    String versionName = "1.0." + (isReleaseBuildType() ? currentTime : (currentTime + "-Debug"))
+    System.out.println("[版本名: " + versionName + "]") //打印.
+    return versionName
+}
+//获取版本号.
+static def getVersionCode() {
+    //System.currentTimeMillis()=1672913866506[13位](从1970.01.01 8:00:00开始计时,单位:ms).
+    //经计算时间戳要到"2286.11.21 01:46:39"才能升到14位,故可认定这辈子时间戳都是13位.
+    //而版本号只能传int值,int的最大值是2147483647[10位].所以保险起见,要传时间戳给版本号的话省略后4位得到9位,此时时间戳单位为"十秒".
+    long timeStamp = System.currentTimeMillis() //时间戳.
+    int versionCode = timeStamp / 10000 //版本号.
+    System.out.println("[版本号: " + versionCode + "] [当前时间戳: " + timeStamp + "]") //打印.
+    return versionCode //[9位]
+}
+//判断[Release|Debug]包.
+boolean isReleaseBuildType() {//判断是否Release包.
+    boolean isRelease = false
+    for (String s : gradle.startParameter.taskNames) {
+        if (s.contains("Release") | s.contains("release")) {
+            isRelease = true
+            break
+        }
+    }
+    System.out.println("[编译类型: " + (isRelease ? "Release" : "Debug") + "]") //打印.
+    return isRelease
+}

@@ -1,0 +1,51 @@
+plugins {
+    id 'com.android.application'
+    id 'com.jakewharton.butterknife'
+
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.wcl.testdemo"
+        minSdk 21
+        targetSdk 32
+        versionName rootProject.ext.version_name
+        versionCode rootProject.ext.version_code
+
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
+//    testImplementation 'junit:junit:4.13.2'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'//黄油刀(8.4.0以上版本,该库会使用androidx.如果我的其他库使用support,会冲突使得项目无法build)
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'//黄油刀
+
+    implementation 'com.blankj:utilcodex:1.31.0'//TODO: github上的工具类.(如果用了AndroidX,引入utilcodex否则引入utilcode)
+}
