@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#999"
+        android:gravity="center"
+        android:hint="控制台输出..."
+        android:padding="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试0:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试1:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_0" />
+
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试2:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_1" />
+
+            <TextView
+                android:id="@+id/tv_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试3:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_2" />
+
+            <TextView
+                android:id="@+id/tv_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试4:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_3" />
+
+            <TextView
+                android:id="@+id/tv_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试5:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_4" />
+
+            <TextView
+                android:id="@+id/tv_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试6:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_5" />
+
+            <TextView
+                android:id="@+id/tv_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试7:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_6" />
+
+
+            <TextView
+                android:id="@+id/tv_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试8:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_7" />
+
+            <TextView
+                android:id="@+id/tv_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试9:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_8" />
+
+            <TextView
+                android:id="@+id/tv_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试10:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_9" />
+
+            <TextView
+                android:id="@+id/tv_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试11:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_10" />
+
+            <TextView
+                android:id="@+id/tv_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试12:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_11" />
+
+            <TextView
+                android:id="@+id/tv_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试13:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_12" />
+
+            <TextView
+                android:id="@+id/tv_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试14:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_13" />
+
+            <TextView
+                android:id="@+id/tv_15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试15:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_14" />
+
+            <TextView
+                android:id="@+id/tv_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试16:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_15" />
+
+            <TextView
+                android:id="@+id/tv_17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试17:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_16" />
+
+            <TextView
+                android:id="@+id/tv_18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试18:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_17" />
+
+            <TextView
+                android:id="@+id/tv_19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试19:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_18" />
+
+            <TextView
+                android:id="@+id/tv_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="测试20:\n"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_19" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

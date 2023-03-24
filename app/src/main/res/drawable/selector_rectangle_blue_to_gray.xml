@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 控件被选择时的背景选择器 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/shape_rectangle_gray_999" android:state_enabled="false" /><!-- 不可用 -->
+    <item android:drawable="@drawable/shape_rectangle_gray_999" android:state_pressed="true" /><!-- 被按住 -->
+    <item android:drawable="@drawable/shape_rectangle_gray_999" android:state_selected="true" /><!-- 被选中 -->
+    <item android:drawable="@drawable/shape_rectangle_blue_45a6fd" /><!-- 默认情况 -->
+</selector>

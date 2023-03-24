@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
-
         <!-- 测试入口 -->
         <activity
             android:name=".init.TestActivity"
@@ -24,6 +23,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 测试: Java基础 -->
+        <activity
+            android:name=".test.test00_javabase.JavaBaseActivity"
+            android:exported="false" />
+        <!-- 测试: Android基础 -->
+        <activity
+            android:name=".test.test01_androidbase.AndroidBaseActivity"
+            android:exported="false" />
+        <!-- 测试: 四大组件 -->
+        <activity
+            android:name=".test.test02_4components.TestComponentsActivity"
+            android:exported="false" />
+        <!-- 测试: 视图 -->
+        <activity
+            android:name=".test.test03_view.TestViewActivity"
+            android:exported="false" />
+        <!-- 测试: 设备 -->
+        <activity
+            android:name=".test.test04_device.TestDeviceActivity"
+            android:exported="false" />
+        <!-- 测试: 三方库 -->
+        <activity
+            android:name=".test.test05_library.TestLibraryActivity"
+            android:exported="false" />
 
     </application>
 

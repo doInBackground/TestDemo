@@ -7,6 +7,12 @@ import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.test.test00_javabase.JavaBaseActivity;
+import com.wcl.testdemo.test.test01_androidbase.AndroidBaseActivity;
+import com.wcl.testdemo.test.test02_4components.TestComponentsActivity;
+import com.wcl.testdemo.test.test03_view.TestViewActivity;
+import com.wcl.testdemo.test.test04_device.TestDeviceActivity;
+import com.wcl.testdemo.test.test05_library.TestLibraryActivity;
 
 import java.util.ArrayList;
 
@@ -41,23 +47,30 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
 //        LogUtils.d("点击条目: " + position);
         Intent intent = null;
         switch (position) {
-            case 0:
-//                intent = new Intent(TestActivity.this, ThemeActivity.class);
-//                intent.putExtra(ThemeActivity.THEME_TYPE, 4);
+            case 0://Java基础测试.
+                intent = new Intent(TestActivity.this, JavaBaseActivity.class);
                 break;
-            case 1:
+            case 1://Android基础测试.
+                intent = new Intent(TestActivity.this, AndroidBaseActivity.class);
                 break;
-            case 2:
+            case 2://四大组件测试.
+                intent = new Intent(TestActivity.this, TestComponentsActivity.class);
                 break;
-            case 3:
+            case 3://视图测试.
+                intent = new Intent(TestActivity.this, TestViewActivity.class);
                 break;
-            case 4:
+            case 4://设备功能测试.
+                intent = new Intent(TestActivity.this, TestDeviceActivity.class);
                 break;
-            case 5:
+            case 5://三方库测试.
+                intent = new Intent(TestActivity.this, TestLibraryActivity.class);
                 break;
             default://其他情况
                 intent = null;
                 break;
+        }
+        if (intent != null) {
+            startActivity(intent);
         }
     }
 

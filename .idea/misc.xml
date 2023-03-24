@@ -4,7 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/drawable/selector_rectangle_blue_999.xml" value="0.1475" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/drawable/selector_rectangle_blue_to_gray.xml" value="0.1475" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/drawable/selector_rectangle_white_to_999.xml" value="0.1475" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/drawable/shape_rectangle_blue_45a6fd.xml" value="0.1475" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/drawable/shape_rectangle_gray_999.xml" value="0.1475" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/layout/activity_android_base.xml" value="0.19746376811594202" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/layout/activity_java_base.xml" value="0.27676095396561284" />
         <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/layout/activity_test.xml" value="0.19746376811594202" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/layout/activity_test_components.xml" value="0.19746376811594202" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/layout/activity_test_device.xml" value="0.19746376811594202" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/layout/activity_test_library.xml" value="0.19746376811594202" />
+        <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/layout/activity_test_view.xml" value="0.19746376811594202" />
         <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/layout/item_recycler_view_image.xml" value="0.19746376811594202" />
         <entry key="..\:/WorkspaceForTemp/TestDemo/app/src/main/res/layout/item_recycler_view_text.xml" value="0.19746376811594202" />
       </map>
