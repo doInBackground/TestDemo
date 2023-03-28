@@ -4,6 +4,7 @@
     package="com.wcl.testdemo">
 
     <application
+        android:name=".init.AppApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,7 +17,8 @@
         <!-- 测试入口 -->
         <activity
             android:name=".init.TestActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,27 +28,40 @@
         <!-- 测试: Java基础 -->
         <activity
             android:name=".test.test00_javabase.JavaBaseActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <!-- 测试: Android基础 -->
         <activity
             android:name=".test.test01_androidbase.AndroidBaseActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <!-- 测试: 四大组件 -->
         <activity
             android:name=".test.test02_4components.TestComponentsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <!-- 测试: 视图 -->
         <activity
             android:name=".test.test03_view.TestViewActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <!-- 测试: 设备 -->
         <activity
             android:name=".test.test04_device.TestDeviceActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <!-- 测试: 三方库 -->
         <activity
             android:name=".test.test05_library.TestLibraryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <!--  "orientation|screenSize|keyboardHidden":屏幕方向切换不重新走生命周期方法.
+         fullSensor:表示4个方向都可以旋转. -->
+        <activity
+            android:name=".test.test03_view.test00.ScreenThemeActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="fullSensor" />
 
     </application>
 

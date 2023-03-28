@@ -7,8 +7,8 @@
     <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#999"
+        android:layout_height="wrap_content"
+        android:background="#9999"
         android:gravity="center"
         android:hint="控制台输出..."
         android:padding="10dp"

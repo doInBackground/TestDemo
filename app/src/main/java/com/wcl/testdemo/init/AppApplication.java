@@ -34,8 +34,8 @@ public class AppApplication extends Application {
     //初始化日志.
     private void initLog() {
         //通用配置
-        LogUtils.getConfig().setGlobalTag("WCL");//TAG不会做落地保存,是记录在运行内存中的.
-//        LogUtils.getConfig().setFilePrefix("log");
+        LogUtils.getConfig().setGlobalTag("WEI");//TAG不会做落地保存,是记录在运行内存中的.
+//        LogUtils.getConfig().setFilePrefix("log");//设置 log 文件前缀.
         LogUtils.getConfig().setLog2FileSwitch(true);//默认开启日志落地.
         LogUtils.getConfig().setFileFilter(LogUtils.I);//控制日志落地等级.
         LogUtils.getConfig().setSaveDays(7);//设置log可保留天数.

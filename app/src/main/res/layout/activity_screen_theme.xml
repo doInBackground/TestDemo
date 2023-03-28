@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F00">
 
     <TextView
         android:id="@+id/tv"
@@ -39,7 +40,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试0:\n[沉浸式][全屏][横竖屏]"
+                android:text="[竖屏-沉浸式]"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -49,12 +50,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试1:\n"
+                android:text="[竖屏-全屏]"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_0" />
@@ -64,12 +64,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试2:\n"
+                android:text="[横屏-沉浸式]"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_1" />
@@ -79,12 +78,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试3:\n"
+                android:text="[横屏-全屏]"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_2" />
@@ -99,7 +97,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试4:\n"
+                android:text="系统及屏幕信息"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_3" />
@@ -114,7 +112,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试5:\n"
+                android:text="测试屏幕方向"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_4" />
@@ -129,7 +127,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试6:\n"
+                android:text="获取状态栏高度"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_5" />
@@ -194,156 +192,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_9" />
-
-            <TextView
-                android:id="@+id/tv_11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试11:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_10" />
-
-            <TextView
-                android:id="@+id/tv_12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试12:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_11" />
-
-            <TextView
-                android:id="@+id/tv_13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试13:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_12" />
-
-            <TextView
-                android:id="@+id/tv_14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试14:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_13" />
-
-            <TextView
-                android:id="@+id/tv_15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试15:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_14" />
-
-            <TextView
-                android:id="@+id/tv_16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试16:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_15" />
-
-            <TextView
-                android:id="@+id/tv_17"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试17:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_16" />
-
-            <TextView
-                android:id="@+id/tv_18"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试18:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_17" />
-
-            <TextView
-                android:id="@+id/tv_19"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试19:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_18" />
-
-            <TextView
-                android:id="@+id/tv_20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="测试20:\n"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_19" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
