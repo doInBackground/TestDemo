@@ -5,7 +5,10 @@ import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -39,9 +42,13 @@ import butterknife.OnClick;
 public class AndroidBaseActivity extends AppCompatActivity {
 
     /**
-     * Comment: 通过系统文件选择器,选择文件的结果.
+     * Comment: 请求码:通过系统文件选择器,选择文件的结果.
      */
-    private final int PICK_FILE = 100;
+    private final int REQUEST_CODE_FOR_PICK_FILE = 100;
+    /**
+     * Comment: 请求码:请求[管理所有文件]权限.
+     */
+    private final int REQUEST_CODE_FOR_SD_PERMISSION = 101;
     /**
      * Comment: 用来输出测试结果的控制台.
      */
@@ -64,7 +71,8 @@ public class AndroidBaseActivity extends AppCompatActivity {
             case R.id.tv_1://请求[存储]和[定位]权限.
                 requestPermission();
                 break;
-            case R.id.tv_2://
+            case R.id.tv_2://请求[管理所有文件]权限.
+                requestManageExternalStoragePermission();
                 break;
             case R.id.tv_3://
                 break;
@@ -110,7 +118,7 @@ public class AndroidBaseActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case PICK_FILE://文件选择器结果:
+            case REQUEST_CODE_FOR_PICK_FILE://文件选择器结果:
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         Uri uri = data.getData();
@@ -151,6 +159,13 @@ public class AndroidBaseActivity extends AppCompatActivity {
                     }
                 }
                 break;
+            case REQUEST_CODE_FOR_SD_PERMISSION://请求[管理所有文件]权限的结果:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && (!Environment.isExternalStorageManager())) {
+                    print("[管理所有文件]权限: 用户拒绝.");
+                } else {
+                    print("[管理所有文件]权限: 用户同意.");
+                }
+                break;
         }
     }
 
@@ -170,7 +185,7 @@ public class AndroidBaseActivity extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);//是否支持多选文件.
         intent.setType("*/*");
-        startActivityForResult(intent, PICK_FILE);
+        startActivityForResult(intent, REQUEST_CODE_FOR_PICK_FILE);
     }
 
     //请求[存储]和[定位]权限.
@@ -250,4 +265,35 @@ public class AndroidBaseActivity extends AppCompatActivity {
                 .show();
     }
 
+    //请求[存储]和[定位]权限.
+    private void requestManageExternalStoragePermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
+            print("已获[管理所有文件]权限");
+        } else {
+            new AlertDialog.Builder(this)
+                    .setIcon(R.mipmap.ic_launcher)//设置标题的图片.
+                    .setTitle("权限申请")//设置对话框的标题.
+                    .setMessage("本程序需要您同意允许访问所有文件权限")//设置对话框的内容.
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {//积极键.
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            startActivityForResult(new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION), REQUEST_CODE_FOR_SD_PERMISSION);
+                        }
+                    })
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {//消极键.
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            print("[管理所有文件]权限被拒,存储受限");
+                        }
+                    })
+                    .setNeutralButton("按钮", new DialogInterface.OnClickListener() {//中立键.
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    })
+                    .setCancelable(false)//设置点击返回和外部不取消.
+                    .show();
+        }
+    }
 }
