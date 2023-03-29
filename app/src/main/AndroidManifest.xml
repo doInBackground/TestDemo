@@ -5,10 +5,10 @@
 
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" /><!-- 管理所有文件权限(高危权限,GooglePlay通不过) -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><!--存储权限-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!--存储权限-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /><!--定位权限-->
+        tools:ignore="ScopedStorage" /> <!-- 管理所有文件权限(高危权限,GooglePlay通不过) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 存储权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 存储权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /><!--定位权限-->
     <!--    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />&lt;!&ndash;定位权限(不能写,写上请求权限时默认被拒绝)&ndash;&gt;-->
 
@@ -64,13 +64,16 @@
             android:name=".test.test05_library.TestLibraryActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <!--  "orientation|screenSize|keyboardHidden":屏幕方向切换不重新走生命周期方法.
-         fullSensor:表示4个方向都可以旋转. -->
+        <!--    "orientation|screenSize|keyboardHidden":屏幕方向切换不重新走生命周期方法.
+         fullSensor:表示4个方向都可以旋转.    -->
         <activity
             android:name=".test.test03_view.test00.ScreenThemeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"
             android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".test.test01_androidbase.test03.SaveFileActivity"
+            android:exported="false" />
 
     </application>
 

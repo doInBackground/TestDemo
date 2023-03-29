@@ -21,6 +21,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.blankj.utilcode.util.UtilsTransActivity;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.test.test01_androidbase.test03.SaveFileActivity;
 import com.wcl.testdemo.utils.FileUtils;
 import com.wcl.testdemo.utils.dialog.MyDialogFragment;
 
@@ -74,7 +75,8 @@ public class AndroidBaseActivity extends AppCompatActivity {
             case R.id.tv_2://请求[管理所有文件]权限.
                 requestManageExternalStoragePermission();
                 break;
-            case R.id.tv_3://
+            case R.id.tv_3://文件的持久化保存.
+                startActivity(new Intent(this, SaveFileActivity.class));
                 break;
             case R.id.tv_4://
                 break;
@@ -163,7 +165,7 @@ public class AndroidBaseActivity extends AppCompatActivity {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && (!Environment.isExternalStorageManager())) {
                     print("[管理所有文件]权限: 用户拒绝.");
                 } else {
-                    print("[管理所有文件]权限: 用户同意.");
+                    print("[管理所有文件]权限: 用户同意,高版本(30)亦可在SD卡上执行File操作.");
                 }
                 break;
         }
