@@ -34,6 +34,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 /**
  * @Author WCL
  * @Date 2023/3/24 15:04
@@ -62,59 +64,6 @@ public class AndroidBaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_android_base);
         ButterKnife.bind(this);
     }
-
-    @OnClick({R.id.tv_0, R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10, R.id.tv_11, R.id.tv_12, R.id.tv_13, R.id.tv_14, R.id.tv_15, R.id.tv_16, R.id.tv_17, R.id.tv_18, R.id.tv_19, R.id.tv_20})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_0://打开系统文件选择器.
-                pickFile();
-                break;
-            case R.id.tv_1://请求[存储]和[定位]权限.
-                requestPermission();
-                break;
-            case R.id.tv_2://请求[管理所有文件]权限.
-                requestManageExternalStoragePermission();
-                break;
-            case R.id.tv_3://文件的持久化保存.
-                startActivity(new Intent(this, SaveFileActivity.class));
-                break;
-            case R.id.tv_4://
-                break;
-            case R.id.tv_5://
-                break;
-            case R.id.tv_6://
-                break;
-            case R.id.tv_7://
-                break;
-            case R.id.tv_8://
-                break;
-            case R.id.tv_9://
-                break;
-            case R.id.tv_10://
-                break;
-            case R.id.tv_11://
-                break;
-            case R.id.tv_12://
-                break;
-            case R.id.tv_13://
-                break;
-            case R.id.tv_14://
-                break;
-            case R.id.tv_15://
-                break;
-            case R.id.tv_16://
-                break;
-            case R.id.tv_17://
-                break;
-            case R.id.tv_18://
-                break;
-            case R.id.tv_19://
-                break;
-            case R.id.tv_20://
-                break;
-        }
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -171,23 +120,96 @@ public class AndroidBaseActivity extends AppCompatActivity {
         }
     }
 
-    //一键三连,在三个地方输出打印结果.
-    private void print(String msg) {
-        if (!TextUtils.isEmpty(msg)) {
-            LogUtils.d(msg);
-            ToastUtils.showShort(msg);
-            mTvConsole.setText(msg);
+    @OnClick({R.id.tv_0, R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10, R.id.tv_11, R.id.tv_12, R.id.tv_13, R.id.tv_14, R.id.tv_15, R.id.tv_16, R.id.tv_17, R.id.tv_18, R.id.tv_19, R.id.tv_20})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_0://打开系统文件选择器.
+                pickFile();
+                break;
+            case R.id.tv_1://请求[存储]和[定位]权限.
+                requestPermission();
+                break;
+            case R.id.tv_2://请求[管理所有文件]权限.
+                requestManageExternalStoragePermission();
+                break;
+            case R.id.tv_3://文件的持久化保存.
+                startActivity(new Intent(this, SaveFileActivity.class));
+                break;
+            case R.id.tv_4://通过浏览器打开链接.
+                openUrlByBrowser();
+                break;
+            case R.id.tv_5://
+                break;
+            case R.id.tv_6://
+                break;
+            case R.id.tv_7://
+                break;
+            case R.id.tv_8://
+                break;
+            case R.id.tv_9://
+                break;
+            case R.id.tv_10://
+                break;
+            case R.id.tv_11://
+                break;
+            case R.id.tv_12://
+                break;
+            case R.id.tv_13://
+                break;
+            case R.id.tv_14://
+                break;
+            case R.id.tv_15://
+                break;
+            case R.id.tv_16://
+                break;
+            case R.id.tv_17://
+                break;
+            case R.id.tv_18://
+                break;
+            case R.id.tv_19://
+                break;
+            case R.id.tv_20://
+                break;
         }
     }
 
-    //打开系统文件选择器.
-    private void pickFile() {
-        //action和category都是固定不变的.type属性可以用于对文件类型进行过滤,type属性必须要指定，否则会产生崩溃。
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);//是否支持多选文件.
-        intent.setType("*/*");
-        startActivityForResult(intent, REQUEST_CODE_FOR_PICK_FILE);
+    //通过浏览器打开链接.
+    private void openUrlByBrowser() {
+        Intent intent10 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.baidu.com"));//http://www.baidu.com
+        intent10.addFlags(FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent10);
+    }
+
+    //请求[管理所有文件]权限.
+    private void requestManageExternalStoragePermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
+            print("已获[管理所有文件]权限");
+        } else {
+            new AlertDialog.Builder(this)
+                    .setIcon(R.mipmap.ic_launcher)//设置标题的图片.
+                    .setTitle("权限申请")//设置对话框的标题.
+                    .setMessage("本程序需要您同意允许访问所有文件权限")//设置对话框的内容.
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {//积极键.
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            startActivityForResult(new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION), REQUEST_CODE_FOR_SD_PERMISSION);
+                        }
+                    })
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {//消极键.
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            print("[管理所有文件]权限被拒,存储受限");
+                        }
+                    })
+                    .setNeutralButton("按钮", new DialogInterface.OnClickListener() {//中立键.
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    })
+                    .setCancelable(false)//设置点击返回和外部不取消.
+                    .show();
+        }
     }
 
     //请求[存储]和[定位]权限.
@@ -239,7 +261,6 @@ public class AndroidBaseActivity extends AppCompatActivity {
                 .request();
     }
 
-
     //前往"设置"界面开启权限的提示.
     private void setPermissionDialog() {
         new AlertDialog.Builder(this)
@@ -267,35 +288,23 @@ public class AndroidBaseActivity extends AppCompatActivity {
                 .show();
     }
 
-    //请求[存储]和[定位]权限.
-    private void requestManageExternalStoragePermission() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
-            print("已获[管理所有文件]权限");
-        } else {
-            new AlertDialog.Builder(this)
-                    .setIcon(R.mipmap.ic_launcher)//设置标题的图片.
-                    .setTitle("权限申请")//设置对话框的标题.
-                    .setMessage("本程序需要您同意允许访问所有文件权限")//设置对话框的内容.
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {//积极键.
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            startActivityForResult(new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION), REQUEST_CODE_FOR_SD_PERMISSION);
-                        }
-                    })
-                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {//消极键.
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            print("[管理所有文件]权限被拒,存储受限");
-                        }
-                    })
-                    .setNeutralButton("按钮", new DialogInterface.OnClickListener() {//中立键.
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+    //打开系统文件选择器.
+    private void pickFile() {
+        //action和category都是固定不变的.type属性可以用于对文件类型进行过滤,type属性必须要指定，否则会产生崩溃。
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);//是否支持多选文件.
+        intent.setType("*/*");
+        startActivityForResult(intent, REQUEST_CODE_FOR_PICK_FILE);
+    }
 
-                        }
-                    })
-                    .setCancelable(false)//设置点击返回和外部不取消.
-                    .show();
+    //一键三连,在三个地方输出打印结果.
+    private void print(String msg) {
+        if (!TextUtils.isEmpty(msg)) {
+            LogUtils.d(msg);
+            ToastUtils.showShort(msg);
+            mTvConsole.setText(msg);
         }
     }
+
 }

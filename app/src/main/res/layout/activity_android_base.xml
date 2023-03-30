@@ -84,7 +84,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试3:\n文件的持久化保存."
+                android:text="测试3:(跳转)\n文件的持久化保存."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_2" />
@@ -99,7 +99,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试4:\n"
+                android:text="测试4:\n通过浏览器打开链接."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_3" />
