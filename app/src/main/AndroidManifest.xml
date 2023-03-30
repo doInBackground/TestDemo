@@ -8,9 +8,12 @@
         tools:ignore="ScopedStorage" /> <!-- 管理所有文件权限(高危权限,GooglePlay通不过) -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 存储权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 存储权限 -->
+    <!-- android:name="ACCESS_BACKGROUND_LOCATION: 定位权限(不能写,写上请求权限时默认被拒绝) -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 定位权限 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /><!--定位权限-->
-    <!--    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />&lt;!&ndash;定位权限(不能写,写上请求权限时默认被拒绝)&ndash;&gt;-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 定位权限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- WIFI权限 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- WIFI权限 -->
 
     <application
         android:name=".init.AppApplication"
@@ -33,39 +36,35 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- 测试: Java基础 -->
+        </activity> <!-- 测试: Java基础 -->
         <activity
             android:name=".test.test00_javabase.JavaBaseActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: Android基础 -->
+            android:screenOrientation="portrait" /> <!-- 测试: Android基础 -->
         <activity
             android:name=".test.test01_androidbase.AndroidBaseActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: 四大组件 -->
+            android:screenOrientation="portrait" /> <!-- 测试: 四大组件 -->
         <activity
             android:name=".test.test02_4components.TestComponentsActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: 视图 -->
+            android:screenOrientation="portrait" /> <!-- 测试: 视图 -->
         <activity
             android:name=".test.test03_view.TestViewActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: 设备 -->
+            android:screenOrientation="portrait" /> <!-- 测试: 设备 -->
         <activity
             android:name=".test.test04_device.TestDeviceActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: 三方库 -->
+            android:screenOrientation="portrait" /> <!-- 测试: 三方库 -->
         <activity
             android:name=".test.test05_library.TestLibraryActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <!--    "orientation|screenSize|keyboardHidden":屏幕方向切换不重新走生命周期方法.
-         fullSensor:表示4个方向都可以旋转.    -->
+        <!--
+    "orientation|screenSize|keyboardHidden":屏幕方向切换不重新走生命周期方法.
+         fullSensor:表示4个方向都可以旋转.
+        -->
         <activity
             android:name=".test.test03_view.test00.ScreenThemeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -74,7 +73,15 @@
         <activity
             android:name=".test.test01_androidbase.test03.SaveFileActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".test.test00_javabase.test02.SocketTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".test.test00_javabase.test02.SocketServiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".test.test00_javabase.test02.SocketClientActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

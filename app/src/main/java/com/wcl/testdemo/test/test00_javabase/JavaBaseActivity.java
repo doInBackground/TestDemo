@@ -1,5 +1,6 @@
 package com.wcl.testdemo.test.test00_javabase;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.test.test00_javabase.test02.SocketTestActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -50,7 +52,8 @@ public class JavaBaseActivity extends AppCompatActivity {
             case R.id.tv_1://二级缓存(将对象,从缓存中取出)
                 getObject();
                 break;
-            case R.id.tv_2://
+            case R.id.tv_2://Socket测试.
+                startActivity(new Intent(this, SocketTestActivity.class));
                 break;
             case R.id.tv_3://
                 break;
@@ -91,13 +94,17 @@ public class JavaBaseActivity extends AppCompatActivity {
         }
     }
 
-    //一键三连,在三个地方输出打印结果.
-    private void print(String msg) {
-        if (!TextUtils.isEmpty(msg)) {
-            LogUtils.d(msg);
-            ToastUtils.showShort(msg);
-            mTvConsole.setText(msg);
-        }
+    //二级缓存.
+    private void getObject() {
+        String appName = CacheDoubleStaticUtils.getString("APP_NAME");
+        byte[] arr = CacheDoubleStaticUtils.getBytes("ARR");
+        StringBuilder sb = new StringBuilder()
+                .append("获取本地存储的二级缓存:")
+                .append("\nAPP_NAME: ")
+                .append(appName)
+                .append("\nARR: ")
+                .append(GsonUtils.toJson(arr));
+        print(sb.toString());
     }
 
     //二级缓存.
@@ -116,16 +123,13 @@ public class JavaBaseActivity extends AppCompatActivity {
         print("二级缓存成功,可去路径下查看:\n" + Utils.getApp().getExternalCacheDir().getAbsolutePath());
     }
 
-    //二级缓存.
-    private void getObject() {
-        String appName = CacheDoubleStaticUtils.getString("APP_NAME");
-        byte[] arr = CacheDoubleStaticUtils.getBytes("ARR");
-        StringBuilder sb = new StringBuilder()
-                .append("获取本地存储的二级缓存:")
-                .append("\nAPP_NAME: ")
-                .append(appName)
-                .append("\nARR: ")
-                .append(GsonUtils.toJson(arr));
-        print(sb.toString());
+    //一键三连,在三个地方输出打印结果.
+    private void print(String msg) {
+        if (!TextUtils.isEmpty(msg)) {
+            LogUtils.d(msg);
+            ToastUtils.showShort(msg);
+            mTvConsole.setText(msg);
+        }
     }
+
 }
