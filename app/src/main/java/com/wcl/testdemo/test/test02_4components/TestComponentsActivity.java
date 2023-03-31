@@ -1,10 +1,15 @@
 package com.wcl.testdemo.test.test02_4components;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.test.test02_4components.test00.ServiceTestActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -35,7 +40,8 @@ public class TestComponentsActivity extends AppCompatActivity {
     @OnClick({R.id.tv_0, R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10, R.id.tv_11, R.id.tv_12, R.id.tv_13, R.id.tv_14, R.id.tv_15, R.id.tv_16, R.id.tv_17, R.id.tv_18, R.id.tv_19, R.id.tv_20})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_0://
+            case R.id.tv_0://Service测试.
+                startActivity(new Intent(this, ServiceTestActivity.class));
                 break;
             case R.id.tv_1://
                 break;
@@ -77,6 +83,16 @@ public class TestComponentsActivity extends AppCompatActivity {
                 break;
             case R.id.tv_20://
                 break;
+        }
+    }
+
+
+    //一键三连,在三个地方输出打印结果.
+    private void print(String msg) {
+        if (!TextUtils.isEmpty(msg)) {
+            LogUtils.d(msg);
+            ToastUtils.showShort(msg);
+            mTvConsole.setText(msg);
         }
     }
 

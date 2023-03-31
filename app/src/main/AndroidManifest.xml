@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 定位权限 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- WIFI权限 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- WIFI权限 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
         android:name=".init.AppApplication"
@@ -81,6 +81,12 @@
             android:exported="false" />
         <activity
             android:name=".test.test00_javabase.test02.SocketClientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".test.test02_4components.test00.ServiceTestActivity"
+            android:exported="false" />
+        <service
+            android:name=".test.test02_4components.test00.MyService"
             android:exported="false" />
     </application>
 
