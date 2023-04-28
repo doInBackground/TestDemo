@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- WIFI权限 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /><!-- 前台服务权限 -->
 
     <application
         android:name=".init.AppApplication"
@@ -85,9 +86,20 @@
         <activity
             android:name=".test.test02_4components.test00.ServiceTestActivity"
             android:exported="false" />
+        <activity
+            android:name=".test.test04_device.test04.TpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".test.test04_device.test04.tp.client.TpClientActivity"
+            android:exported="false" />
+
         <service
             android:name=".test.test02_4components.test00.MyService"
             android:exported="false" />
+        <service
+            android:name=".test.test04_device.test04.tp.service.TpServerService"
+            android:exported="true"
+            android:foregroundServiceType="mediaProjection" />
     </application>
 
 </manifest>
