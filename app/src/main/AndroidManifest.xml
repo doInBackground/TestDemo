@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- WIFI权限 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /><!-- 前台服务权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".init.AppApplication"
@@ -37,29 +37,40 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 测试: Java基础 -->
+        </activity>
+        <!-- 测试: Java基础 -->
         <activity
             android:name=".test.test00_javabase.JavaBaseActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- 测试: Android基础 -->
+            android:screenOrientation="portrait" />
+        <!-- 测试: Android基础 -->
         <activity
             android:name=".test.test01_androidbase.AndroidBaseActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- 测试: 四大组件 -->
+            android:screenOrientation="portrait" />
+        <!-- 测试: 四大组件 -->
         <activity
             android:name=".test.test02_4components.TestComponentsActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- 测试: 视图 -->
+            android:screenOrientation="portrait" />
+        <!-- 测试: 视图 -->
         <activity
             android:name=".test.test03_view.TestViewActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- 测试: 设备 -->
+            android:screenOrientation="portrait" />
+        <!-- 测试: 设备 -->
         <activity
             android:name=".test.test04_device.TestDeviceActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- 测试: 三方库 -->
+            android:screenOrientation="portrait" />
+        <!-- 测试: 三方库 -->
         <activity
             android:name=".test.test05_library.TestLibraryActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <!-- 测试: 音视频 -->
+        <activity
+            android:name=".test.test06_audio_video.TestAudioAndVideoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <!--
@@ -87,17 +98,17 @@
             android:name=".test.test02_4components.test00.ServiceTestActivity"
             android:exported="false" />
         <activity
-            android:name=".test.test04_device.test04.TpActivity"
+            android:name=".test.test06_audio_video.test00.TpActivity"
             android:exported="false" />
         <activity
-            android:name=".test.test04_device.test04.tp.client.TpClientActivity"
+            android:name=".test.test06_audio_video.test00.tp.client.TpClientActivity"
             android:exported="false" />
 
         <service
             android:name=".test.test02_4components.test00.MyService"
             android:exported="false" />
         <service
-            android:name=".test.test04_device.test04.tp.service.TpServerService"
+            android:name=".test.test06_audio_video.test00.tp.service.TpServerService"
             android:exported="true"
             android:foregroundServiceType="mediaProjection" />
     </application>

@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test04_device.test04.tp.client;
+package com.wcl.testdemo.test.test06_audio_video.test00.tp.client;
 
 
 import android.media.MediaCodec;
@@ -8,11 +8,11 @@ import android.view.Surface;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import static com.wcl.testdemo.test.test04_device.test04.tp.constant.CODEC_TIME_OUT;
-import static com.wcl.testdemo.test.test04_device.test04.tp.constant.SCREEN_FRAME_INTERVAL;
-import static com.wcl.testdemo.test.test04_device.test04.tp.constant.SCREEN_FRAME_RATE;
-import static com.wcl.testdemo.test.test04_device.test04.tp.constant.VIDEO_HEIGHT;
-import static com.wcl.testdemo.test.test04_device.test04.tp.constant.VIDEO_WIDTH;
+import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.CODEC_TIME_OUT;
+import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.SCREEN_FRAME_INTERVAL;
+import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.SCREEN_FRAME_RATE;
+import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.VIDEO_HEIGHT;
+import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.VIDEO_WIDTH;
 
 /**
  * @Author WCL

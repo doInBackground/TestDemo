@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test04_device.test04;
+package com.wcl.testdemo.test.test06_audio_video.test00;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,16 +17,16 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
-import com.wcl.testdemo.test.test04_device.test04.tp.client.TpClientActivity;
-import com.wcl.testdemo.test.test04_device.test04.tp.service.TpServerService;
+import com.wcl.testdemo.test.test06_audio_video.test00.tp.client.TpClientActivity;
+import com.wcl.testdemo.test.test06_audio_video.test00.tp.service.TpServerService;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.wcl.testdemo.test.test04_device.test04.tp.service.TpServerService.INTENT_KEY_INTENT;
-import static com.wcl.testdemo.test.test04_device.test04.tp.service.TpServerService.INTENT_KEY_RESULT_CODE;
+import static com.wcl.testdemo.test.test06_audio_video.test00.tp.service.TpServerService.INTENT_KEY_INTENT;
+import static com.wcl.testdemo.test.test06_audio_video.test00.tp.service.TpServerService.INTENT_KEY_RESULT_CODE;
 
 /**
  * @Author WCL

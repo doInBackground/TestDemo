@@ -1,6 +1,5 @@
 package com.wcl.testdemo.test.test04_device;
 
-import android.content.Intent;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,7 +11,6 @@ import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.ThreadUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
-import com.wcl.testdemo.test.test04_device.test04.TpActivity;
 import com.wcl.testdemo.utils.FindIpUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,8 +72,7 @@ public class TestDeviceActivity extends AppCompatActivity {
             case R.id.tv_3://局域网发现设备(客户端-结束寻找-服务端):
                 FindIpUtils.stopClient();
                 break;
-            case R.id.tv_4://投屏测试.
-                startActivity(new Intent(this, TpActivity.class));
+            case R.id.tv_4://
                 break;
             case R.id.tv_5://
                 break;

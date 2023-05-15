@@ -13,6 +13,7 @@ import com.wcl.testdemo.test.test02_4components.TestComponentsActivity;
 import com.wcl.testdemo.test.test03_view.TestViewActivity;
 import com.wcl.testdemo.test.test04_device.TestDeviceActivity;
 import com.wcl.testdemo.test.test05_library.TestLibraryActivity;
+import com.wcl.testdemo.test.test06_audio_video.TestAudioAndVideoActivity;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,7 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
         mList.add(new TestBean("(3) 视图测试. (View; Dialog)"));
         mList.add(new TestBean("(4) 设备功能测试. (传感器; 蓝牙; WIFI)"));
         mList.add(new TestBean("(5) 三方库测试. (插件化; 热更)"));
+        mList.add(new TestBean("(6) 音视频测试."));
     }
 
     @Override
@@ -64,6 +66,9 @@ public class TestActivity extends AppCompatActivity implements TestAdapter.OnIte
                 break;
             case 5://三方库测试.
                 intent = new Intent(TestActivity.this, TestLibraryActivity.class);
+                break;
+            case 6://音视频测试.
+                intent = new Intent(TestActivity.this, TestAudioAndVideoActivity.class);
                 break;
             default://其他情况
                 intent = null;

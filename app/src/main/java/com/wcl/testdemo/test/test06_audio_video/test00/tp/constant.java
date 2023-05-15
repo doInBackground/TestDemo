@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test04_device.test04.tp;
+package com.wcl.testdemo.test.test06_audio_video.test00.tp;
 
 /**
  * @Author WCL

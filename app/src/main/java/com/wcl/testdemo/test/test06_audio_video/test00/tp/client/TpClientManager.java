@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test04_device.test04.tp.client;
+package com.wcl.testdemo.test.test06_audio_video.test00.tp.client;
 
 
 import android.view.Surface;
@@ -6,7 +6,7 @@ import android.view.Surface;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.wcl.testdemo.test.test04_device.test04.tp.constant.SOCKET_PORT;
+import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.SOCKET_PORT;
 
 /**
  * @Author WCL
