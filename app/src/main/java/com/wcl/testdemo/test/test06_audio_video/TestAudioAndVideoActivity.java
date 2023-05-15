@@ -1,5 +1,6 @@
 package com.wcl.testdemo.test.test06_audio_video;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -11,10 +12,15 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test06_audio_video.test00.TpActivity;
+import com.wcl.testdemo.test.test06_audio_video.test01.CameraActivity;
+
+import java.util.List;
 
 /**
  * @Author WCL
@@ -43,7 +49,19 @@ public class TestAudioAndVideoActivity extends AppCompatActivity {
             case R.id.tv_0://投屏测试.
                 startActivity(new Intent(this, TpActivity.class));
                 break;
-            case R.id.tv_1://
+            case R.id.tv_1://Camera测试.
+                PermissionUtils.permission(PermissionConstants.CAMERA)
+                        .callback(new PermissionUtils.SingleCallback() {
+                            @Override
+                            public void callback(boolean isAllGranted, @NonNull List<String> granted, @NonNull List<String> deniedForever, @NonNull List<String> denied) {
+                                if (isAllGranted) {//权限全部同意.
+                                    startActivity(new Intent(TestAudioAndVideoActivity.this, CameraActivity.class));
+                                } else {
+                                    ToastUtils.showShort("相机权限被拒,功能受限!");
+                                }
+                            }
+                        })
+                        .request();
                 break;
             case R.id.tv_2://
                 break;
