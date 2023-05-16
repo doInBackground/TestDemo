@@ -108,6 +108,10 @@
             android:name=".test.test06_audio_video.test01.CameraActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test06_audio_video.test02.VideoChatActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".test.test02_4components.test00.MyService"
