@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wcl.testdemo">
 
+    <!-- <uses-feature -->
+    <!-- android:glEsVersion="0x0002000" -->
+    <!-- android:required="true" /> &lt;!&ndash; 引入OpenGL ES &ndash;&gt; -->
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" /> <!-- 管理所有文件权限(高危权限,GooglePlay通不过) -->
@@ -110,6 +116,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".test.test06_audio_video.test02.VideoChatActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test06_audio_video.test03.OpenGLTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test06_audio_video.test03.GLSurfaceViewActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
