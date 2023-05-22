@@ -20,7 +20,7 @@ import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test06_audio_video.test00.TpActivity;
 import com.wcl.testdemo.test.test06_audio_video.test01.CameraActivity;
 import com.wcl.testdemo.test.test06_audio_video.test02.VideoChatActivity;
-import com.wcl.testdemo.test.test06_audio_video.test03.OpenGLTestActivity;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.OpenGLTestActivity;
 
 import java.util.List;
 

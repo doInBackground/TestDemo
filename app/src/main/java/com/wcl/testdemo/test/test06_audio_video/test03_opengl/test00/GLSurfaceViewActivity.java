@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test06_audio_video.test03;
+package com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00;
 
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;

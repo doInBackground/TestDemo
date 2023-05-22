@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test06_audio_video.test03;
+package com.wcl.testdemo.test.test06_audio_video.test03_opengl;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,11 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
-import com.wcl.testdemo.test.test06_audio_video.test03.renderer.BackgroundRender;
-import com.wcl.testdemo.test.test06_audio_video.test03.renderer.TriangleRender;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.GLSurfaceViewActivity;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.BackgroundRender;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.TriangleRender;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test02.CameraXActivity;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test02.ScreenFilter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -49,17 +52,29 @@ public class OpenGLTestActivity extends AppCompatActivity {
                 GLSurfaceViewActivity.setRender(new TriangleRender());
                 startActivity(new Intent(OpenGLTestActivity.this, GLSurfaceViewActivity.class));
                 break;
-            case R.id.tv_2://
+            case R.id.tv_2://渲染摄像头画面:普通.
+                ScreenFilter.setShaderCode(R.raw.camera_vert, R.raw.camera_frag);
+                startActivity(new Intent(OpenGLTestActivity.this, CameraXActivity.class));
                 break;
-            case R.id.tv_3://
+            case R.id.tv_3://渲染摄像头画面:灰色滤镜.
+                ScreenFilter.setShaderCode(R.raw.camera_vert, R.raw.camera_frag1);
+                startActivity(new Intent(OpenGLTestActivity.this, CameraXActivity.class));
                 break;
-            case R.id.tv_4://
+            case R.id.tv_4://渲染摄像头画面:暖色滤镜.
+                ScreenFilter.setShaderCode(R.raw.camera_vert, R.raw.camera_frag2);
+                startActivity(new Intent(OpenGLTestActivity.this, CameraXActivity.class));
                 break;
-            case R.id.tv_5://
+            case R.id.tv_5://渲染摄像头画面:冷色滤镜.
+                ScreenFilter.setShaderCode(R.raw.camera_vert, R.raw.camera_frag3);
+                startActivity(new Intent(OpenGLTestActivity.this, CameraXActivity.class));
                 break;
-            case R.id.tv_6://
+            case R.id.tv_6://渲染摄像头画面:旋转滤镜.
+                ScreenFilter.setShaderCode(R.raw.camera_vert, R.raw.camera_frag4);
+                startActivity(new Intent(OpenGLTestActivity.this, CameraXActivity.class));
                 break;
-            case R.id.tv_7://
+            case R.id.tv_7://渲染摄像头画面:分屏滤镜.
+                ScreenFilter.setShaderCode(R.raw.camera_vert, R.raw.camera_frag5);
+                startActivity(new Intent(OpenGLTestActivity.this, CameraXActivity.class));
                 break;
             case R.id.tv_8://
                 break;

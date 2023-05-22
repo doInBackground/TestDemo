@@ -49,4 +49,7 @@ dependencies {
 
     implementation 'com.blankj:utilcodex:1.31.0'//布兰柯基-工具类(如果用了AndroidX,引入utilcodex否则引入utilcode)
     implementation 'org.java-websocket:Java-WebSocket:1.5.3'//WebSocket.
+
+    implementation "androidx.camera:camera-core:1.0.0-alpha05"
+    implementation "androidx.camera:camera-camera2:1.0.0-alpha05"
 }

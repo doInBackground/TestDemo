@@ -119,11 +119,15 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".test.test06_audio_video.test03.OpenGLTestActivity"
+            android:name=".test.test06_audio_video.test03_opengl.OpenGLTestActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".test.test06_audio_video.test03.GLSurfaceViewActivity"
+            android:name=".test.test06_audio_video.test03_opengl.test00.GLSurfaceViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test06_audio_video.test03_opengl.test02.CameraXActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
