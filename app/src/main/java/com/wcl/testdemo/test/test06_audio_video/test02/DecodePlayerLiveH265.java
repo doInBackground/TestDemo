@@ -15,7 +15,7 @@ import java.nio.ByteBuffer;
  * @Version
  * @Description 解码器.
  */
-public class DecodePlayerLiveH265 {
+class DecodePlayerLiveH265 {
 
     private MediaCodec mMediaCodec;//解码器.
 

@@ -32,7 +32,7 @@ import static android.opengl.GLES20.GL_TEXTURE0;
  * 这几个类的对象都是通过ByteBuffer的asFloatBuffer(), asDoubleBuffer()等几个函数获得，它们使用ByteBuffer的allocateDirect分配的内存。
  * 使用案例参考本类中的代码.
  */
-public class ScreenFilter {
+public class CameraFilter {
 
     private static int sRawVertexId;//顶点着色器代码
     private static int sRawFragmentId;//片元着色器代码
@@ -68,7 +68,7 @@ public class ScreenFilter {
     private float[] mtx;
 
     //构造方法.
-    public ScreenFilter(Context context) {
+    public CameraFilter(Context context) {
         //创建native内存,接收顶点坐标.
         mVertexFloatBuffer = ByteBuffer.allocateDirect(2 * 4 * 4)//分配native缓冲区大小,这块内存不会被垃圾回收机制给回收: VERTEX.length*sizeof(float).
                 .order(ByteOrder.nativeOrder())//按照native字节序组织内容.GPU重新整理下内存.
@@ -161,8 +161,8 @@ public class ScreenFilter {
      * @param rawFragmentId 片元着色器代码
      */
     public static void setShaderCode(int rawVertexId, int rawFragmentId) {
-        ScreenFilter.sRawVertexId = rawVertexId;
-        ScreenFilter.sRawFragmentId = rawFragmentId;
+        CameraFilter.sRawVertexId = rawVertexId;
+        CameraFilter.sRawFragmentId = rawFragmentId;
     }
 
 }

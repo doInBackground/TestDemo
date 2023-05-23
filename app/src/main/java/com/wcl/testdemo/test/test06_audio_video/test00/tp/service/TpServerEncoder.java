@@ -23,7 +23,7 @@ import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.VIDEO_
  * @Description 投屏服务端:编码器.
  * 采用H.265编码 H.265/HEVC的编码架构大致上和H.264/AVC的架构相似 H.265又称为HEVC(全称High Efficiency Video Coding，高效率视频编码)
  */
-public class TpServerEncoder extends Thread {
+class TpServerEncoder extends Thread {
 
     /**
      * Comment:

@@ -16,7 +16,7 @@ import com.blankj.utilcode.util.ToastUtils;
  * @Version
  * @Description Service.
  */
-public class MyService extends Service {
+class MyService extends Service {
 
     /**
      * Comment: Handler.

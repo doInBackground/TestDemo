@@ -35,7 +35,7 @@ import butterknife.OnClick;
  * (*)客户端退出时,服务端的接收线程未关闭.
  * (*)ServerSocket和Socket的关闭释放.
  */
-public class SocketServiceActivity extends AppCompatActivity {
+class SocketServiceActivity extends AppCompatActivity {
 
     public static final int SERVICE_PORT = 9999;
     @BindView(R.id.tv_title)

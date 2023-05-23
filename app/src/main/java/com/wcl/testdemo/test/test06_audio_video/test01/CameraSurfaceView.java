@@ -32,7 +32,7 @@ import androidx.annotation.NonNull;
  * 摄像头捕获的数据,转换成H264码流.网络传输: 需要在每个I帧之前,先传sps pps.
  * webrtc适合视频通话,不适合短视频,直播.
  */
-public class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Camera.PreviewCallback {
+class CameraSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Camera.PreviewCallback {
 
     public static final String CAMERA_DATA_H264 = PathUtils.getExternalAppCachePath() + "/camera.h264";
     public static final String CAMERA_DATA_TXT = PathUtils.getExternalAppCachePath() + "/camera.txt";

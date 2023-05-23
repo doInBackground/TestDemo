@@ -29,7 +29,7 @@ import static com.wcl.testdemo.test.test00_javabase.test02.SocketServiceActivity
  * @Version
  * @Description 双人局域网聊天(客户端)
  */
-public class SocketClientActivity extends AppCompatActivity {
+class SocketClientActivity extends AppCompatActivity {
 
     public static final String INTENT_SERVICE_IP = "INTENT_SERVICE_IP";
 

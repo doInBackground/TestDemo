@@ -20,7 +20,7 @@ import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.VIDEO_
  * @Version
  * @Description 投屏客户端:解码器.
  */
-public class TpClientDecoder {
+class TpClientDecoder {
 
     /**
      * Comment:Android编解码器.

@@ -14,7 +14,7 @@ import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.SOCKET
  * @Version
  * @Description 投屏客户端:管理器.
  */
-public class TpClientManager implements TpClientSocket.SocketCallback {
+class TpClientManager implements TpClientSocket.SocketCallback {
 
     private TpClientDecoder mTpClientDecoder;
     private TpClientSocket mSocketClient;

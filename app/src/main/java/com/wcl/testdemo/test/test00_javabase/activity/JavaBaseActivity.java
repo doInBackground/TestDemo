@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test00_javabase;
+package com.wcl.testdemo.test.test00_javabase.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

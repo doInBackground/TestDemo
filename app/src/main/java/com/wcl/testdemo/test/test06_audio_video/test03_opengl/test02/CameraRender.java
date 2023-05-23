@@ -15,12 +15,12 @@ import androidx.lifecycle.LifecycleOwner;
  * @Version
  * @Description 摄像头渲染器.
  */
-public class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOutputUpdateListener, SurfaceTexture.OnFrameAvailableListener {
+class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOutputUpdateListener, SurfaceTexture.OnFrameAvailableListener {
 
     private CameraXHelper mCameraXHelper;
     private CameraGLSurfaceView mCameraGLSurfaceView;
     private SurfaceTexture mCameraSurfaceTexture;//摄像头纹理.
-    private ScreenFilter mScreenFilter;//滤镜类.
+    private CameraFilter mCameraFilter;//滤镜类.
     private int[] mTextures;//记录纹理图层ID.
     float[] mtx = new float[16];
 
@@ -37,12 +37,12 @@ public class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOu
         mTextures = new int[1];
         mCameraSurfaceTexture.attachToGLContext(mTextures[0]);//绑定:让SurfaceTexture与GPU图层共享一个数据源.参数(图层ID)取值范围:0-31.
         mCameraSurfaceTexture.setOnFrameAvailableListener(this);//监听摄像头数据回调(SurfaceTexture.OnFrameAvailableListener).
-        mScreenFilter = new ScreenFilter(mCameraGLSurfaceView.getContext());
+        mCameraFilter = new CameraFilter(mCameraGLSurfaceView.getContext());
     }
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-        mScreenFilter.setSize(width, height);
+        mCameraFilter.setSize(width, height);
     }
 
 
@@ -52,10 +52,10 @@ public class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOu
 
         mCameraSurfaceTexture.updateTexImage();//SurfaceTexture更新摄像头数据.数据给了GPU.
         mCameraSurfaceTexture.getTransformMatrix(mtx);
-        mScreenFilter.setTransformMatrix(mtx);
+        mCameraFilter.setTransformMatrix(mtx);
 
         //有数据的时候给着色器代码中的变量赋值.
-        mScreenFilter.onDraw(mTextures[0]);
+        mCameraFilter.onDraw(mTextures[0]);
     }
 
     /**

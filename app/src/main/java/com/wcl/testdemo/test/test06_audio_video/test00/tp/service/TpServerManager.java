@@ -12,7 +12,7 @@ import static com.wcl.testdemo.test.test06_audio_video.test00.tp.constant.SOCKET
  * @Version
  * @Description 投屏服务端:管理器.
  */
-public class TpServerManager {
+class TpServerManager {
 
     /**
      * Comment:投屏服务端-Socket.

@@ -14,7 +14,7 @@ import androidx.lifecycle.LifecycleOwner;
  * @Version
  * @Description CameraX工具类.
  */
-public class CameraXHelper {
+class CameraXHelper {
 
     private CameraX.LensFacing mCurrentFacing = CameraX.LensFacing.BACK;
     private HandlerThread mHandlerThread;

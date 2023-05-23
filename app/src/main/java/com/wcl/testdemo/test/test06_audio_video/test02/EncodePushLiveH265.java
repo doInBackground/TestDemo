@@ -16,7 +16,7 @@ import java.nio.ByteBuffer;
  * @Version
  * @Description 编码器.
  */
-public class EncodePushLiveH265 {
+class EncodePushLiveH265 {
 
     private static final int NAL_I = 19;
     private static final int NAL_VPS = 32;

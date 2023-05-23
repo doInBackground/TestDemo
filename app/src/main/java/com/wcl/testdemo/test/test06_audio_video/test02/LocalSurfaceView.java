@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
  * @Version
  * @Description 展示本地视频画面的SurfaceView.
  */
-public class LocalSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Camera.PreviewCallback {
+class LocalSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Camera.PreviewCallback {
 
     private Camera mCamera;
     private Camera.Size mSize;

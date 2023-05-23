@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test01_androidbase;
+package com.wcl.testdemo.test.test01_androidbase.activity;
 
 import android.app.AlertDialog;
 import android.content.ClipData;

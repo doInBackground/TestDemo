@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test02_4components;
+package com.wcl.testdemo.test.test02_4components.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

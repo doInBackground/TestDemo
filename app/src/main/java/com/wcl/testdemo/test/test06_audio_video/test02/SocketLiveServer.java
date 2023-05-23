@@ -15,7 +15,7 @@ import java.nio.ByteBuffer;
  * @Version
  * @Description 视频通话-服务端Socket.
  */
-public class SocketLiveServer implements ISocketLive {
+class SocketLiveServer implements ISocketLive {
 
     /**
      * Comment:连接进来的客户端WebSocket.

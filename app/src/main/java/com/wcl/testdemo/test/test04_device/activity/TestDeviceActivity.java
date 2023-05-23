@@ -1,4 +1,4 @@
-package com.wcl.testdemo.test.test04_device;
+package com.wcl.testdemo.test.test04_device.activity;
 
 import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;

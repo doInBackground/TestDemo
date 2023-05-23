@@ -5,15 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.wcl.testdemo.R;
-import com.wcl.testdemo.test.test00_javabase.JavaBaseActivity;
-import com.wcl.testdemo.test.test01_androidbase.AndroidBaseActivity;
-import com.wcl.testdemo.test.test02_4components.TestComponentsActivity;
-import com.wcl.testdemo.test.test03_view.TestViewActivity;
-import com.wcl.testdemo.test.test04_device.TestDeviceActivity;
-import com.wcl.testdemo.test.test05_library.TestLibraryActivity;
-import com.wcl.testdemo.test.test06_audio_video.TestAudioAndVideoActivity;
+import com.wcl.testdemo.test.test00_javabase.activity.JavaBaseActivity;
+import com.wcl.testdemo.test.test01_androidbase.activity.AndroidBaseActivity;
+import com.wcl.testdemo.test.test02_4components.activity.TestComponentsActivity;
+import com.wcl.testdemo.test.test03_view.activity.TestViewActivity;
+import com.wcl.testdemo.test.test04_device.activity.TestDeviceActivity;
+import com.wcl.testdemo.test.test05_library.activity.TestLibraryActivity;
+import com.wcl.testdemo.test.test06_audio_video.activity.TestAudioAndVideoActivity;
 
 import java.util.ArrayList;
 

@@ -11,7 +11,7 @@ import android.util.AttributeSet;
  * @Description 用来展示经过处理的摄像头数据的GLSurfaceView.
  * GLSurfaceView:比普通的SurfaceView多了GLThread 线程.
  */
-public class CameraGLSurfaceView extends GLSurfaceView {
+class CameraGLSurfaceView extends GLSurfaceView {
 
     private CameraRender renderer;
 

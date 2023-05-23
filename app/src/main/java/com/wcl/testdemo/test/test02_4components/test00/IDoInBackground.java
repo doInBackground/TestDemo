@@ -6,7 +6,7 @@ package com.wcl.testdemo.test.test02_4components.test00;
  * @Version
  * @Description 接口: Service在后台要做的功能.
  */
-public interface IDoInBackground {
+interface IDoInBackground {
     void startPlay();
 
     void pausePlay();

@@ -14,7 +14,7 @@ import java.nio.ByteBuffer;
  * @Version
  * @Description 投屏客户端:Socket.
  */
-public class TpClientSocket extends WebSocketClient {
+class TpClientSocket extends WebSocketClient {
 
     /**
      * Comment:客户端收到消息的回调.

@@ -14,7 +14,7 @@ import java.net.InetSocketAddress;
  * @Version
  * @Description 投屏服务端:Socket.
  */
-public class TpServerSocket extends WebSocketServer {
+class TpServerSocket extends WebSocketServer {
 
     private WebSocket mWebSocket;
 
