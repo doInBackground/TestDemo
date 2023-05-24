@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wcl.testdemo.test.test06_audio_video.test03_opengl.test02.CameraGLSurfaceView
+    <com.wcl.testdemo.test.test06_audio_video.test03_opengl.test02.CameraXGLSurfaceView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

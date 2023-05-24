@@ -11,15 +11,15 @@ import android.util.AttributeSet;
  * @Description 用来展示经过处理的摄像头数据的GLSurfaceView.
  * GLSurfaceView:比普通的SurfaceView多了GLThread 线程.
  */
-class CameraGLSurfaceView extends GLSurfaceView {
+public class CameraXGLSurfaceView extends GLSurfaceView {
 
     private CameraRender renderer;
 
-    public CameraGLSurfaceView(Context context) {
+    public CameraXGLSurfaceView(Context context) {
         super(context);
     }
 
-    public CameraGLSurfaceView(Context context, AttributeSet attrs) {
+    public CameraXGLSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setEGLContextClientVersion(2);//设置版本.
         renderer = new CameraRender(this);

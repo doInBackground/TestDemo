@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.activity.OpenGLRecordActivity;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.GLSurfaceViewActivity;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.BackgroundRender;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.TriangleRender;
@@ -76,7 +77,8 @@ public class OpenGLTestActivity extends AppCompatActivity {
                 CameraFilter.setShaderCode(R.raw.camera_vert, R.raw.camera_frag5);
                 startActivity(new Intent(OpenGLTestActivity.this, CameraXActivity.class));
                 break;
-            case R.id.tv_8://
+            case R.id.tv_8://FBO帧缓存测试: 渲染并录制摄像头画面-> 分屏+灵魂出窍滤镜
+                startActivity(new Intent(OpenGLTestActivity.this, OpenGLRecordActivity.class));
                 break;
             case R.id.tv_9://
                 break;

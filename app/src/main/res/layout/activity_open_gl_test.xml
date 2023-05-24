@@ -160,7 +160,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试8:\n"
+                android:text="测试8:\nFBO帧缓存测试\n渲染并录制摄像头画面:分屏+灵魂出窍滤镜"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_7" />

@@ -2,11 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wcl.testdemo">
-
     <!-- <uses-feature -->
     <!-- android:glEsVersion="0x0002000" -->
     <!-- android:required="true" /> &lt;!&ndash; 引入OpenGL ES &ndash;&gt; -->
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission
@@ -44,38 +42,31 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- 测试: Java基础 -->
+        </activity> <!-- 测试: Java基础 -->
         <activity
             android:name=".test.test00_javabase.activity.JavaBaseActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: Android基础 -->
+            android:screenOrientation="portrait" /> <!-- 测试: Android基础 -->
         <activity
             android:name=".test.test01_androidbase.activity.AndroidBaseActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: 四大组件 -->
+            android:screenOrientation="portrait" /> <!-- 测试: 四大组件 -->
         <activity
             android:name=".test.test02_4components.activity.TestComponentsActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: 视图 -->
+            android:screenOrientation="portrait" /> <!-- 测试: 视图 -->
         <activity
             android:name=".test.test03_view.activity.TestViewActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: 设备 -->
+            android:screenOrientation="portrait" /> <!-- 测试: 设备 -->
         <activity
             android:name=".test.test04_device.activity.TestDeviceActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: 三方库 -->
+            android:screenOrientation="portrait" /> <!-- 测试: 三方库 -->
         <activity
             android:name=".test.test05_library.activity.TestLibraryActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 测试: 音视频 -->
+            android:screenOrientation="portrait" /> <!-- 测试: 音视频 -->
         <activity
             android:name=".test.test06_audio_video.activity.TestAudioAndVideoActivity"
             android:exported="false"
@@ -128,6 +119,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".test.test06_audio_video.test03_opengl.test02.CameraXActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test06_audio_video.test03_opengl.test08.activity.OpenGLRecordActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

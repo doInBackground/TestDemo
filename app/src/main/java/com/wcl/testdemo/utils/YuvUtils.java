@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class YuvUtils {
 
-    private static final String TEMP_DATA_H264 = PathUtils.getExternalAppCachePath() + "/temp.h264";
+    public static final String TEMP_DATA_H264 = PathUtils.getExternalAppCachePath() + "/temp.h264";
     private static final String TEMP_DATA_TXT = PathUtils.getExternalAppCachePath() + "/temp.txt";
     private static byte[] nv12;
 
