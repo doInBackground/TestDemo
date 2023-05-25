@@ -9,17 +9,27 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
-import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.activity.OpenGLRecordActivity;
-import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.GLSurfaceViewActivity;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.BackgroundRender;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.GLSurfaceViewActivity;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test00.TriangleRender;
-import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test02.CameraXActivity;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test02.CameraFilter;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test02.CameraXActivity;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraRender;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraXGLSurfaceView;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraXHelper;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.activity.OpenGLRecordActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.CameraX;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraRender.FilterEnum.BEAUTY;
+import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraRender.FilterEnum.CAMERA;
+import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraRender.FilterEnum.SHOW;
+import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraRender.FilterEnum.SOUL;
+import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraRender.FilterEnum.SPLIT;
 
 /**
  * @Author WCL
@@ -78,9 +88,14 @@ public class OpenGLTestActivity extends AppCompatActivity {
                 startActivity(new Intent(OpenGLTestActivity.this, CameraXActivity.class));
                 break;
             case R.id.tv_8://FBO帧缓存测试: 渲染并录制摄像头画面-> 分屏+灵魂出窍滤镜
+                CameraXHelper.sCurrentFacing = CameraX.LensFacing.BACK;
+                CameraXGLSurfaceView.setFilterType(new CameraRender.FilterEnum[]{CAMERA, SHOW, SOUL, SPLIT});//
                 startActivity(new Intent(OpenGLTestActivity.this, OpenGLRecordActivity.class));
                 break;
-            case R.id.tv_9://
+            case R.id.tv_9://FBO帧缓存测试: 渲染并录制摄像头画面-> 美颜滤镜(高斯模糊->高反差图->轮廓原图非轮廓模糊)
+                CameraXHelper.sCurrentFacing = CameraX.LensFacing.FRONT;
+                CameraXGLSurfaceView.setFilterType(new CameraRender.FilterEnum[]{CAMERA, SHOW, BEAUTY});//
+                startActivity(new Intent(OpenGLTestActivity.this, OpenGLRecordActivity.class));
                 break;
             case R.id.tv_10://
                 break;

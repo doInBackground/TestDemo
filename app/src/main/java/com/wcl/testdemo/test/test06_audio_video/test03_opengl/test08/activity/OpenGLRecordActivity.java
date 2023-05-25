@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 
 import com.wcl.testdemo.R;
@@ -37,6 +39,14 @@ public class OpenGLRecordActivity extends AppCompatActivity implements RecordBut
         //速度控件.
         RadioGroup rgSpeed = findViewById(R.id.rg_speed);
         rgSpeed.setOnCheckedChangeListener(this);
+
+        //美颜.
+        ((CheckBox) findViewById(R.id.beauty)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mCameraXGLSurfaceView.enableBeauty(isChecked);
+            }
+        });
 
         checkPermission();
     }

@@ -84,4 +84,12 @@
         android:gravity="center"
         android:text="按住拍" />
 
+    <CheckBox
+        android:id="@+id/beauty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:checked="true"
+        android:text="美颜" />
+
 </RelativeLayout>

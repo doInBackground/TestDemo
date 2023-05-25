@@ -175,7 +175,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试9:\n"
+                android:text="测试9:\nFBO帧缓存测试\n渲染并录制摄像头画面:美颜滤镜\n(高斯模糊->高反差图->轮廓原图非轮廓模糊)"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_8" />

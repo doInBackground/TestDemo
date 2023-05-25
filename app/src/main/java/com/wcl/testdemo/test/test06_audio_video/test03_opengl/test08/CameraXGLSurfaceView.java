@@ -4,6 +4,10 @@ import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 
+import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraRender.FilterEnum.BEAUTY;
+import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraRender.FilterEnum.CAMERA;
+import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraRender.FilterEnum.SHOW;
+
 /**
  * @Author WCL
  * @Date 2023/5/18 10:11
@@ -13,6 +17,7 @@ import android.util.AttributeSet;
  */
 public class CameraXGLSurfaceView extends GLSurfaceView {
 
+    private static CameraRender.FilterEnum[] sFilterTypeArr = {CAMERA, SHOW, BEAUTY};//想要使用的滤镜集合.
     private CameraRender renderer;
     private Speed mSpeed = Speed.MODE_NORMAL;
 
@@ -23,7 +28,7 @@ public class CameraXGLSurfaceView extends GLSurfaceView {
     public CameraXGLSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setEGLContextClientVersion(2);//设置版本.
-        renderer = new CameraRender(this);
+        renderer = new CameraRender(this, sFilterTypeArr);
         setRenderer(renderer);
         /**
          * 刷新方式：
@@ -73,6 +78,24 @@ public class CameraXGLSurfaceView extends GLSurfaceView {
      */
     public void setSpeed(Speed speed) {
         this.mSpeed = speed;
+    }
+
+    /**
+     * 开启或关闭美颜.
+     *
+     * @param isChecked 是否开启
+     */
+    public void enableBeauty(boolean isChecked) {
+        renderer.enableBeauty(isChecked);
+    }
+
+    /**
+     * 设置想要使用的滤镜集合.
+     *
+     * @param filterTypeArr 滤镜集合
+     */
+    public static void setFilterType(CameraRender.FilterEnum[] filterTypeArr) {
+        CameraXGLSurfaceView.sFilterTypeArr = filterTypeArr;
     }
 
     /**

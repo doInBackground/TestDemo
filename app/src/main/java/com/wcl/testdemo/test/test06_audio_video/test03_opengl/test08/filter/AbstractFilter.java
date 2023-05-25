@@ -48,8 +48,8 @@ class AbstractFilter {
     private int vTexture;//GPU中vTexture变量的句柄.
 //    private int vMatrix;//GPU中vMatrix变量的句柄.
 
-    private int mWidth;
-    private int mHeight;
+    protected int mWidth;
+    protected int mHeight;
 //    private float[] mtx;
 
     //构造方法.

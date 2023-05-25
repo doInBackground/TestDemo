@@ -14,23 +14,25 @@ import androidx.lifecycle.LifecycleOwner;
  * @Version
  * @Description CameraX工具类.
  */
-class CameraXHelper {
+public class CameraXHelper {
 
-    private HandlerThread mHandlerThread;
-    private CameraX.LensFacing mCurrentFacing = CameraX.LensFacing.BACK;
-    private Preview.OnPreviewOutputUpdateListener mListener;
+    /**
+     * Comment:前置摄像头或后置摄像头.
+     */
+    public static CameraX.LensFacing sCurrentFacing = CameraX.LensFacing.BACK;
+    private final Preview.OnPreviewOutputUpdateListener mListener;
 
     public CameraXHelper(LifecycleOwner lifecycleOwner, Preview.OnPreviewOutputUpdateListener listener) {
         this.mListener = listener;
-        mHandlerThread = new HandlerThread("Analyze-thread");
-        mHandlerThread.start();
+        HandlerThread handlerThread = new HandlerThread("Analyze-thread");
+        handlerThread.start();
         CameraX.bindToLifecycle(lifecycleOwner, getPreView());
     }
 
     private Preview getPreView() {
         PreviewConfig previewConfig = new PreviewConfig.Builder()
                 .setTargetResolution(new Size(640, 480))//分辨率并不是最终的分辨率，CameraX会自动根据设备的支持情况，结合你的参数，设置一个最为接近的分辨率.
-                .setLensFacing(mCurrentFacing) //前置或者后置摄像头.
+                .setLensFacing(sCurrentFacing) //前置或者后置摄像头.
                 .build();
         Preview preview = new Preview(previewConfig);
         preview.setOnPreviewOutputUpdateListener(mListener);

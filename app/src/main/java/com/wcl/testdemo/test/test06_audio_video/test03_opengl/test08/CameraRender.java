@@ -5,6 +5,8 @@ import android.graphics.SurfaceTexture;
 import android.opengl.EGL14;
 import android.opengl.GLSurfaceView;
 
+import com.blankj.utilcode.util.LogUtils;
+import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.filter.BeautyFboFilter;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.filter.CameraFboFilter;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.filter.RecordFilter;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.filter.SoulFboFilter;
@@ -24,15 +26,18 @@ import androidx.lifecycle.LifecycleOwner;
  * @Version
  * @Description 摄像头渲染器.
  */
-class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOutputUpdateListener, SurfaceTexture.OnFrameAvailableListener {
+public class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOutputUpdateListener, SurfaceTexture.OnFrameAvailableListener {
 
-    private CameraXHelper mCameraXHelper;
     private CameraXGLSurfaceView mCameraXGLSurfaceView;
+    private final FilterEnum[] mFilterTypeArr;//想要使用的滤镜集合.
+    private CameraXHelper mCameraXHelper;
     private SurfaceTexture mCameraSurfaceTexture;//摄像头纹理.
-    private CameraFboFilter mCameraFboFilter;//滤镜类:相机.
-    private RecordFilter mRecordFilter;//滤镜类:录制.
-    private SoulFboFilter mSoulFboFilter;//滤镜类:灵魂出窍.
-    private SplitFboFilter mSplitFboFilter;//滤镜类:分屏.
+    //滤镜类:
+    private CameraFboFilter mCameraFboFilter;//滤镜类0:相机.
+    private RecordFilter mRecordFilter;//滤镜类1:画面展示.
+    private SoulFboFilter mSoulFboFilter;//滤镜类2:灵魂出窍.
+    private SplitFboFilter mSplitFboFilter;//滤镜类3:分屏.
+    private BeautyFboFilter mBeautyFboFilter;//滤镜类4:美颜.
 
     private MediaRecorder mRecorder;
 
@@ -40,8 +45,10 @@ class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOutputUpd
     float[] mtx = new float[16];
 
     //构造方法.
-    public CameraRender(CameraXGLSurfaceView cameraXGLSurfaceView) {
+    public CameraRender(CameraXGLSurfaceView cameraXGLSurfaceView, FilterEnum[] filterTypeArr) {
         this.mCameraXGLSurfaceView = cameraXGLSurfaceView;
+        this.mFilterTypeArr = filterTypeArr;
+        LogUtils.d("滤镜类型数组:", filterTypeArr);
         LifecycleOwner lifecycleOwner = (LifecycleOwner) cameraXGLSurfaceView.getContext();
         mCameraXHelper = new CameraXHelper(lifecycleOwner, this);//打开摄像头,设置回调(Preview.OnPreviewOutputUpdateListener).
     }
@@ -54,20 +61,45 @@ class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOutputUpd
         mCameraSurfaceTexture.setOnFrameAvailableListener(this);//监听摄像头数据回调(SurfaceTexture.OnFrameAvailableListener).
         //滤镜.
         Context context = mCameraXGLSurfaceView.getContext();
-        mCameraFboFilter = new CameraFboFilter(context);
-        mRecordFilter = new RecordFilter(context);
-        mSoulFboFilter = new SoulFboFilter(context);
-        mSplitFboFilter = new SplitFboFilter(context);
-
+        for (FilterEnum type : mFilterTypeArr) {
+            switch (type) {
+                case CAMERA:
+                    mCameraFboFilter = new CameraFboFilter(context);
+                    break;
+                case SHOW:
+                    mRecordFilter = new RecordFilter(context);
+                    break;
+                case SOUL:
+                    mSoulFboFilter = new SoulFboFilter(context);
+                    break;
+                case SPLIT:
+                    mSplitFboFilter = new SplitFboFilter(context);
+                    break;
+                case BEAUTY:
+                    mBeautyFboFilter = new BeautyFboFilter(context);
+                    break;
+            }
+        }
         mRecorder = new MediaRecorder(mCameraXGLSurfaceView.getContext(), null, EGL14.eglGetCurrentContext(), 480, 640);
     }
 
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-        mRecordFilter.setSize(width, height);
-        mCameraFboFilter.setSize(width, height);
-        mSoulFboFilter.setSize(width, height);
-        mSplitFboFilter.setSize(width, height);
+        if (mCameraFboFilter != null) {
+            mCameraFboFilter.setSize(width, height);
+        }
+        if (mRecordFilter != null) {
+            mRecordFilter.setSize(width, height);
+        }
+        if (mSoulFboFilter != null) {
+            mSoulFboFilter.setSize(width, height);
+        }
+        if (mSplitFboFilter != null) {
+            mSplitFboFilter.setSize(width, height);
+        }
+        if (mBeautyFboFilter != null) {
+            mBeautyFboFilter.setSize(width, height);
+        }
     }
 
     @Override
@@ -76,18 +108,30 @@ class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOutputUpd
 
         mCameraSurfaceTexture.updateTexImage();//SurfaceTexture更新摄像头数据.数据给了GPU.
         mCameraSurfaceTexture.getTransformMatrix(mtx);
-        mCameraFboFilter.setTransformMatrix(mtx);
+
 
         //有数据的时候给着色器代码中的变量赋值.
+        int id = -1;
+        if (mCameraFboFilter != null) {
+            mCameraFboFilter.setTransformMatrix(mtx);
+            id = mCameraFboFilter.onDraw(mTextures[0]);//id表示FBO所在图层纹理.
+        }
+        if (mSoulFboFilter != null) {
+            id = mSoulFboFilter.onDraw(id);//加载新的顶点程序和片元程序显示屏幕,id->fbo->像素详细.
+        }
+        if (mSplitFboFilter != null) {
+            id = mSplitFboFilter.onDraw(id);
+        }
+        if (mBeautyFboFilter != null) {//不能通过一个Boolean值来判断是否开启美颜从而是否调用美颜滤镜的onDraw(),因为美颜滤镜FBO已经创建如果不释放会造成内存泄漏,故关闭美颜就要释放资源.
+            id = mBeautyFboFilter.onDraw(id);
+        }
+        if (mRecordFilter != null) {
+            //FboFilter的onDraw()都绘制到FBO当中去了不会显示,此处调用非FboFilter的onDraw()用来显示.
+            id = mRecordFilter.onDraw(id);
+        }
 
-        int id = mCameraFboFilter.onDraw(mTextures[0]);//id表示FBO所在图层纹理.
-        id = mSoulFboFilter.onDraw(id);//加载新的顶点程序和片元程序显示屏幕,id->fbo->像素详细.
-        id = mSplitFboFilter.onDraw(id);
-        id = mRecordFilter.onDraw(id);
-
-        //拿到了fbo的引用->编码视频->输出|直播推理.
-        //起点数据,主动调用,opengl的函数,录制.
-        mRecorder.fireFrame(id, mCameraSurfaceTexture.getTimestamp());
+        //拿到了fbo的引用->编码视频->输出|直播推理. //起点数据,主动调用,opengl的函数,录制.
+        mRecorder.fireFrame(id, mCameraSurfaceTexture.getTimestamp());//此处控制是否录制.
     }
 
     /**
@@ -112,6 +156,11 @@ class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOutputUpd
         mCameraXGLSurfaceView.requestRender();//摄像头一帧一帧回调时,手动刷新渲染.
     }
 
+    /**
+     * 开始录制.
+     *
+     * @param speed 速度
+     */
     public void startRecord(float speed) {
         try {
             mRecorder.start(speed);
@@ -120,8 +169,63 @@ class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOutputUpd
         }
     }
 
+    /**
+     * 停止录制.
+     */
     public void stopRecord() {
         mRecorder.stop();
+    }
+
+    /**
+     * 开启或关闭美颜.
+     *
+     * @param isChecked 是否开启
+     */
+    public void enableBeauty(final boolean isChecked) {
+        mCameraXGLSurfaceView.queueEvent(new Runnable() {//OpenGL线程来做FBO.
+
+            @Override
+            public void run() {
+                if (isChecked) {//用户手动开启了美颜:
+                    mBeautyFboFilter = new BeautyFboFilter(mCameraXGLSurfaceView.getContext());
+                    mBeautyFboFilter.setSize(mCameraXGLSurfaceView.getWidth(), mCameraXGLSurfaceView.getHeight());
+                } else {
+                    if (mBeautyFboFilter != null) {
+                        mBeautyFboFilter.release();
+                        mBeautyFboFilter = null;
+                    }
+                }
+            }
+        });
+    }
+
+    /**
+     * @Author WCL
+     * @Date 2023/5/25 16:09
+     * @Version
+     * @Description 枚举:滤镜.
+     */
+    public enum FilterEnum {
+        /**
+         * Comment:相机滤镜
+         */
+        CAMERA,
+        /**
+         * Comment:画面展示滤镜
+         */
+        SHOW,
+        /**
+         * Comment:灵魂出窍滤镜
+         */
+        SOUL,
+        /**
+         * Comment:分屏滤镜
+         */
+        SPLIT,
+        /**
+         * Comment:美颜滤镜
+         */
+        BEAUTY
     }
 
 }
