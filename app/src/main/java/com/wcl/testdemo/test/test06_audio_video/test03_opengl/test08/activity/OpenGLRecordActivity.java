@@ -27,7 +27,7 @@ public class OpenGLRecordActivity extends AppCompatActivity implements RecordBut
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opengl_record);
+        setContentView(R.layout.activity_open_gl_record);
 
         //相机画面展示控件.
         mCameraXGLSurfaceView = findViewById(R.id.camerax_gl_surface_view);

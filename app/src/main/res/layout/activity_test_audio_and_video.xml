@@ -96,10 +96,10 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="15dp"
-                android:background="@drawable/selector_rectangle_blue_to_gray"
+                android:background="@drawable/record_button_background"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试4:\n"
+                android:text="测试4:\nOpenCV测试"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_3" />

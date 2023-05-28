@@ -17,6 +17,29 @@ android {
         versionCode rootProject.ext.version_code
 
 //        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+                abiFilters 'armeabi-v7a', 'arm64-v8a'
+                arguments "-DANDROID_STL=c++_shared"//OpenCV需要用到c++_shared.so,本地没有,声明远程下载一个.
+            }
+        }
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/cpp/libs']
+        }
     }
 
     buildTypes {

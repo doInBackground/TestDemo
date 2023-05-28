@@ -21,6 +21,7 @@ import com.wcl.testdemo.test.test06_audio_video.test00.TpActivity;
 import com.wcl.testdemo.test.test06_audio_video.test01.CameraActivity;
 import com.wcl.testdemo.test.test06_audio_video.test02.VideoChatActivity;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.activity.OpenGLTestActivity;
+import com.wcl.testdemo.test.test06_audio_video.test04_opencv.activity.OpenCVTestActivity;
 
 import java.util.List;
 
@@ -75,10 +76,11 @@ public class TestAudioAndVideoActivity extends AppCompatActivity {
             case R.id.tv_2://视频通话测试.
                 startChat();
                 break;
-            case R.id.tv_3://OpenGL ES测试.
+            case R.id.tv_3://OpenGLES测试.
                 startActivity(new Intent(this, OpenGLTestActivity.class));
                 break;
-            case R.id.tv_4://
+            case R.id.tv_4://OpenCV测试.
+                startActivity(new Intent(this, OpenCVTestActivity.class));
                 break;
             case R.id.tv_5://
                 break;
