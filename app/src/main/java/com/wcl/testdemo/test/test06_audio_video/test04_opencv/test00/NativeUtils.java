@@ -11,7 +11,7 @@ import android.view.Surface;
 public class NativeUtils {
 
     static {
-        System.loadLibrary("native-lib");
+        System.loadLibrary("my-opencv");
     }
 
     /**

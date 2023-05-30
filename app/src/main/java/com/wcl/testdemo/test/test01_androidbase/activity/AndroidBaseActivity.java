@@ -23,6 +23,7 @@ import com.blankj.utilcode.util.UtilsTransActivity;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test01_androidbase.test03.SaveFileActivity;
 import com.wcl.testdemo.utils.FileUtils;
+import com.wcl.testdemo.utils.MyTestNativeUtils;
 import com.wcl.testdemo.utils.dialog.MyDialogFragment;
 
 import java.io.File;
@@ -138,7 +139,12 @@ public class AndroidBaseActivity extends AppCompatActivity {
             case R.id.tv_4://通过浏览器打开链接.
                 openUrlByBrowser();
                 break;
-            case R.id.tv_5://
+            case R.id.tv_5://JNI调用测试.
+                MyTestNativeUtils myTestNativeUtils = new MyTestNativeUtils();
+                String str = myTestNativeUtils.stringFromJNI();
+                print(str);
+                myTestNativeUtils.testLog();
+                myTestNativeUtils.logD("从Java层传入字符串,并从Native层打印.");
                 break;
             case R.id.tv_6://
                 break;

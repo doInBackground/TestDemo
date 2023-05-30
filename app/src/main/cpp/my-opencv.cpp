@@ -15,7 +15,7 @@ ANativeWindow *window = 0;
 
 #include <android/log.h>
 
-#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,"David",__VA_ARGS__)
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,"WEI",__VA_ARGS__)
 
 //实例化适配器,方块丢给Adapter. 图像 未知图像 关键点 提供
 class CascadeDetectorAdapter : public DetectionBasedTracker::IDetector {
