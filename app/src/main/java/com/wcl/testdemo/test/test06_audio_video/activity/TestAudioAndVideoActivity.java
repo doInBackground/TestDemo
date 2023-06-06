@@ -22,6 +22,7 @@ import com.wcl.testdemo.test.test06_audio_video.test01.CameraActivity;
 import com.wcl.testdemo.test.test06_audio_video.test02.VideoChatActivity;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.activity.OpenGLTestActivity;
 import com.wcl.testdemo.test.test06_audio_video.test04_opencv.activity.OpenCVTestActivity;
+import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.activity.FFmpegTestActivity;
 
 import java.util.List;
 
@@ -82,7 +83,8 @@ public class TestAudioAndVideoActivity extends AppCompatActivity {
             case R.id.tv_4://OpenCV测试.
                 startActivity(new Intent(this, OpenCVTestActivity.class));
                 break;
-            case R.id.tv_5://
+            case R.id.tv_5://FFmpeg测试
+                startActivity(new Intent(this, FFmpegTestActivity.class));
                 break;
             case R.id.tv_6://
                 break;

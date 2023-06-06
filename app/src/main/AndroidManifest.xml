@@ -133,6 +133,14 @@
             android:name=".test.test06_audio_video.test04_opencv.test00.FaceRecognitionActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test06_audio_video.test05_ffmpeg.activity.FFmpegTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test06_audio_video.test05_ffmpeg.test01.PlayVideoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".test.test02_4components.test00.MyService"

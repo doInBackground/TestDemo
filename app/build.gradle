@@ -17,28 +17,42 @@ android {
         versionCode rootProject.ext.version_code
 
 //        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //[Native:关注点一]
         externalNativeBuild {
             cmake {
                 cppFlags ""
-                abiFilters 'armeabi-v7a', 'arm64-v8a'
+                // 通过Rebuild后会在app > build > intermediates > cmake > debug > obj目录下会生成不同CPU架构对应的so文件.
+                // ndk（v17及以上）:only Supported ABIs are [armeabi-v7a, arm64-v8a, x86, x86_64]. 不填abiFilters默认cmake生成前面四种架构种类的so.
+                // 注意abiFilter和abiFilters的区别.
+                abiFilters 'armeabi-v7a' //"x86", "x86_64", 'arm64-v8a'
+                //arguments "-DANDROID_PLATFORM=24","-DANDROID_TOOLCHAIN=clang" /可以修改cmake的"build_command.txt"编译命令的参数.
                 arguments "-DANDROID_STL=c++_shared"//OpenCV需要用到c++_shared.so,本地没有,声明远程下载一个.
             }
         }
+
+        //[Native:关注点二]
         ndk {
-            abiFilters 'armeabi-v7a', 'arm64-v8a'
+            // 在可运行项目的build.gradle中的android->defaultConfig->ndk下:
+            // 设置abiFilters表示支持的SO库架构种类,限制了cmake生成so架构种类的上限,也决定了APK中lib文件夹下so架构种类的上限.
+            // 注意abiFilter和abiFilters的区别.
+            abiFilters 'armeabi-v7a' //'armeabi', 'x86', 'armeabi-v7a', 'arm64-v8a', 'x86_64', 'arm64-v8a', "mips", "mips64"
         }
+
     }
 
-    externalNativeBuild {
+    //[Native:关注点三]
+    externalNativeBuild {//有此项表示Native(C/C++)工程,编译会慢很多(不调试Native时可注释此项和调用处).无此项表示Java工程.
         cmake {
-            path "src/main/cpp/CMakeLists.txt"
+            path "src/main/cpp/CMakeLists.txt" //指定CMakeLists.txt文件源路径(相对本gradle文件的路径).
             version "3.10.2"
         }
     }
 
+    //[Native:关注点四]
     sourceSets {
         main {
-            jniLibs.srcDirs = ['src/main/cpp/libs']
+            jniLibs.srcDirs = ['src/main/cpp/libs'] //指定native层中需要用到的三方so路径(相对本gradle文件的路径),以供引入apk.
         }
     }
 
@@ -52,10 +66,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
