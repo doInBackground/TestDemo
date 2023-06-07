@@ -24,6 +24,7 @@ Java_com_wcl_testdemo_test_test06_1audio_1video_test05_1ffmpeg_test02_PlayAudioA
     const char *input = env->GetStringUTFChars(input_, 0);//音频路径字符串,变成C++字符串.
 
     av_register_all();//注册FFmpeg所有的组件.
+    avformat_network_init();//初始化FFmpeg网络模块,使得可以播放网络音频.
     AVFormatContext *pFormatCtx = avformat_alloc_context();//实例化FFmpeg上下文.
 
     //打开音视频文件或音视频流url.

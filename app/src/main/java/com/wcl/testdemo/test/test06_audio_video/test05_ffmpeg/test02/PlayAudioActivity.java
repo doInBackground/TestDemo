@@ -83,7 +83,10 @@ public class PlayAudioActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                //音频播放测试:
                 playSound(mAudioFilePath);
+//                playSound("http://mpge.5nd.com/2015/2015-11-26/69708/1.mp3");//测试该网络音乐播放成功.
+                //音频播放(过时)测试:
 //                playSoundDeprecated(mAudioFilePath);
                 mPlayState = 0;
             }
