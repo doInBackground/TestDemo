@@ -30,7 +30,9 @@ add_library(
 add_library(
         my-ffmpeg
         SHARED
-        src/my-ffmpeg1.cpp
+        src/my_ffmpeg_video.cpp #解码播放视频.
+        src/my_ffmpeg_audio.cpp #解码播放音频.
+        src/my_ffmpeg_audio_deprecated.cpp #解码播放音频(过时).
 )
 
 #-----------------------寻找库------------------------

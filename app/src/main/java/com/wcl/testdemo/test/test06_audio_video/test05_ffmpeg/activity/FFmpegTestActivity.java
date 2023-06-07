@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test01.PlayVideoActivity;
+import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test02.PlayAudioActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -60,7 +61,8 @@ public class FFmpegTestActivity extends AppCompatActivity {
             case R.id.tv_1://FFmpeg软解-仅视频.
                 startActivity(new Intent(this, PlayVideoActivity.class));
                 break;
-            case R.id.tv_2://
+            case R.id.tv_2://FFmpeg软解-仅音频.
+                startActivity(new Intent(this, PlayAudioActivity.class));
                 break;
             case R.id.tv_3://
                 break;

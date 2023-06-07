@@ -67,14 +67,14 @@ Java_com_wcl_testdemo_test_test06_1audio_1video_test05_1ffmpeg_test01_PlayVideoA
         return -1;
     }
 
-    int videoindex = -1;//定义一个视频流索引.
-    for (int i = 0; i < avFormatContext->nb_streams; i++) {//变量所有的流的数量.
+    int video_index = -1;//定义一个视频流索引.
+    for (int i = 0; i < avFormatContext->nb_streams; i++) {//遍历所有的流的数量.
         if (avFormatContext->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {//如果是视频流.
-            videoindex = i;//视频解封装就表示找到视频流索引.
+            video_index = i;//视频解封装就表示找到视频流索引.
             break;
         }
     }
-    if (videoindex == -1) {
+    if (video_index == -1) {
         LOGD("Couldn't find a video stream.");
         return -1;
     }
@@ -82,7 +82,7 @@ Java_com_wcl_testdemo_test_test06_1audio_1video_test05_1ffmpeg_test01_PlayVideoA
 
     //视频流: h264 & h265
     //视频流解析需要对应算法,对应不同解码器,就需要解码器上下文.
-    avCodecContext = avFormatContext->streams[videoindex]->codec;//解码器上下文.
+    avCodecContext = avFormatContext->streams[video_index]->codec;//解码器上下文.
     vCodec = avcodec_find_decoder(avCodecContext->codec_id);//获取解码器,参数类似于MediaCodec编解码器设置类型时传的"video/avc".
 
     //打开解码器.
@@ -129,7 +129,7 @@ Java_com_wcl_testdemo_test_test06_1audio_1video_test05_1ffmpeg_test01_PlayVideoA
 
     while (av_read_frame(avFormatContext, avPacket) >= 0) {//不断的循环取数据.
         //判断读出来的数据是什么数据?
-        if (avPacket->stream_index == videoindex) {//此处仅处理视频数据,音频数据先不管.
+        if (avPacket->stream_index == video_index) {//此处仅处理视频数据,音频数据先不管.
             //解码时,先avcodec_send_packet()再avcodec_receive_frame().
             //编码时,先avcodec_send_frame()再avcodec_receive_packet().
             int ret = avcodec_send_packet(avCodecContext, avPacket);//放入待解码数据.
