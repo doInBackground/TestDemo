@@ -145,6 +145,10 @@
             android:name=".test.test06_audio_video.test05_ffmpeg.test02.PlayAudioActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test06_audio_video.test05_ffmpeg.test03.activity.MusicPlayerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".test.test02_4components.test00.MyService"
@@ -153,6 +157,9 @@
             android:name=".test.test06_audio_video.test00.tp.service.TpServerService"
             android:exported="true"
             android:foregroundServiceType="mediaProjection" />
+        <service
+            android:name=".test.test06_audio_video.test05_ffmpeg.test03.musicservice.MusicService"
+            android:exported="false" />
     </application>
 
 </manifest>

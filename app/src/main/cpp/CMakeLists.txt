@@ -5,12 +5,19 @@ message(${CMAKE_SOURCE_DIR}) #打印CMakeLists.txt所在文件夹的路径.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}") #类似于设置系统环境变量,使得可以找到该路径下(不递归)的库进行编译.
 message(-------------)
 
+# aux_source_directory在参数1目录中查找所有源文件并赋值给参数2,供add_library时添加源文件(可多次指定,不递归)。
+aux_source_directory(./src/music_player MUSIC_PLAYER_SOURCE) #音频播放器代码.
+aux_source_directory(src/soundtouch/SoundTouch SOUND_TOUCH_SOURCE) #音频波重采样库[倍速/变调]源码.
+
 #add_library( lib_opencv SHARED IMPORTED)
 #set_target_properties(lib_opencv PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libopencv_java4.so)
 
 #<<<<<<<<<<<<<<<<<<<<<<<指定头文件>>>>>>>>>>>>>>>>>>>>>>>>
+#自建的"cpp/include"文件夹下,存放了以库形式(非源码形式)引入的三方库的头文件.
 include_directories(include) #指定需要被引入的头文件的路径.
 include_directories(include/ffmpeg) #指定需要被引入的头文件的路径.
+include_directories(src/soundtouch/include) #(音频波重采样库[倍速/变调])头文件引入.
+include_directories(src/soundtouch/SoundTouch) #(音频波重采样库[倍速/变调])源文件中也有头文件需要引入.
 
 #@@@@@@@@@@@@@@@@@@@@@@@创建库@@@@@@@@@@@@@@@@@@@@@@@@
 add_library(
@@ -33,6 +40,8 @@ add_library(
         src/my_ffmpeg_video.cpp #解码播放视频.
         src/my_ffmpeg_audio.cpp #解码播放音频.
         src/my_ffmpeg_audio_deprecated.cpp #解码播放音频(过时).
+        ${MUSIC_PLAYER_SOURCE} #音频播放器代码.
+        ${SOUND_TOUCH_SOURCE} #音频波重采样库[倍速/变调]源码.
 )
 
 #-----------------------寻找库------------------------
@@ -73,4 +82,5 @@ target_link_libraries(
         swscale
         android
         log
+        OpenSLES #音频播放库[播放暂停/声道/音量].
 )
