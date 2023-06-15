@@ -4,16 +4,11 @@
 #include <android/native_window_jni.h>
 
 extern "C" { //外部为C++编译,内部为C编译.
-//#include "libavcodec/avcodec.h"
-//#include "libavformat/avformat.h"
-//#include "libavutil/imgutils.h"
-//#include "libswscale/swscale.h"
-//#include <libavutil/time.h>
-#include "ffmpeg/libavcodec/avcodec.h"
-#include "ffmpeg/libavformat/avformat.h"
-#include "ffmpeg/libavutil/imgutils.h"
-#include "ffmpeg/libswscale/swscale.h"
-#include <ffmpeg/libavutil/time.h>
+#include "libavcodec/avcodec.h"
+#include "libavformat/avformat.h"
+#include "libavutil/imgutils.h"
+#include "libswscale/swscale.h"
+#include <libavutil/time.h>
 }
 
 #define LOGD(...) __android_log_print(ANDROID_LOG_INFO,"WEI-Native",__VA_ARGS__)

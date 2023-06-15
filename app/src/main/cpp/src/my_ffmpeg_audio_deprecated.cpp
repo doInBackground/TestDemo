@@ -3,11 +3,11 @@
 #include <android/log.h>
 
 extern "C" {
-#include "ffmpeg/libavcodec/avcodec.h"
-#include "ffmpeg/libavformat/avformat.h"
-#include "ffmpeg/libswscale/swscale.h"
-#include "ffmpeg/libavutil/imgutils.h"
-#include "ffmpeg/libswresample/swresample.h"
+#include "libavcodec/avcodec.h"
+#include "libavformat/avformat.h"
+#include "libswscale/swscale.h"
+#include "libavutil/imgutils.h"
+#include "libswresample/swresample.h"
 }
 
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR, "WEI-Native", __VA_ARGS__)

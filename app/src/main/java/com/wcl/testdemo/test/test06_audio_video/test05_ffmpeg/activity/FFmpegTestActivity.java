@@ -65,10 +65,10 @@ public class FFmpegTestActivity extends AppCompatActivity {
             case R.id.tv_2://FFmpeg软解-仅音频.
                 startActivity(new Intent(this, PlayAudioActivity.class));
                 break;
-            case R.id.tv_3://音频播放器
+            case R.id.tv_3://音频播放器.
                 startActivity(new Intent(this, MusicPlayerActivity.class));
                 break;
-            case R.id.tv_4://
+            case R.id.tv_4://视频播放器.
                 break;
             case R.id.tv_5://
                 break;
