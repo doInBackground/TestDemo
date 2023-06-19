@@ -16,6 +16,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test00_javabase.test02.SocketTestActivity;
+import com.wcl.testdemo.utils.MyTestNativeUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -35,6 +36,7 @@ public class JavaBaseActivity extends AppCompatActivity {
      */
     @BindView(R.id.tv)
     TextView mTvConsole;
+    private MyTestNativeUtils mMyTestNativeUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,20 @@ public class JavaBaseActivity extends AppCompatActivity {
             case R.id.tv_2://Socket测试.
                 startActivity(new Intent(this, SocketTestActivity.class));
                 break;
-            case R.id.tv_3://
+            case R.id.tv_3:////JNI调用测试.
+                //初始化.
+                if (mMyTestNativeUtils == null) {
+                    mMyTestNativeUtils = new MyTestNativeUtils();
+                }
+                //测试1:
+                String str = mMyTestNativeUtils.stringFromJNI();
+                print(str);
+                //测试2:
+                mMyTestNativeUtils.testLog();
+                //测试3:
+                mMyTestNativeUtils.logD("从Java层传入字符串,并从Native层打印.");
+                //测试4:
+                mMyTestNativeUtils.test();
                 break;
             case R.id.tv_4://
                 break;

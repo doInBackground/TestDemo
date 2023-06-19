@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include <android/log.h>
+#include "test/include/test.h"
 
 #define TAG "WEI"
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,TAG ,__VA_ARGS__) // 定义LOGD类型
@@ -54,4 +55,12 @@ Java_com_wcl_testdemo_utils_MyTestNativeUtils_logD(JNIEnv *env, jobject thiz, js
         return;
     }
     LOGD("%s", chars);
+}
+
+/**
+ * 调用测试.
+ */
+extern "C" JNIEXPORT void JNICALL
+Java_com_wcl_testdemo_utils_MyTestNativeUtils_test(JNIEnv *env, jobject thiz) {
+    test();
 }

@@ -18,4 +18,6 @@ public class MyTestNativeUtils {
 
     public native void logD(String msg);
 
+    public native void test();
+
 }

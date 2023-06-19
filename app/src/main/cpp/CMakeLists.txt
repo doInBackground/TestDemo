@@ -8,21 +8,23 @@ message(-------------)
 # aux_source_directory在参数1目录中查找所有源文件并赋值给参数2,供add_library时添加源文件(可多次指定,不递归)。
 aux_source_directory(./src/music_player MUSIC_PLAYER_SOURCE) #音频播放器代码.
 aux_source_directory(src/soundtouch/SoundTouch SOUND_TOUCH_SOURCE) #音频波重采样库[倍速/变调]源码.
+aux_source_directory(src/test/test TEST_SOURCE) #测试工程源码.
+aux_source_directory(src/test/test_temp TEST_SOURCE_TEMP) #测试工程源码.
 
 #add_library( lib_opencv SHARED IMPORTED)
 #set_target_properties(lib_opencv PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libopencv_java4.so)
 
 #<<<<<<<<<<<<<<<<<<<<<<<指定头文件>>>>>>>>>>>>>>>>>>>>>>>>
-#通过"include_directories"指定头文件的文件夹路径后,该路径可理解为被记录成"环境变量".当需要引入头文件时,填写头文件对于该"环境变量"的相对路径即可.
-#如果同时存在多个同名头文件(相对路径和文件名都相同),引入时优先引入与源文件同文件夹下的头文件,没有的话则引入最先通过"include_directories"定义的头文件.
-#在不考虑外部使用的情况下:
-#如果头文件和源文件在同一文件夹下,即使不用"include_directories"指定头文件路径,源文件亦可通过#include".h"引入头文件.
-#如果头文件和源文件不在同一文件夹下,则必须通过"include_directories"指定头文件路径.
+#[1]通过"include_directories"指定头文件的文件夹路径后,该路径可理解为被记录成"环境变量".当"外部"需要引入头文件时,填写头文件对于该"环境变量"的相对路径即可.
+#[2]如果同时存在多个同名头文件(相对路径和文件名都相同),引入时优先引入与源文件同文件夹下的头文件,没有的话则引入最先通过"include_directories"定义的头文件.
+#[3]如果指定头文件路径时,层级重复指定(即同时指定头文件的父路径和爷路径),源文件引入头文件时通过两种相对路径(即".h"或"xx/.h")都可以引入.
+#[4]如果外部不会使用本工程,则可以不用"include_directories"指定头文件路径,源文件亦可通过"头文件对于自身的相对路径"引入头文件.
 #自建的"cpp/include"文件夹下,存放了以库形式(非源码形式)引入的三方库的头文件.
 include_directories(include/opencv) #指定opencv需要被引入的头文件的路径.
 include_directories(include/ffmpeg) #指定ffmpeg需要被引入的头文件的路径.
 include_directories(src/soundtouch/include) #(音频波重采样库[倍速/变调])头文件引入.
 include_directories(src/soundtouch/SoundTouch) #(音频波重采样库[倍速/变调])源文件中也有头文件需要引入.
+#include_directories(src/test/include) #(测试工程)头文件引入.(因为测试工程头文件的引入全部使用了相对路径,故此处可以不用指定头文件路径)
 
 #@@@@@@@@@@@@@@@@@@@@@@@创建库@@@@@@@@@@@@@@@@@@@@@@@@
 add_library(
@@ -36,6 +38,8 @@ add_library(
         my-test
         SHARED
         src/my-test.cpp
+        ${TEST_SOURCE} #测试工程源码.
+        ${TEST_SOURCE_TEMP} #测试工程源码.
 )
 
 #@@@@@@@@@@@@@@@@@@@@@@@创建库@@@@@@@@@@@@@@@@@@@@@@@@
