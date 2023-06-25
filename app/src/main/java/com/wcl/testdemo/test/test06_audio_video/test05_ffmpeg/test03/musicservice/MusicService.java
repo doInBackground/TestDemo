@@ -11,6 +11,7 @@ import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.ResourceUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test03.listener.IPlayerListener;
 import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test03.listener.OnPreparedListener;
@@ -57,7 +58,7 @@ public class MusicService extends Service {//implements MediaPlayer.OnCompletion
     public static final String PARAM_MUSIC_CURRENT_POSITION = "PARAM_MUSIC_CURRENT_POSITION";
     public static final String PARAM_MUSIC_IS_OVER = "PARAM_MUSIC_IS_OVER";
 
-    private final String mAudioFilePath = new File(PathUtils.getExternalAppDataPath(), "audio_music").getAbsolutePath();//沙箱根路径中,即将要播放的音频文件.
+    private final String mAudioFilePath = new File(PathUtils.getExternalAppDataPath(), "audio").getAbsolutePath();//沙箱根路径中,即将要播放的音频文件.
     private final MusicReceiver mMusicReceiver = new MusicReceiver();
     private int mCurrentMusicIndex = 0;
     private NativePlayer mPlayer;
@@ -160,7 +161,11 @@ public class MusicService extends Service {//implements MediaPlayer.OnCompletion
     //播放音乐.
     private void play(final int index) {
         if (!FileUtils.isFileExists(mAudioFilePath)) {//文件不存在.
-            ResourceUtils.copyFileFromRaw(R.raw.music1, mAudioFilePath);//raw拷贝文件到沙箱.
+            boolean isSuccess = ResourceUtils.copyFileFromRaw(R.raw.music1, mAudioFilePath);//raw拷贝文件到沙箱.
+            if (!isSuccess) {
+                ToastUtils.showShort("从raw拷贝文件到沙箱根路径失败!");
+                return;
+            }
         }
 //        mnPlayer.setSource("http://mn.maliuedu.com/music/dengniguilai.mp3");
 //        mnPlayer.setSource("http://mpge.5nd.com/2015/2015-11-26/69708/1.mp3");

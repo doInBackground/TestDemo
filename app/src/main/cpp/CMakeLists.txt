@@ -10,6 +10,7 @@ aux_source_directory(./src/music_player MUSIC_PLAYER_SOURCE) #音频播放器代
 aux_source_directory(src/soundtouch/SoundTouch SOUND_TOUCH_SOURCE) #音频波重采样库[倍速/变调]源码.
 aux_source_directory(src/test/test TEST_SOURCE) #测试工程源码.
 aux_source_directory(src/test/test_temp TEST_SOURCE_TEMP) #测试工程源码.
+aux_source_directory(src/video_player VIDEO_PLAYER_SOURCE) #视频播放器代码.
 
 #add_library( lib_opencv SHARED IMPORTED)
 #set_target_properties(lib_opencv PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libopencv_java4.so)
@@ -51,6 +52,7 @@ add_library(
         src/my_ffmpeg_audio_deprecated.cpp #解码播放音频(过时).
         ${MUSIC_PLAYER_SOURCE} #音频播放器代码.
         ${SOUND_TOUCH_SOURCE} #音频波重采样库[倍速/变调]源码.
+        ${VIDEO_PLAYER_SOURCE} #视频播放器代码.
 )
 
 #-----------------------寻找库------------------------

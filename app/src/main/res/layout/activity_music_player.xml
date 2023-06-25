@@ -115,7 +115,7 @@
                 android:layout_weight="1"
                 android:onClick="left"
                 android:text="左声道"
-                android:textSize="12sp" />
+                android:textSize="@dimen/music_player_text_size" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
                 android:layout_weight="1"
                 android:onClick="right"
                 android:text="右声道"
-                android:textSize="12sp" />
+                android:textSize="@dimen/music_player_text_size" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
                 android:layout_weight="1"
                 android:onClick="center"
                 android:text="立体声"
-                android:textSize="12sp" />
+                android:textSize="@dimen/music_player_text_size" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,28 +146,32 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="speed"
-                android:text="变速不变调" />
+                android:text="变速不变调"
+                android:textSize="@dimen/music_player_text_size" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="pitch"
-                android:text="变调不变速" />
+                android:text="变调不变速"
+                android:textSize="@dimen/music_player_text_size" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="speedpitch"
-                android:text="变速又变调" />
+                android:text="变速又变调"
+                android:textSize="@dimen/music_player_text_size" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="normalspeedpitch"
-                android:text="正常播放" />
+                android:text="正常播放"
+                android:textSize="@dimen/music_player_text_size" />
         </LinearLayout>
     </LinearLayout>
 

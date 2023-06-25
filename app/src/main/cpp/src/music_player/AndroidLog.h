@@ -1,11 +1,13 @@
 #ifndef MYMUSIC_ANDROIDLOG_H
 #define MYMUSIC_ANDROIDLOG_H
 
+#include <jni.h>
 #include "android/log.h"
 
 #define LOG_DEBUG true
-
 #define TAG "WEI-Native"
+
+extern _JavaVM *javaVM;
 
 //#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,TAG ,__VA_ARGS__) // 定义LOGD类型
 //#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,TAG ,__VA_ARGS__) // 定义LOGI类型

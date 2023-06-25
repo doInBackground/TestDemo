@@ -146,8 +146,8 @@ public class MusicPlayerActivity extends AppCompatActivity implements DiscView.I
 
     private void initMusicDataList() {
         MusicData musicData1 = new MusicData(R.raw.music1, R.raw.music_ic1, "等你归来", "程响");
-        MusicData musicData2 = new MusicData(R.raw.music2, R.raw.music_ic2, "Nightingale", "YANI");
-        MusicData musicData3 = new MusicData(R.raw.music3, R.raw.music_ic3, "Cornfield Chase", "Hans Zimmer");
+        MusicData musicData2 = new MusicData(R.raw.music1, R.raw.music_ic2, "Nightingale", "YANI");
+        MusicData musicData3 = new MusicData(R.raw.music1, R.raw.music_ic3, "Cornfield Chase", "Hans Zimmer");
         mMusicDataList.add(musicData1);
         mMusicDataList.add(musicData2);
         mMusicDataList.add(musicData3);

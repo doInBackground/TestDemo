@@ -12,6 +12,7 @@ import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test01.PlayVideoActivity;
 import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test02.PlayAudioActivity;
 import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test03.activity.MusicPlayerActivity;
+import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test04.activity.VideoPlayerActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -69,6 +70,7 @@ public class FFmpegTestActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MusicPlayerActivity.class));
                 break;
             case R.id.tv_4://视频播放器.
+                startActivity(new Intent(this, VideoPlayerActivity.class));
                 break;
             case R.id.tv_5://
                 break;

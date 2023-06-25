@@ -2,6 +2,7 @@
 #include <string>
 #include "MNFFmpeg.h"
 #include "MNPlaystatus.h"
+#include "AndroidLog.h"
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -10,24 +11,24 @@ extern "C" {
 //com\wcl\testdemo\test\test06_audio_video\test05_ffmpeg\test03\player\MNPlayer
 //com_wcl_testdemo_test_test06_1audio_1video_test05_1ffmpeg_test03_player_MNPlayer
 
-_JavaVM *javaVM = NULL;
+//_JavaVM *javaVM = NULL;
 MNCallJava *callJava = NULL;
 MNFFmpeg *fFmpeg = NULL;
 MNPlaystatus *playstatus = NULL;
 
-bool nexit = true;
+bool isAudioStopping = true;
 
-extern "C" JNIEXPORT jint JNICALL
-JNI_OnLoad(JavaVM *vm, void *reserved) {
-    jint result = -1;
-    javaVM = vm;
-    JNIEnv *env;
-    if (vm->GetEnv((void **) &env, JNI_VERSION_1_4) != JNI_OK) {
-
-        return result;
-    }
-    return JNI_VERSION_1_4;
-}
+//extern "C" JNIEXPORT jint JNICALL
+//JNI_OnLoad(JavaVM *vm, void *reserved) {
+//    jint result = -1;
+//    javaVM = vm;
+//    JNIEnv *env;
+//    if (vm->GetEnv((void **) &env, JNI_VERSION_1_4) != JNI_OK) {
+//
+//        return result;
+//    }
+//    return JNI_VERSION_1_4;
+//}
 
 /**
  * FFmpeg:准备.
@@ -140,10 +141,10 @@ Java_com_wcl_testdemo_test_test06_1audio_1video_test05_1ffmpeg_test03_player_Nat
 extern "C" JNIEXPORT void JNICALL
 Java_com_wcl_testdemo_test_test06_1audio_1video_test05_1ffmpeg_test03_player_NativePlayer_n_1stop(JNIEnv *env, jobject thiz) {
     LOGI("JNI: stop()");
-    if (!nexit) {
+    if (!isAudioStopping) {
         return;
     }
-    nexit = false;//正在退出,只调用一次.
+    isAudioStopping = false;//正在退出,只调用一次.
     if (fFmpeg != NULL) {
         fFmpeg->release();
         delete (fFmpeg);
@@ -156,5 +157,5 @@ Java_com_wcl_testdemo_test_test06_1audio_1video_test05_1ffmpeg_test03_player_Nat
             playstatus = NULL;
         }
     }
-    nexit = true;
+    isAudioStopping = true;
 }

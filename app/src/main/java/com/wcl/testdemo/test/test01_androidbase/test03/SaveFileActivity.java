@@ -84,12 +84,12 @@ public class SaveFileActivity extends AppCompatActivity {
     private void save2Download() {
         InputStream is = null;
         try {
-            is = Utils.getApp().getAssets().open("cxzh.mp4"); //"assets"中文件路径.
-            File tempFile = new File(Utils.getApp().getExternalCacheDir(), "cxzh.mp4"); //沙箱中文件路径.
+            is = Utils.getApp().getAssets().open("demo_h264_368_384.mp4"); //"assets"中文件路径.
+            File tempFile = new File(Utils.getApp().getExternalCacheDir(), "demo_h264_368_384.mp4"); //沙箱中文件路径.
             boolean isSuccess = FileIOUtils.writeFileFromIS(tempFile, is); //拷贝.
             if (isSuccess) {
                 //核心调用.
-                boolean isSuccessToDownload = FileUtils.save2Download(tempFile, "川西竹海.mp4");//从沙箱拷贝到[下载路径].
+                boolean isSuccessToDownload = FileUtils.save2Download(tempFile, "demo_h264_368_384.mp4");//从沙箱拷贝到[下载路径].
                 print("保存文件到[下载路径]的结果:" + isSuccessToDownload);
             } else {
                 print("从\"assets\"中拷贝文件到沙箱出错!!!");
@@ -112,12 +112,12 @@ public class SaveFileActivity extends AppCompatActivity {
     private void save2Movies() {
         InputStream is = null;
         try {
-            is = Utils.getApp().getAssets().open("cxzh.mp4"); //"assets"中视频路径.
-            File tempFile = new File(Utils.getApp().getExternalCacheDir(), "cxzh.mp4"); //沙箱中视频路径.
+            is = Utils.getApp().getAssets().open("demo_h264_368_384.mp4"); //"assets"中视频路径.
+            File tempFile = new File(Utils.getApp().getExternalCacheDir(), "demo_h264_368_384.mp4"); //沙箱中视频路径.
             boolean isSuccess = FileIOUtils.writeFileFromIS(tempFile, is); //拷贝.
             if (isSuccess) {
                 //核心调用.
-                boolean isSuccessToMovies = FileUtils.save2Movies(tempFile, "川西竹海.mp4");//从沙箱拷贝到[视频相册].
+                boolean isSuccessToMovies = FileUtils.save2Movies(tempFile, "demo_h264_368_384.mp4");//从沙箱拷贝到[视频相册].
                 print("保存视频到[视频相册]的结果:" + isSuccessToMovies);
             } else {
                 print("从\"assets\"中拷贝视频到沙箱出错!!!");

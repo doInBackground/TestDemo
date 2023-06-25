@@ -68,17 +68,15 @@ public class PlayVideoActivity extends AppCompatActivity {
         LogUtils.d("用户点击了播放按钮.");
         if (mPlayResult == -1) {
             mPlayResult = 0;
-            if (FileUtils.isFileExists(mVideoFilePath)) {//文件存在.
-                play();
-            } else {
-                boolean isSuccess = ResourceUtils.copyFileFromAssets("cxzh.mp4", mVideoFilePath);//assets拷贝文件到沙箱.
-                if (isSuccess) {
-                    play();
-                } else {
+            if (!FileUtils.isFileExists(mVideoFilePath)) {//文件不存在.
+                boolean isSuccess = ResourceUtils.copyFileFromAssets("demo_h264_368_384.mp4", mVideoFilePath);//assets拷贝文件到沙箱.
+                if (!isSuccess) {
                     mPlayResult = -1;
                     ToastUtils.showShort("从assets拷贝文件到沙箱根路径失败!");
+                    return;
                 }
             }
+            play();
         } else {
             ToastUtils.showShort("正在播放..");
         }

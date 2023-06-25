@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- dp -->
+
+    <!-- sp -->
+    <dimen name="music_player_text_size">11sp</dimen>
+    <dimen name="video_player_text_size">11sp</dimen>
+
+    <!-- px -->
+
+</resources>

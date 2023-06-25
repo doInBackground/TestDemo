@@ -62,17 +62,15 @@ public class PlayAudioActivity extends AppCompatActivity {
         LogUtils.d("用户点击了播放按钮.");
         if (mPlayState == 0) {
             mPlayState = -1;
-            if (FileUtils.isFileExists(mAudioFilePath)) {//文件存在.
-                play();
-            } else {
-                boolean isSuccess = ResourceUtils.copyFileFromAssets("cxzh.mp4", mAudioFilePath);//assets拷贝文件到沙箱.
-                if (isSuccess) {
-                    play();
-                } else {
+            if (!FileUtils.isFileExists(mAudioFilePath)) {//文件不存在.
+                boolean isSuccess = ResourceUtils.copyFileFromRaw(R.raw.music1, mAudioFilePath);//raw拷贝文件到沙箱.
+                if (!isSuccess) {
                     mPlayState = 0;
-                    ToastUtils.showShort("从assets拷贝文件到沙箱根路径失败!");
+                    ToastUtils.showShort("从raw拷贝文件到沙箱根路径失败!");
+                    return;
                 }
             }
+            play();
         } else {
             ToastUtils.showShort("正在播放..");
         }

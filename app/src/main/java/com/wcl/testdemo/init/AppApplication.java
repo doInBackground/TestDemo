@@ -3,7 +3,9 @@ package com.wcl.testdemo.init;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Build;
+import android.text.TextUtils;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.CrashUtils;
 import com.blankj.utilcode.util.DeviceUtils;
@@ -11,6 +13,8 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ProcessUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.Utils;
+
+import androidx.annotation.NonNull;
 
 
 /**
@@ -28,6 +32,7 @@ public class AppApplication extends Application {
             initLog(); //初始化日志工具.
             initCrash(); //初始化崩溃收集器.
             initAppStatusListener(); //注册App前后台切换监听器.
+            initActivityLifecycleListener();//注册Activity生命周期监听器.
         }
     }
 
@@ -44,6 +49,7 @@ public class AppApplication extends Application {
         LogUtils.getConfig().setConsoleFilter(AppUtils.isAppDebug() ? LogUtils.V : LogUtils.I);//设置AS控制台过滤器.
         //设备信息打印.
         LogUtils.v("====================>>Application initApp<<====================",
+                "debug_or_release: " + (AppUtils.isAppDebug() ? "Debug" : "Release"),//是否Debug.
                 "device_model: " + DeviceUtils.getModel(),//设备型号.
                 "device_id: " + DeviceUtils.getUniqueDeviceId(),//设备ID.
                 "android_version: " + Build.VERSION.RELEASE,//Android系统版本.
@@ -99,6 +105,17 @@ public class AppApplication extends Application {
             @Override
             public void onBackground(Activity activity) {
 //                LogUtils.i("APP后台:" + activity);
+            }
+        });
+    }
+
+    //注册Activity生命周期监听器.
+    private void initActivityLifecycleListener() {
+        ActivityUtils.addActivityLifecycleCallbacks(new Utils.ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityResumed(@NonNull Activity activity) {
+                super.onActivityResumed(activity);
+//                LogUtils.i("Activity-Resumed:" + activity.getLocalClassName());
             }
         });
     }
