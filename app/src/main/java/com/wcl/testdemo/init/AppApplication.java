@@ -42,13 +42,13 @@ public class AppApplication extends Application {
         LogUtils.getConfig().setGlobalTag("WEI");//TAG不会做落地保存,是记录在运行内存中的.
 //        LogUtils.getConfig().setFilePrefix("log");//设置 log 文件前缀.
         LogUtils.getConfig().setLog2FileSwitch(true);//默认开启日志落地.
-        LogUtils.getConfig().setFileFilter(LogUtils.I);//控制日志落地等级.
+        LogUtils.getConfig().setFileFilter(AppUtils.isAppDebug() ? LogUtils.V : LogUtils.I);//控制日志落地等级.
         LogUtils.getConfig().setSaveDays(7);//设置log可保留天数.
         LogUtils.getConfig().setLogHeadSwitch(AppUtils.isAppDebug());//是否展示日志中可跳转到代码的头部信息.
         LogUtils.getConfig().setBorderSwitch(AppUtils.isAppDebug());//是否展示每条日志的边框图形.
         LogUtils.getConfig().setConsoleFilter(AppUtils.isAppDebug() ? LogUtils.V : LogUtils.I);//设置AS控制台过滤器.
         //设备信息打印.
-        LogUtils.v("====================>>Application initApp<<====================",
+        LogUtils.i("====================>>Application initApp<<====================",
                 "debug_or_release: " + (AppUtils.isAppDebug() ? "Debug" : "Release"),//是否Debug.
                 "device_model: " + DeviceUtils.getModel(),//设备型号.
                 "device_id: " + DeviceUtils.getUniqueDeviceId(),//设备ID.

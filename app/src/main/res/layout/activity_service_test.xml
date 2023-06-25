@@ -96,7 +96,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试4:\n[播放Service音乐]"
+                android:text="测试4:\n[播放Service音乐(模拟)]\n测试:绑定后,即可调用Service中的方法."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_3" />
@@ -110,7 +110,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试5:\n[暂停Service音乐]"
+                android:text="测试5:\n[暂停Service音乐(模拟)]\n测试:绑定后,即可调用Service中的方法."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_4" />

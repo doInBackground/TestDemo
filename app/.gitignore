@@ -1,1 +1,6 @@
+# 忽略同级的build文件或文件夹.
 /build
+# 忽略同级的release文件夹.
+/release/
+# 忽略同级的debug文件夹.
+/debug/
