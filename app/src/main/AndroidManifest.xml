@@ -153,6 +153,14 @@
             android:name=".test.test06_audio_video.test05_ffmpeg.test04.activity.VideoPlayerActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test03_view.test01_customview.activity.CustomViewTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test03_view.test01_customview.test00.TestToggleButtonActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".test.test02_4components.test00.MyService"

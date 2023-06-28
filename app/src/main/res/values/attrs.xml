@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 自定义控件ToggleButton的自定义属性 -->
+    <declare-styleable name="Toggle"> <!-- 属性组名 -->
+        <attr name="isOpen" format="boolean"></attr> <!-- 单个属性名及类型 -->
+    </declare-styleable>
+
+</resources>

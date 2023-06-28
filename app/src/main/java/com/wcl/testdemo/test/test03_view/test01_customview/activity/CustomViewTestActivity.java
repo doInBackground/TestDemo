@@ -1,13 +1,15 @@
-package com.wcl.testdemo.test.test03_view.activity;
+package com.wcl.testdemo.test.test03_view.test01_customview.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
-import com.wcl.testdemo.test.test03_view.test00.ScreenThemeActivity;
-import com.wcl.testdemo.test.test03_view.test01_customview.activity.CustomViewTestActivity;
+import com.wcl.testdemo.test.test03_view.test01_customview.test00.TestToggleButtonActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -16,11 +18,11 @@ import butterknife.OnClick;
 
 /**
  * @Author WCL
- * @Date 2023/3/24 15:05
+ * @Date 2023/6/27 17:56
  * @Version
- * @Description 测试: 视图相关.
+ * @Description 自定义控件, 测试界面.
  */
-public class TestViewActivity extends AppCompatActivity {
+public class CustomViewTestActivity extends AppCompatActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.
@@ -31,18 +33,17 @@ public class TestViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_view);
+        setContentView(R.layout.activity_custom_view_test);
         ButterKnife.bind(this);
     }
 
     @OnClick({R.id.tv_0, R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10, R.id.tv_11, R.id.tv_12, R.id.tv_13, R.id.tv_14, R.id.tv_15, R.id.tv_16, R.id.tv_17, R.id.tv_18, R.id.tv_19, R.id.tv_20})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_0://[沉浸式][全屏][横竖屏]
-                startActivity(new Intent(this, ScreenThemeActivity.class));
+            case R.id.tv_0://打开ToggleButton测试界面.
+                startActivity(new Intent(this, TestToggleButtonActivity.class));
                 break;
-            case R.id.tv_1://进入[自定义控件测试]界面.
-                startActivity(new Intent(this, CustomViewTestActivity.class));
+            case R.id.tv_1://
                 break;
             case R.id.tv_2://
                 break;
@@ -82,6 +83,15 @@ public class TestViewActivity extends AppCompatActivity {
                 break;
             case R.id.tv_20://
                 break;
+        }
+    }
+
+    //一键三连,在三个地方输出打印结果.
+    private void print(String msg) {
+        if (!TextUtils.isEmpty(msg)) {
+            LogUtils.d(msg);
+            ToastUtils.showShort(msg);
+            mTvConsole.setText(msg);
         }
     }
 
