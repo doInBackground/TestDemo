@@ -18,7 +18,7 @@ import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.Came
 public class CameraXGLSurfaceView extends GLSurfaceView {
 
     private static CameraRender.FilterEnum[] sFilterTypeArr = {CAMERA, SHOW, BEAUTY};//想要使用的滤镜集合.
-    private CameraRender renderer;
+    private CameraRender mRenderer;//渲染器.
     private Speed mSpeed = Speed.MODE_NORMAL;
 
     public CameraXGLSurfaceView(Context context) {
@@ -27,15 +27,18 @@ public class CameraXGLSurfaceView extends GLSurfaceView {
 
     public CameraXGLSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setEGLContextClientVersion(2);//设置版本.
-        renderer = new CameraRender(this, sFilterTypeArr);
-        setRenderer(renderer);
+        setEGLContextClientVersion(2);//(1)OpenGL设置版本.
+        mRenderer = new CameraRender(this, sFilterTypeArr);
+        setRenderer(mRenderer);//(2)设置渲染器.
         /**
-         * 刷新方式：
-         *     RENDERMODE_WHEN_DIRTY 手动刷新，調用requestRender();
-         *     RENDERMODE_CONTINUOUSLY 自動刷新，大概16ms自動回調一次onDrawFrame方法;
+         * 设置渲染方式(有手动和自动两种).
+         * 注意必须"setRenderer()设置渲染器"后才能"设置渲染方式setRenderMode()".
+         *
+         * 渲染方式:
+         * RENDERMODE_WHEN_DIRTY: 表示手动渲染,只有在调用requestRender()或者onResume()等方法时,才会回调一次渲染器的onDrawFrame()进行渲染.
+         * RENDERMODE_CONTINUOUSLY: 表示自动渲染,大概16ms会自动回调一次渲染器的onDrawFrame()进行渲染.
          */
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);//注意必须在setRenderer()后面.
+        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);//(3)设置渲染方式(有手动和自动两种).
     }
 
     /**
@@ -61,14 +64,14 @@ public class CameraXGLSurfaceView extends GLSurfaceView {
                 speed = 3.f;
                 break;
         }
-        renderer.startRecord(speed);
+        mRenderer.startRecord(speed);
     }
 
     /**
      * 停止录制.
      */
     public void stopRecord() {
-        renderer.stopRecord();
+        mRenderer.stopRecord();
     }
 
     /**
@@ -86,7 +89,7 @@ public class CameraXGLSurfaceView extends GLSurfaceView {
      * @param isChecked 是否开启
      */
     public void enableBeauty(boolean isChecked) {
-        renderer.enableBeauty(isChecked);
+        mRenderer.enableBeauty(isChecked);
     }
 
     /**

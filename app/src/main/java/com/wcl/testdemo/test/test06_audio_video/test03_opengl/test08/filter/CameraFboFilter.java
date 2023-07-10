@@ -20,7 +20,7 @@ public class CameraFboFilter extends AbstractFboFilter {
         super(context, R.raw.camera_vert, R.raw.camera_frag);
 
         //获取GPU中着色器代码中的各个变量的句柄,方便有数据时赋值.
-        vMatrix = GLES20.glGetUniformLocation(mProgram, "vMatrix");//变换矩阵,需要将原本的vCoord(01,11,00,10)与矩阵相乘.
+        vMatrix = GLES20.glGetUniformLocation(mProgram, "vMatrix");//变换矩阵,需要将原本的vCoord(01,11,00,10)与矩阵相乘,才能得到Camera的正确显示方向.
     }
 
     @Override

@@ -59,12 +59,15 @@ class MediaRecorder {
         mMediaCodec.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);//配置编码器.
 
         //此时编码的输入数据不再是byte[]类型了,而是存在GPU中,使用该数据编码时类似投屏时使用的MediaProjection.
-        mSurface = mMediaCodec.createInputSurface();//MediaCodec提供场地,供数据源塞入数据,MediaCodec再编码数据.
+        mSurface = mMediaCodec.createInputSurface();//MediaCodec提供场地Surface,供数据源塞入数据,MediaCodec再编码数据.
 
         mMediaCodec.start();//开启编码.
 
-        //重点: OpenGL数据在GPU里面,肯定要调用OpenGL函数.
-        //线程:创建OpenGL的环境.
+        //重点:
+        //此时经过OpenGL处理的像素数据在GPU中,而不再是CPU中的byte[]类型的数据了,所以编码器的编码方法变成了提供一个场地Surface,数据源向里面塞数据,它来编码.
+        //所以OpenGL就要与这个场地Surface进行关联,就要调用OpenGL的方法.
+        //而OpenGL的方法必须要在EGL环境下调用(GLSurfaceView自带EGL环境),而此处为主线程,所以要自己构建EGL环境.
+        //做法:新建线程,在新建线程中构建EGL环境,此后便可以在此新建线程中进行OpenGL方法调用了.
         HandlerThread handlerThread = new HandlerThread("codec-gl");
         handlerThread.start();
         mHandler = new Handler(handlerThread.getLooper());
@@ -113,7 +116,7 @@ class MediaRecorder {
         mHandler.post(new Runnable() {
             public void run() {
                 //此处为GL线程,可以调用OpenGL方法.
-                eglEnv.draw(textureId, timestamp);//调用draw()后渲染到Surface中.
+                eglEnv.draw(textureId, timestamp);//调用draw()后会渲染到Surface(MediaCodec提供的待编码场地)中.
                 codec(false);
             }
         });

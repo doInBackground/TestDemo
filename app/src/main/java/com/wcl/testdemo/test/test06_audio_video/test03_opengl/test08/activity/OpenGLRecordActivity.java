@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Version
  * @Description 展示视频OpenGL特效及录制界面.
  */
+// TODO: 2023/7/7 OpenGLES使用案例.
 public class OpenGLRecordActivity extends AppCompatActivity implements RecordButton.OnRecordListener, RadioGroup.OnCheckedChangeListener {
 
     private CameraXGLSurfaceView mCameraXGLSurfaceView;

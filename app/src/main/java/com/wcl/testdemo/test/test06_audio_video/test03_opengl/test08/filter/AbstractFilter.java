@@ -95,12 +95,18 @@ class AbstractFilter {
         /*
         CPU和GPU的通信:CPU的数据通过ByteBuffer设置到GPU,在通过该方法将GPU的值(参数6)赋值给GPU中的另一个变量(参数1).
         参数意义可参考本项目TriangleRender类中的相同方法的描述.
-        参数1[index]:指定要修改的通用顶点属性的索引。
-        参数2[size]:指定每个通用顶点属性的组件数。
-        参数3[type]:指定数组中每个组件的数据类型。接受符号常量GL_FLOAT/GL_BYTE/GL_UNSIGNED_BYTE/GL_SHORT/GL_UNSIGNED_SHORT/GL_FIXED.初始值为GL_FLOAT.
-        参数4[normalized]:指定在访问定点数据值时是应将其标准化（GL_TRUE:比如坐标越界会改为可用值）还是直接转换为定点值（GL_FALSE）。
-        参数5[stride]:数据源(参数6)传给目标数据(参数1)时的步长.
-        参数6[ptr]:数据源(首地址).
+        (1)参数[index]:指定要修改的通用顶点属性的索引。
+        着色器程序中成员变量的句柄.
+        (2)参数[size]:指定每个通用顶点属性的组件数。
+        顶点坐标的维度(此处2维)
+        (3)参数[type]:指定数组中每个组件的数据类型。接受符号常量GL_FLOAT/GL_BYTE/GL_UNSIGNED_BYTE/GL_SHORT/GL_UNSIGNED_SHORT/GL_FIXED.初始值为GL_FLOAT.
+        顶点坐标值类型.
+        (4)参数[normalized]:指定在访问定点数据值时是应将其标准化（GL_TRUE:比如坐标越界会改为可用值）还是直接转换为定点值（GL_FALSE）。
+        false.
+        (5)参数[stride]:数据源(参数6)传给目标数据(参数1)时的步长.
+        每个顶点坐标所用字节,可理解为每个顶点的步长<步长=维度(此处2维)*坐标值类型所占长度(此处float占4字节)>,此处应填8,但实际填的0,猜测让程序自动分配.
+        (6)参数[ptr]:数据源(首地址).
+        顶点坐标变量(此处为GPU中的数据源FloatBuffer)的引用.
         */
         GLES20.glVertexAttribPointer(vPosition, 2, GL_FLOAT, false, 0, mVertexFloatBuffer);
         GLES20.glEnableVertexAttribArray(vPosition);//生效:CPU传数据到GPU,默认情况下着色器无法读取到这个数据,需要我们启用一下才可以读取.
@@ -113,9 +119,9 @@ class AbstractFilter {
         //"vPosition"和"vCoord"传过去后,形状就确定了.
 
         //"vTexture"(采样器)赋值:
-        GLES20.glActiveTexture(GL_TEXTURE0);//激活图层,GPU获取读取. 参数取值范围:GL_TEXTURE(0-31).
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture);//绑定采样器.
-        GLES20.glUniform1i(vTexture, 0);//参数2表示采样图层索引. 是否应该传入texture变量呢?
+        GLES20.glActiveTexture(GL_TEXTURE0);//激活OpenGL纹理. 参数取值范围:GL_TEXTURE(0-31).
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture);//<绑定纹理>表示后续的操作是原子性.(绑定其他纹理:比如相机画面更新的纹理).(可以把OpenGL理解成状态机,操作都是要先绑定才能操作,操作完后再解绑).
+        GLES20.glUniform1i(vTexture, 0);//为句柄赋值.参数1表示着色器程序中的句柄.参数2表示纹理索引(与激活的纹理索引对应).
 
         //"vMatrix"(矩阵)赋值:
 //        GLES20.glUniformMatrix4fv(vMatrix, 1, false, mtx, 0);
@@ -123,7 +129,7 @@ class AbstractFilter {
         beforeDraw();//模板方法.
 
         GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4);//通知绘制: 参数意义:([1]绘制形状类型,[2]从数组缓存中的哪一位开始绘制<一般为0>,[3]数组中顶点的数量);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);//解绑采样器.
+        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);//<解绑纹理>.
 
         return texture;
     }

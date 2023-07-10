@@ -40,12 +40,12 @@ class EGLEnv {
 
         //配置属性选项.
         int[] configAttribs = {
-                EGL14.EGL_RED_SIZE, 8, //颜色缓冲区中红色位数
-                EGL14.EGL_GREEN_SIZE, 8,//颜色缓冲区中绿色位数
-                EGL14.EGL_BLUE_SIZE, 8, //
-                EGL14.EGL_ALPHA_SIZE, 8,//
+                EGL14.EGL_RED_SIZE, 8, //颜色缓冲区中-红色位数
+                EGL14.EGL_GREEN_SIZE, 8, //颜色缓冲区中-绿色位数
+                EGL14.EGL_BLUE_SIZE, 8, //颜色缓冲区中-蓝色位数
+                EGL14.EGL_ALPHA_SIZE, 8, //颜色缓冲区中-透明度位数
                 EGL14.EGL_RENDERABLE_TYPE, EGL14.EGL_OPENGL_ES2_BIT, //opengl es 2.0
-                EGL14.EGL_NONE
+                EGL14.EGL_NONE //结尾标识.
         };
         int[] numConfigs = new int[1];
         EGLConfig[] configs = new EGLConfig[1];//EGL 根据属性选择一个配置.
@@ -71,7 +71,7 @@ class EGLEnv {
         if (!EGL14.eglMakeCurrent(mEglDisplay, mEglSurface, mEglSurface, mEglContext)) {//绑定当前线程的显示器EGLDisplay,虚拟显示设备.
             throw new RuntimeException("EGL error " + EGL14.eglGetError());
         }
-        mScreenFilter = new ScreenFilter(context);
+        mScreenFilter = new ScreenFilter(context);//此滤镜仅为了显示到GLSurfaceView中.
         mScreenFilter.setSize(width, height);
     }
 
@@ -82,7 +82,8 @@ class EGLEnv {
      * @param timestamp 时间戳
      */
     public void draw(int textureId, long timestamp) {
-        mScreenFilter.onDraw(textureId);
+        mScreenFilter.onDraw(textureId);//显示到屏幕上的GLSurfaceView.
+        //因为Surface(MediaCodec编码器提供的接收未编码数据的场地)已经与EGLSurface绑定,数据推到EGLSurface便会推到MediaCodec.
         EGLExt.eglPresentationTimeANDROID(mEglDisplay, mEglSurface, timestamp);//给帧缓冲时间戳.
         EGL14.eglSwapBuffers(mEglDisplay, mEglSurface);//EGLSurface是双缓冲模式.
     }

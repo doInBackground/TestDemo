@@ -41,7 +41,7 @@ public class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOu
 
     private MediaRecorder mRecorder;
 
-    private int[] mTextures;//记录纹理图层ID.
+    private int[] mTextures;//数组,存放纹理ID.
     float[] mtx = new float[16];
 
     //构造方法.
@@ -57,7 +57,14 @@ public class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOu
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         //提供数据的一方(此处为mCameraSurfaceTexture)接收输入器,向其中填充数据.
         mTextures = new int[1];
-        mCameraSurfaceTexture.attachToGLContext(mTextures[0]);//绑定:让SurfaceTexture与GPU图层共享一个数据源.参数(图层ID)取值范围:0-31.
+        LogUtils.d("纹理句柄-Camera和OpenGL纹理绑定(前):", mTextures);//打印0.
+        /**
+         * SurfaceTexture.attachToGLContext(int texName): 将SurfaceTexture绑定到当前EGL上下文的指定纹理对象上.
+         * texName:将要创建的OpenGLES纹理的名称。此纹理名称必须在调用线程上当前的OpenGLES上下文中未使用过。
+         * SurfaceTexture.detachFromGLContext():将SurfaceTexture与纹理对象解绑.
+         */
+        mCameraSurfaceTexture.attachToGLContext(mTextures[0]);//绑定:让Camera的SurfaceTexture与OpenGL的纹理共享一个数据源.
+        LogUtils.d("纹理句柄-Camera和OpenGL纹理绑定(后):", mTextures);//打印0.
         mCameraSurfaceTexture.setOnFrameAvailableListener(this);//监听摄像头数据回调(SurfaceTexture.OnFrameAvailableListener).
         //滤镜.
         Context context = mCameraXGLSurfaceView.getContext();
@@ -108,7 +115,6 @@ public class CameraRender implements GLSurfaceView.Renderer, Preview.OnPreviewOu
 
         mCameraSurfaceTexture.updateTexImage();//SurfaceTexture更新摄像头数据.数据给了GPU.
         mCameraSurfaceTexture.getTransformMatrix(mtx);
-
 
         //有数据的时候给着色器代码中的变量赋值.
         int id = -1;
