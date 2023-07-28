@@ -114,7 +114,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试5:\n"
+                android:text="测试5:\n通知测试: 5s后,发送Notification通知\n(状态栏通知|顶部横幅通知|锁屏通知)"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_4" />
@@ -124,12 +124,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="50dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试6:\n"
+                android:text="测试6:\n通知测试: 取消Notification通知"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_5" />

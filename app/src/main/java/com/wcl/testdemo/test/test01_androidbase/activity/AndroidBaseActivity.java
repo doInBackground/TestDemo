@@ -1,13 +1,20 @@
 package com.wcl.testdemo.test.test01_androidbase.activity;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,11 +23,13 @@ import android.widget.TextView;
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.NotificationUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.blankj.utilcode.util.UtilsTransActivity;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.init.TestActivity;
 import com.wcl.testdemo.test.test01_androidbase.test03.SaveFileActivity;
 import com.wcl.testdemo.utils.FileUtils;
 import com.wcl.testdemo.utils.dialog.MyDialogFragment;
@@ -30,6 +39,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -138,9 +148,11 @@ public class AndroidBaseActivity extends AppCompatActivity {
             case R.id.tv_4://通过浏览器打开链接.
                 openUrlByBrowser();
                 break;
-            case R.id.tv_5://
+            case R.id.tv_5://5s后发送通知.
+                testUtilsNotification();
                 break;
-            case R.id.tv_6://
+            case R.id.tv_6://取消所有通知.
+                NotificationUtils.cancelAll();
                 break;
             case R.id.tv_7://
                 break;
@@ -171,6 +183,98 @@ public class AndroidBaseActivity extends AppCompatActivity {
             case R.id.tv_20://
                 break;
         }
+    }
+
+    //测试:5s后发送通知(状态栏通知|顶部横幅通知|锁屏通知).
+    private void testUtilsNotification() {
+        if (NotificationUtils.areNotificationsEnabled()) {//有通知权限.
+            LogUtils.d("通知测试:有通知权限");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LogUtils.d("通知测试:定时任务被触发");
+                    ToastUtils.showLong("通知测试:通知已发送\n如未收到'横幅通知'和'锁屏通知',请查前往'系统设置'查看通知权限是否授予完整");
+                    //测试自己写的Notification通知.
+//                    testMyNotification();
+                    //测试工具类的Notification通知.
+                    NotificationUtils.notify(
+                            //参数1(id):表示通知ID(每个通知的ID不同,相同ID会覆盖之前的通知来显示).
+                            (int) System.currentTimeMillis(),
+                            //参数2(channelConfig):表示通知渠道的配置.
+                            new NotificationUtils.ChannelConfig(
+                                    "ChannelId",//渠道ID:取消通知时,可通过该ID进行特定取消.
+                                    "ChannelName-重要通知",//渠道名:用户在系统设置界面,手动授予通知权限时,显示该渠道的渠道名(用户可针对不同渠道名的通知,进行特定设置,如:是否锁屏展示,是否顶部横幅展示).
+                                    NotificationUtils.IMPORTANCE_HIGH//重要性:可选值有IMPORTANCE_MIN|IMPORTANCE_LOW|IMPORTANCE_DEFAULT|IMPORTANCE_HIGH|IMPORTANCE_MAX.
+                            ),
+                            //参数3(consumer):工具类的Utils.Consumer,其中用来对NotificationCompat.Builder进行处理.
+                            new Utils.Consumer<NotificationCompat.Builder>() {
+                                @Override
+                                public void accept(NotificationCompat.Builder builder) {
+                                    //构建跳转Intent.
+                                    PendingIntent pendingIntent;
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                                        //以S+为目标（版本31及以上）要求在创建PendingIntent时指定FLAG_IMUTABLE或FLAG_MUTABLE之一。
+                                        pendingIntent = PendingIntent.getActivity(AndroidBaseActivity.this, 0, new Intent(AndroidBaseActivity.this, TestActivity.class), PendingIntent.FLAG_IMMUTABLE);
+                                    } else {
+                                        //pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+                                        pendingIntent = PendingIntent.getActivity(AndroidBaseActivity.this, 0, new Intent(AndroidBaseActivity.this, TestActivity.class), PendingIntent.FLAG_ONE_SHOT);
+                                    }
+                                    builder.setSmallIcon(R.mipmap.ic_launcher) //小图标(必须提供):设置状态栏内的小图标.
+                                            .setWhen(System.currentTimeMillis())  //时间戳(系统提供):可以使用setWhen()替换它或者使用setShowWhen(false)隐藏它.
+                                            .setLargeIcon(BitmapFactory.decodeResource(Utils.getApp().getResources(), R.mipmap.ic_launcher)) //大图标(可选内容):设置下拉列表中的大图标,通常仅用于联系人照片,请勿将其用于应用图标.
+                                            .setContentTitle("通知标题") //标题(可选内容).
+                                            .setContentText("通知内容...") //文本(可选内容).
+                                            .setContentIntent(pendingIntent)//点击通知后,跳转到哪.
+                                            .setAutoCancel(true);  //点击通知后,消失(或调用notificationManager中的cancel方法).
+                                }
+                            }
+                    );
+                }
+            }, 5000);
+        } else {//无通知权限.
+            LogUtils.w("通知测试:无通知权限!");
+            PermissionUtils.launchAppDetailsSettings();//打开应用具体设置.
+        }
+    }
+
+    //测试自己写的Notification通知.
+    private void testMyNotification() {
+        //1.创建通知管理器
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        //2.创建通知渠道
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //参数1(id):表示渠道ID,创建Notification时需要传入该渠道ID,才能正确应用.
+            //参数2(name):表示渠道名,用户在系统设置界面,手动授予通知权限时,显示该渠道的渠道名(用户可针对不同渠道名的通知,进行特定设置,如:是否锁屏展示,是否顶部横幅展示).
+            //参数3(importance):重要性(IMPORTANCE_MIN|IMPORTANCE_LOW|IMPORTANCE_DEFAULT|IMPORTANCE_HIGH|IMPORTANCE_MAX).
+            NotificationChannel channel = new NotificationChannel("ChannelId", "ChannelName-重要通知", NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        //构建跳转Intent.
+        PendingIntent pendingIntent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            //以S+为目标（版本31及以上）要求在创建PendingIntent时指定FLAG_IMUTABLE或FLAG_MUTABLE之一。
+            pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, TestActivity.class), PendingIntent.FLAG_IMMUTABLE);
+        } else {
+            //pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+            pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, TestActivity.class), PendingIntent.FLAG_ONE_SHOT);
+        }
+
+        //3.创建通知
+        Notification notification = new NotificationCompat.Builder(this, "ChannelId")//参数2(channelId)需要与上面对应.
+                .setSmallIcon(R.mipmap.ic_launcher) //小图标(必须提供):设置状态栏内的小图标.
+                .setWhen(System.currentTimeMillis())  //时间戳(系统提供):可以使用setWhen()替换它或者使用setShowWhen(false)隐藏它.
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher)) //大图标(可选内容):设置下拉列表中的大图标,通常仅用于联系人照片,请勿将其用于应用图标.
+                .setContentTitle("通知标题") //标题(可选内容).
+                .setContentText("通知内容...") //文本(可选内容).
+                .setAutoCancel(true) //点击通知后,消失(或调用notificationManager中的cancel方法).
+                .setContentIntent(pendingIntent) //点击通知后,跳转到哪.
+                .build();
+        notification.defaults = Notification.DEFAULT_SOUND; //设置为默认通知音.
+
+        //4.使用
+        notificationManager.notify(1, notification);//每个通知的id不同.
     }
 
     //通过浏览器打开链接.
