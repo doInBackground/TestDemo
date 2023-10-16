@@ -10,6 +10,7 @@ import com.blankj.utilcode.util.CacheDiskUtils;
 import com.blankj.utilcode.util.CacheDoubleStaticUtils;
 import com.blankj.utilcode.util.CacheDoubleUtils;
 import com.blankj.utilcode.util.CacheMemoryUtils;
+import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -37,6 +38,21 @@ public class JavaBaseActivity extends AppCompatActivity {
     @BindView(R.id.tv)
     TextView mTvConsole;
     private MyTestNativeUtils mMyTestNativeUtils;
+    /**
+     * Comment:加密前-原始数据.
+     */
+    private final String mDataAES = "wcl123456789";
+    /**
+     * Comment:密钥KEY(必须32位).
+     * 数字字母:1位.
+     * 汉字:3位.
+     */
+    private final String mKyeAES = "wei01234567899876543210123456789";
+    /**
+     * Comment:加密后-加密数据.
+     */
+    private String mResAES = "05D550D8DFBBF14B32247618F7268A2A";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +88,13 @@ public class JavaBaseActivity extends AppCompatActivity {
                 //测试4:
                 mMyTestNativeUtils.test();
                 break;
-            case R.id.tv_4://
+            case R.id.tv_4://加密.
+                mResAES = EncryptUtils.encryptAES2HexString(mDataAES.getBytes(), mKyeAES.getBytes(), "AES/ECB/PKCS5Padding", null);
+                print(mDataAES + " 加密后结果: " + mResAES);
                 break;
-            case R.id.tv_5://
+            case R.id.tv_5://解密.
+                byte[] bytes = EncryptUtils.decryptHexStringAES(mResAES, mKyeAES.getBytes(), "AES/ECB/PKCS5Padding", null);
+                print(mResAES + " 解密后结果: " + new String(bytes));
                 break;
             case R.id.tv_6://
                 break;
