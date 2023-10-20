@@ -18,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.annotation.NonNull;
+import cn.jiguang.api.utils.JCollectionAuth;
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -36,6 +38,21 @@ public class AppApplication extends Application {
             initCrash(); //初始化崩溃收集器.
             initAppStatusListener(); //注册App前后台切换监听器.
             initActivityLifecycleListener();//注册Activity生命周期监听器.
+            initJPush();//初始化JPush.
+        }
+    }
+
+    //初始化JPush.
+    private void initJPush() {
+        //JPush SDK 提供的 API 接口，都主要集中在cn.jpush.android.api.JPushInterface类里。
+        boolean isPrivacyReady = true; //APP根据是否已弹窗获取隐私授权来赋值.
+        if (isPrivacyReady) {
+            //初始化SDK.
+            JPushInterface.setDebugMode(true);
+            JCollectionAuth.setAuth(this, true); //调整点一:初始化代码前增加setAuth调用.
+            JPushInterface.init(this);//初始化极光推送.
+        } else {
+            JCollectionAuth.setAuth(this, false); //后续初始化过程将被拦截.
         }
     }
 

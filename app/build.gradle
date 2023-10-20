@@ -39,6 +39,22 @@ android {
             abiFilters 'armeabi-v7a' //'armeabi', 'x86', 'armeabi-v7a', 'arm64-v8a', 'x86_64', 'arm64-v8a', "mips", "mips64"
         }
 
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "a3071cc65520be5beb752870", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+//                MEIZU_APPKEY  : "MZ-魅族的APPKEY",
+//                MEIZU_APPID   : "MZ-魅族的APPID",
+//                XIAOMI_APPID  : "MI-小米的APPID",
+//                XIAOMI_APPKEY : "MI-小米的APPKEY",
+//                OPPO_APPKEY   : "OP-oppo的APPKEY",
+//                OPPO_APPID    : "OP-oppo的APPID",
+//                OPPO_APPSECRET: "OP-oppo的APPSECRET",
+//                VIVO_APPKEY   : "vivo的APPKEY",
+//                VIVO_APPID    : "vivo的APPID",
+//                HONOR_APPID   : "Honor的APP ID"
+        ]
+
     }
 
     //[Native:关注点三]
@@ -91,4 +107,36 @@ dependencies {
 
     implementation "androidx.camera:camera-core:1.0.0-alpha05"
     implementation "androidx.camera:camera-camera2:1.0.0-alpha05"
+
+    //极光推送相关(https://docs.jiguang.cn/jpush/quickstart/Android_quick):本次仅接入极光渠道,未接入其他厂商通道.
+    implementation 'cn.jiguang.sdk:jpush:5.2.0'// 此处以JPush 5.0.0 版本为例，5.0.0 版本开始可以自动拉取 JCore 包，无需另外配置.
+    //极光厂商插件版本与接入JPush版本保持一致,下同.若不集成厂商通道,可直接跳过以下依赖(不接入厂商通道时,APP被杀死的情况下,推送到达率很不理想,但APP启动时会主动拉取未接收的推送信息).
+//    // 接入华为厂商
+//    implementation 'com.huawei.hms:push:6.5.0.300'
+//    implementation 'cn.jiguang.sdk.plugin:huawei:5.2.0'
+//    // 接入 FCM 厂商
+//    implementation 'com.google.firebase:firebase-messaging:23.0.5'
+//    implementation 'cn.jiguang.sdk.plugin:fcm:5.2.0'
+//    // 接入魅族厂商
+//    implementation 'cn.jiguang.sdk.plugin:meizu:5.2.0'
+//    // 接入 VIVO 厂商
+//    implementation 'cn.jiguang.sdk.plugin:vivo:5.2.0'
+//    // 接入小米厂商
+//    implementation 'cn.jiguang.sdk.plugin:xiaomi:5.2.0'
+//    // 接入 OPPO 厂商
+//    implementation 'cn.jiguang.sdk.plugin:oppo:5.2.0'
+//    // JPush Android SDK v4.6.0 开始，需要单独引入 oppo 厂商 aar ，请下载官网 SDK 包并把 jpush-android-xxx-release/third-push/oppo/libs 下的 aar 文件单独拷贝一份到应用 module/libs 下
+//    implementation(name: 'com.heytap.msp-push-3.1.0', ext: 'aar')
+//    //以下为 OPPO 3.1.0 aar需要依赖
+//    implementation 'com.google.code.gson:gson:2.6.2'
+//    implementation 'commons-codec:commons-codec:1.6'
+//    implementation 'androidx.annotation:annotation:1.1.0'
+//    // 接入荣耀厂商
+//    implementation 'cn.jiguang.sdk.plugin:honor:5.2.0'
+//    //需要单独引入荣耀厂商 aar ，请下载官网 SDK 包并把 jpush-android-xxx-release/third-push/honor/libs 下的 aar 文件单独拷贝一份到应用 module/libs 下
+//    implementation(name: 'HiPushSdk-v7.0.1.103', ext: 'aar')
+
 }
+
+//apply plugin: 'com.google.gms.google-services'//极光推送:google通道.
+//apply plugin: 'com.huawei.agconnect'//极光推送:华为通道.

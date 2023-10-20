@@ -7,11 +7,16 @@ buildscript {
 //        maven { url "https://jitpack.io" }//github
         mavenCentral()
         google()
+//        maven { url 'https://developer.huawei.com/repo/' }//极光推送: hms， 若不集成华为厂商通道，可直接跳过
+//        maven { url "https://maven.google.com" }//极光推送: fcm(提高海外推送率)， 若不集成 FCM 通道，可直接跳过
     }
     dependencies {
 //        classpath 'com.android.tools.build:gradle:3.6.2'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'//黄油刀
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+//        classpath 'com.huawei.agconnect:agcp:1.6.0.300'//极光推送: hms，若不集成华为厂商通道，可直接跳过
+//        classpath 'com.google.gms:google-services:4.3.8' //极光推送: fcm，若不集成 FCM 通道，可直接跳过
     }
 }
 
