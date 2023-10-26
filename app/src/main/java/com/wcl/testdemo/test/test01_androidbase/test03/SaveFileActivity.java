@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.FileIOUtils;
 import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.LogUtils;
@@ -34,7 +35,6 @@ import butterknife.OnClick;
  */
 public class SaveFileActivity extends AppCompatActivity {
 
-    private final String SAVE_ROOT_NAME = "WCL";
     /**
      * Comment: 用来输出测试结果的控制台.
      */
@@ -88,11 +88,11 @@ public class SaveFileActivity extends AppCompatActivity {
             File tempFile = new File(Utils.getApp().getExternalCacheDir(), "demo_h264_368_384.mp4"); //沙箱中文件路径.
             boolean isSuccess = FileIOUtils.writeFileFromIS(tempFile, is); //拷贝.
             if (isSuccess) {
-                //核心调用.
-                boolean isSuccessToDownload = FileUtils.save2Download(tempFile, "demo_h264_368_384.mp4");//从沙箱拷贝到[下载路径].
-                print("保存文件到[下载路径]的结果:" + isSuccessToDownload);
+                //***********核心调用(仅下面一行)***********.
+                FileUtils.save2Download(tempFile);//从沙箱拷贝到[下载路径].
+                print("保存文件到[下载路径],请前往查看.");
             } else {
-                print("从\"assets\"中拷贝文件到沙箱出错!!!");
+                print("从\"assets\"中拷贝文件到\"沙箱\"出错!!!");
             }
         } catch (IOException e) {
             print("从\"assets\"中获取文件出错!!!");
@@ -116,11 +116,11 @@ public class SaveFileActivity extends AppCompatActivity {
             File tempFile = new File(Utils.getApp().getExternalCacheDir(), "demo_h264_368_384.mp4"); //沙箱中视频路径.
             boolean isSuccess = FileIOUtils.writeFileFromIS(tempFile, is); //拷贝.
             if (isSuccess) {
-                //核心调用.
-                boolean isSuccessToMovies = FileUtils.save2Movies(tempFile, "demo_h264_368_384.mp4");//从沙箱拷贝到[视频相册].
-                print("保存视频到[视频相册]的结果:" + isSuccessToMovies);
+                //***********核心调用(仅下面一行)***********.
+                FileUtils.save2Movies(tempFile);//从沙箱拷贝到[视频相册].
+                print("保存视频到相册的[Movies],请前往查看.");
             } else {
-                print("从\"assets\"中拷贝视频到沙箱出错!!!");
+                print("从\"assets\"中拷贝视频到\"沙箱\"出错!!!");
             }
         } catch (IOException e) {
             print("从\"assets\"中获取视频出错!!!");
@@ -138,15 +138,19 @@ public class SaveFileActivity extends AppCompatActivity {
 
     //保存图片到相册.
     private void save2DCIM() {
-        //该工具类API,会在相册(DCIM)下,如果通过参数指定名称则创建指定名称文件夹,否则默认创建包名文件夹.
-        File file = ImageUtils.save2Album(ImageUtils.getBitmap(R.mipmap.ic_launcher), SAVE_ROOT_NAME, Bitmap.CompressFormat.PNG);
+        //***********核心调用(仅下面一行)***********.
+        File file = ImageUtils.save2Album(//该工具类API会在相册[DCIM]下,创建指定名称(不指定则默认包名)文件夹,来存放图片.
+                ImageUtils.getBitmap(R.mipmap.ic_launcher), //Bitmap对象.
+                AppUtils.getAppName(), //"DCIM"下创建的文件夹名称(不传默认为包名).
+                Bitmap.CompressFormat.PNG //压缩格式.
+        );
         Uri uri = UriUtils.file2Uri(file);
         String msg1 = "保存图片到相册成功:" +
-                "\n(1)图片保存地址(File): " + file + // "/storage/emulated/0/DCIM/WCL/1677467432067_100.PNG"
-                "\n(2)图片保存地址(Uri): " + uri + // "content://com.wcl.testdemo.utilcode.fileprovider/external_path/DCIM/WCL/1677467432067_100.PNG"
+                "\n(1)图片保存地址(File): " + file + // "/storage/emulated/0/DCIM/TestDemo/1677467432067_100.PNG"
+                "\n(2)图片保存地址(Uri): " + uri + // "content://com.wcl.testdemo.utilcode.fileprovider/external_path/DCIM/TestDemo/1677467432067_100.PNG"
                 "\n(3-1)Uri-Scheme: " + uri.getScheme() + // "content"
                 "\n(3-2)Uri-Authority: " + uri.getAuthority() + // "com.wcl.testdemo.utilcode.fileprovider"
-                "\n(3-3)Uri-Path: " + uri.getPath(); // "/external_path/DCIM/WCL/1677467432067_100.PNG"
+                "\n(3-3)Uri-Path: " + uri.getPath(); // "/external_path/DCIM/TestDemo/1677467432067_100.PNG"
         print(msg1);
     }
 
