@@ -32,17 +32,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
-        <!-- 测试入口 -->
+        <!--Splash界面-->
         <activity
-            android:name=".init.TestActivity"
+            android:name=".init.SplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/LaunchTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 测试: Java基础 -->
+        </activity>
+        <!-- 测试入口 -->
+        <activity
+            android:name=".init.TestActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" /> <!-- 测试: Java基础 -->
         <activity
             android:name=".test.test00_javabase.activity.JavaBaseActivity"
             android:exported="false"
@@ -171,11 +179,9 @@
             android:foregroundServiceType="mediaProjection" />
         <service
             android:name=".test.test06_audio_video.test05_ffmpeg.test03.musicservice.MusicService"
-            android:exported="false" />
-
-        <!-- 极光推送相关: -->
+            android:exported="false" /> <!-- 极光推送相关: -->
         <!-- 在 AndroidManifest 中配置一个Service，以在更多手机平台上获得更稳定的支持，示例如下： -->
-        <!-- Since JCore2.0.0 Required SDK核心功能-->
+        <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 可配置android:process参数将Service放在其他进程中；android:enabled属性不能是false -->
         <!-- 这个是自定义Service,要继承极光JCommonService,可以在更多手机平台上使得推送通道保持的更稳定 -->
         <service
@@ -186,9 +192,7 @@
             <intent-filter>
                 <action android:name="cn.jiguang.user.service.action" />
             </intent-filter>
-        </service>
-
-        <!-- 从 JPush 5.2.0 开始，需要配置继承 JPushMessageService 的广播，原来如果配了 MyReceiver和JPushMessageReceiver 现在可以弃用，示例如下： -->
+        </service> <!-- 从 JPush 5.2.0 开始，需要配置继承 JPushMessageService 的广播，原来如果配了 MyReceiver和JPushMessageReceiver 现在可以弃用，示例如下： -->
         <!-- Required since 5.2.0 -->
         <!-- 新的 tag/alias 接口结果返回需要开发者配置一个自定义的Service -->
         <!-- 3.3.0开始所有事件将通过该类回调 -->
@@ -197,13 +201,13 @@
         <service
             android:name=".push.PushMessageService"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.SERVICE_MESSAGE" />
+
                 <category android:name="${JPUSH_PKGNAME}" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>

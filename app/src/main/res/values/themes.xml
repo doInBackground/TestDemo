@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
     <style name="Theme.TestDemo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
@@ -13,4 +14,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- Launch activity theme. -->
+    <style name="LaunchTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <!-- windowBackground:部分机型可能会取背景图平均像素值(导致不是设定图),再在中央添加图标作为window默认背景 -->
+        <!--        <item name="android:windowBackground">@null</item>-->
+        <!--        <item name="android:windowBackground">@color/white</item>-->
+        <item name="android:windowBackground">@drawable/ic_splash_bg</item>
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
 </resources>
