@@ -208,6 +208,12 @@
                 <category android:name="${JPUSH_PKGNAME}" />
             </intent-filter>
         </service>
+        <activity
+            android:name=".init.CricketActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+
     </application>
 
 </manifest>

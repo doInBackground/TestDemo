@@ -24,7 +24,7 @@ public class PushMessageService extends JPushMessageService {
 
     @Override
     public void onMessage(Context context, CustomMessage customMessage) {
-        LogUtils.i("[onMessage] " + customMessage);
+        LogUtils.d("推送测试: [onMessage] " + customMessage);
         Intent intent = new Intent("com.jiguang.demo.message");
         intent.putExtra("msg", customMessage.message);
         context.sendBroadcast(intent);
@@ -32,7 +32,7 @@ public class PushMessageService extends JPushMessageService {
 
     @Override
     public void onNotifyMessageOpened(Context context, NotificationMessage message) {
-        LogUtils.i("[onNotifyMessageOpened] " + message);
+        LogUtils.d("推送测试: [onNotifyMessageOpened] " + message);
         try {
             //打开自定义的Activity
             Intent i = new Intent(context, TestActivity.class);//设置APP启动界面.
@@ -49,44 +49,44 @@ public class PushMessageService extends JPushMessageService {
 
     @Override
     public void onMultiActionClicked(Context context, Intent intent) {
-        LogUtils.i("[onMultiActionClicked] 用户点击了通知栏按钮");
+        LogUtils.d("推送测试: [onMultiActionClicked] 用户点击了通知栏按钮");
         String nActionExtra = intent.getExtras().getString(JPushInterface.EXTRA_NOTIFICATION_ACTION_EXTRA);
 
         //开发者根据不同 Action 携带的 extra 字段来分配不同的动作。
         if (nActionExtra == null) {
-            LogUtils.i("ACTION_NOTIFICATION_CLICK_ACTION nActionExtra is null");
+            LogUtils.d("推送测试: ACTION_NOTIFICATION_CLICK_ACTION nActionExtra is null");
             return;
         }
         if (nActionExtra.equals("my_extra1")) {
-            LogUtils.i("[onMultiActionClicked] 用户点击通知栏按钮一");
+            LogUtils.d("推送测试: [onMultiActionClicked] 用户点击通知栏按钮一");
         } else if (nActionExtra.equals("my_extra2")) {
-            LogUtils.i("[onMultiActionClicked] 用户点击通知栏按钮二");
+            LogUtils.d("推送测试: [onMultiActionClicked] 用户点击通知栏按钮二");
         } else if (nActionExtra.equals("my_extra3")) {
-            LogUtils.i("[onMultiActionClicked] 用户点击通知栏按钮三");
+            LogUtils.d("推送测试: [onMultiActionClicked] 用户点击通知栏按钮三");
         } else {
-            LogUtils.i("[onMultiActionClicked] 用户点击通知栏按钮未定义");
+            LogUtils.d("推送测试: [onMultiActionClicked] 用户点击通知栏按钮未定义");
         }
     }
 
     @Override
     public void onNotifyMessageArrived(Context context, NotificationMessage message) {//收到推送消息时被回调.
-        LogUtils.i("[onNotifyMessageArrived] " + message);
+        LogUtils.d("推送测试: [onNotifyMessageArrived] " + message);
 //        //不需要手动设置角标,通过推送后台可以配置角标模式,一般用"自增+1"模式即可.
 //        int oldBadgeNumber = SPStaticUtils.getInt("BadgeNumber", 0);//旧的角标数量.
 //        int currentBadgeNumber = oldBadgeNumber + 1;//新角标数量.
 //        SPStaticUtils.put("BadgeNumber", currentBadgeNumber);//记录新角标数量.
 //        JPushInterface.setBadgeNumber(this, currentBadgeNumber);//设置新角标数量(仅支持华为平台).
-//        LogUtils.d("当前应该设置角标数量:" + currentBadgeNumber);
+//        LogUtils.d("推送测试: 当前应该设置角标数量:" + currentBadgeNumber);
     }
 
     @Override
     public void onNotifyMessageDismiss(Context context, NotificationMessage message) {
-        LogUtils.i("[onNotifyMessageDismiss] " + message);
+        LogUtils.d("推送测试: [onNotifyMessageDismiss] " + message);
     }
 
     @Override
     public void onRegister(Context context, String registrationId) {
-        LogUtils.i("[onRegister] " + registrationId);
+        LogUtils.d("推送测试: [onRegister] " + registrationId);
         Intent intent = new Intent("com.jiguang.demo.message");
         intent.putExtra("rid", registrationId);
         context.sendBroadcast(intent);
@@ -94,12 +94,12 @@ public class PushMessageService extends JPushMessageService {
 
     @Override
     public void onConnected(Context context, boolean isConnected) {
-        LogUtils.i("[onConnected] " + isConnected);
+        LogUtils.d("推送测试: [onConnected] " + isConnected);
     }
 
     @Override
     public void onCommandResult(Context context, CmdMessage cmdMessage) {
-        LogUtils.i("[onCommandResult] " + cmdMessage);
+        LogUtils.d("推送测试: [onCommandResult] " + cmdMessage);
         //cmd 为 2008 时说明为应用冷启动后，SDK 首次初始化成功的回调(只回调一次).
         //cmd 为 10000 时说明为厂商 token 回调.
         if (cmdMessage != null && cmdMessage.cmd == 10000 && cmdMessage.extra != null) {
@@ -132,7 +132,7 @@ public class PushMessageService extends JPushMessageService {
                     deviceName = "FCM";
                     break;
             }
-            LogUtils.i("获取到" + deviceName + "的 token:" + token);
+            LogUtils.d("推送测试: 获取到" + deviceName + "的token:" + token);
         }
     }
 
@@ -159,7 +159,7 @@ public class PushMessageService extends JPushMessageService {
     @Override
     public void onNotificationSettingsCheck(Context context, boolean isOn, int source) {
         super.onNotificationSettingsCheck(context, isOn, source);
-        LogUtils.i("[onNotificationSettingsCheck] isOn:" + isOn + ",source:" + source);
+        LogUtils.d("推送测试: [onNotificationSettingsCheck] isOn:" + isOn + ",source:" + source);
     }
 
 }

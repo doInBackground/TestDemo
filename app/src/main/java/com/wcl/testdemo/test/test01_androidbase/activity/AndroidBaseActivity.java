@@ -15,26 +15,32 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Process;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.CollectionUtils;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.NotificationUtils;
 import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.ProcessUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.blankj.utilcode.util.UtilsTransActivity;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.init.CricketActivity;
 import com.wcl.testdemo.init.TestActivity;
 import com.wcl.testdemo.test.test01_androidbase.test03.SaveFileActivity;
 import com.wcl.testdemo.utils.FileUtils;
 import com.wcl.testdemo.utils.dialog.MyDialogFragment;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -154,7 +160,22 @@ public class AndroidBaseActivity extends AppCompatActivity {
             case R.id.tv_6://取消所有通知.
                 NotificationUtils.cancelAll();
                 break;
-            case R.id.tv_7://
+            case R.id.tv_7://延时崩溃测试.
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        LogUtils.d("崩溃测试: 程序准备崩溃",
+                                "当前进程ID:" + Process.myPid(),
+                                "当前进程名:" + ProcessUtils.getCurrentProcessName(),
+                                "前台进程名:" + ProcessUtils.getForegroundProcessName(),
+                                "后台进程名:" + CollectionUtils.toString(ProcessUtils.getAllBackgroundProcesses())
+                        );
+//                        //测试直接启动崩溃处理界面,是处于同一进程的:
+//                        CricketActivity.startErrorActivity(AndroidBaseActivity.this, "模拟崩溃信息.");
+                        //手动制造崩溃:
+                        new ArrayList<>().get(0);
+                    }
+                }, 2000);
                 break;
             case R.id.tv_8://
                 break;
