@@ -2,7 +2,12 @@ import java.text.SimpleDateFormat
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+
     ext.kotlin_version = '1.3.40'
+    ext.COMPILE_SDK_VERSION = "android-32" //供module的build.gradle中以"$COMPILE_SDK_VERSION"使用.
+    ext.TARGET_SDK_VERSION = 32 //供module的build.gradle中以"$TARGET_SDK_VERSION"使用.
+    ext.MIN_SDK_VERSION = 21 //供module的build.gradle中以"$MIN_SDK_VERSION"使用.
+
     repositories {
 //        maven { url "https://jitpack.io" }//github
         mavenCentral()
@@ -10,14 +15,15 @@ buildscript {
 //        maven { url 'https://developer.huawei.com/repo/' }//极光推送: hms， 若不集成华为厂商通道，可直接跳过
 //        maven { url "https://maven.google.com" }//极光推送: fcm(提高海外推送率)， 若不集成 FCM 通道，可直接跳过
     }
+
     dependencies {
 //        classpath 'com.android.tools.build:gradle:3.6.2'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'//黄油刀
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
 //        classpath 'com.huawei.agconnect:agcp:1.6.0.300'//极光推送: hms，若不集成华为厂商通道，可直接跳过
 //        classpath 'com.google.gms:google-services:4.3.8' //极光推送: fcm，若不集成 FCM 通道，可直接跳过
     }
+
 }
 
 plugins {
@@ -36,6 +42,7 @@ rootProject.ext {
     System.out.println("[版本名: " + version_name + "] " + "[版本号: " + version_code + "] ") //打印.
     System.out.println("全局值构建完毕!!!!") //打印.
 }
+
 //获取版本名.
 def getVersionName() {
     //方式一:从Jenkins获取版本名.
@@ -45,8 +52,9 @@ def getVersionName() {
 //    String currentDate = new Date().format("yyyyMMddHH", TimeZone.getTimeZone("UTC")) //当前日期获取[方法1].
 //    String currentDate = new SimpleDateFormat("yyyyMMddHH").format(System.currentTimeMillis()) //当前日期获取[方法2].
     String currentDate = new SimpleDateFormat("yyyyMMddHH").format(new Date()) //当前日期获取[方法3].
-    return "1.0." + (isReleaseBuildType() ? currentDate : (currentDate + "-Debug"))
+    return "1.0." + (isReleaseBuildType() ? currentDate : (currentDate + "_Debug"))
 }
+
 //获取版本号.
 static def getVersionCode() {
     //版本号只能传int值,int的最大值是2147483647[10位],故返回值不能大于此数.
@@ -54,7 +62,9 @@ static def getVersionCode() {
     //故:13位时间戳转版本号时,为保证小于10位,需要省略后4位,变成9位数.(此时时间戳单位为"十秒",即两次编译时间间隔超过十秒,版本号就会不同)
     return (int) (System.currentTimeMillis() / 10000) //版本号=时间戳/10000.
 }
-//判断[Release|Debug]包.
+
+//判断[Release|Debug]包.(注意:用AS打包时该方法准确,用Jenkins打包时该方法不准确)
+//查看APK签名证书信息,有信息则是Release包,显示"不是已签名的jar文件"则是Debug包,指令如下: keytool -printcert -jarfile xxx.apk
 boolean isReleaseBuildType() {//判断是否Release包.
     boolean isRelease = false
     for (String s : gradle.startParameter.taskNames) {

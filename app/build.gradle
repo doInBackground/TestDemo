@@ -7,12 +7,15 @@ plugins {
 }
 
 android {
-    compileSdk 32
+//    compileSdk 32 //为抽取变量,改为compileSdkVersion.
+    compileSdkVersion "$COMPILE_SDK_VERSION"
 
     defaultConfig {
         applicationId "com.wcl.testdemo"
-        minSdk 21
-        targetSdk 32
+//        minSdk 21 //为抽取变量,改为minSdkVersion.
+        minSdkVersion "$MIN_SDK_VERSION"
+//        targetSdk 32 //为抽取变量,改为targetSdkVersion.
+        targetSdkVersion "$TARGET_SDK_VERSION"
         versionName rootProject.ext.version_name
         versionCode rootProject.ext.version_code
 
@@ -39,6 +42,7 @@ android {
             abiFilters 'armeabi-v7a' //'armeabi', 'x86', 'armeabi-v7a', 'arm64-v8a', 'x86_64', 'arm64-v8a', "mips", "mips64"
         }
 
+        //为AndroidManifest设置占位符,在其中使用方式如: ${JPUSH_PKGNAME}
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "a3071cc65520be5beb752870", //JPush 上注册的包名对应的 Appkey.
@@ -54,7 +58,6 @@ android {
 //                VIVO_APPID    : "vivo的APPID",
 //                HONOR_APPID   : "Honor的APP ID"
         ]
-
     }
 
     //[Native:关注点三]
@@ -72,14 +75,45 @@ android {
         }
     }
 
+    signingConfigs {
+        debug {
+            storeFile file('../wei.jks')
+            storePassword 'weichunle'
+            keyAlias 'weichunle'
+            keyPassword 'weichunle'
+        }
+        release {
+            storeFile file('../wei.jks')
+            storePassword 'weichunle'
+            keyAlias 'weichunle'
+            keyPassword 'weichunle'
+        }
+        wei {
+            storeFile file('../wei.jks')
+            storePassword 'weichunle'
+            keyAlias 'weichunle'
+            keyPassword 'weichunle'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean", "LOG_DEBUG", "false") //在BuildConfig中构建静态常量.
+            debuggable false //默认false,表示APK运行时,不可以在AS端Logcat通过[进程名]来筛选查看指定进程的日志.
+            minifyEnabled false //是否开启混淆.
+            zipAlignEnabled false //是否压缩优化.
+            shrinkResources false  //是否移出无用资源.
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' //默认的混淆文件以及我们指定的混淆文件.
+            signingConfig signingConfigs.wei //签名配置通过signingConfigs中的wei来签名.
         }
         debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean", "LOG_DEBUG", "true") //在BuildConfig中构建静态常量.
+            debuggable true //默认true,表示APK运行时,可以在AS端Logcat通过[进程名]来筛选查看指定进程的日志.
+            minifyEnabled false //是否开启混淆.
+            zipAlignEnabled false //是否压缩优化.
+            shrinkResources false  //是否移出无用资源.
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' //默认的混淆文件以及我们指定的混淆文件.
+            signingConfig signingConfigs.wei //签名配置通过signingConfigs中的wei来签名.
         }
     }
 
@@ -140,3 +174,18 @@ dependencies {
 
 //apply plugin: 'com.google.gms.google-services'//极光推送:google通道.
 //apply plugin: 'com.huawei.agconnect'//极光推送:华为通道.
+
+//设置APK输出名称.
+android.applicationVariants.all { variant ->
+    variant.outputs.all { output ->
+//        //方式一:
+//        def date = new Date().format("yyMMddHHmm", TimeZone.getTimeZone("GMT+08"))
+//        if (variant.buildType.name == 'debug') {
+//            output.outputFileName = "TestDemo_v${android.defaultConfig.versionName}_${date}_debug.apk"
+//        } else if (variant.buildType.name == 'release') {
+//            output.outputFileName = "TestDemo_v${android.defaultConfig.versionName}_${date}_release.apk"
+//        }
+        //方式二:
+        output.outputFileName = "TestDemo_${rootProject.ext.version_code}_v${rootProject.ext.version_name}.apk"
+    }
+}
