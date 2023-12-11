@@ -32,7 +32,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
-        <!--Splash界面-->
+        <!-- Splash界面 -->
         <activity
             android:name=".init.SplashActivity"
             android:exported="true"
@@ -44,8 +44,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- 测试入口 -->
+        </activity> <!-- 测试入口 -->
         <activity
             android:name=".init.TestActivity"
             android:exported="true"
@@ -208,11 +207,18 @@
                 <category android:name="${JPUSH_PKGNAME}" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".init.CricketActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".test.test00_javabase.test00.JsonTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".test.test00_javabase.test01.CacheTestActivity"
+            android:exported="false" />
 
     </application>
 

@@ -39,7 +39,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试0:(跳转)\nJson测试"
+                android:text="测试0:\nJson转[普通对象]"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试1:(跳转)\n缓存测试"
+                android:text="测试1:\nJson转[单层多泛型对象]"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_0" />
@@ -69,7 +69,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试2:(跳转)\nSocket测试."
+                android:text="测试2:\nJson转[多层多泛型对象]"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_1" />
@@ -84,7 +84,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试3:\nJNI调用测试."
+                android:text="测试3:\n"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_2" />
@@ -99,7 +99,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试4:\nAES 加密测试"
+                android:text="测试4:\n"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_3" />
@@ -109,11 +109,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试5:\nAES 解密测试"
+                android:text="测试5:\n"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_4" />
