@@ -17,6 +17,9 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.wcl.testdemo.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +56,22 @@ public class CacheTestActivity extends AppCompatActivity {
             case R.id.tv_1://二级缓存(将对象,从缓存中取出).
                 getObject();
                 break;
-            case R.id.tv_2://
+            case R.id.tv_2://磁盘缓存测试(读取JSONObject对象).
+                //存值.
+                CacheDiskUtils diskUtils = CacheDiskUtils.getInstance(
+                        Utils.getApp().getExternalCacheDir().getParentFile() //外部沙箱根路径.
+                );
+                JSONObject jsonConfig = new JSONObject();
+                try {
+                    jsonConfig.put("debug", true);
+                    jsonConfig.put("environment", "UAT");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                diskUtils.put("config", jsonConfig);
+                //取值.
+                jsonConfig = diskUtils.getJSONObject("config");
+                print(jsonConfig.toString());
                 break;
             case R.id.tv_3://
                 break;
