@@ -36,6 +36,7 @@ import com.wcl.testdemo.R;
 import com.wcl.testdemo.init.CricketActivity;
 import com.wcl.testdemo.init.TestActivity;
 import com.wcl.testdemo.test.test01_androidbase.test03.SaveFileActivity;
+import com.wcl.testdemo.test.test01_androidbase.test08.DialogTestActivity;
 import com.wcl.testdemo.utils.FileUtils;
 import com.wcl.testdemo.utils.dialog.MyDialogFragment;
 
@@ -177,7 +178,8 @@ public class AndroidBaseActivity extends AppCompatActivity {
                     }
                 }, 2000);
                 break;
-            case R.id.tv_8://
+            case R.id.tv_8://Dialog测试.
+                startActivity(new Intent(this, DialogTestActivity.class));
                 break;
             case R.id.tv_9://
                 break;

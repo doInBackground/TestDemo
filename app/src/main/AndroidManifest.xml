@@ -219,7 +219,9 @@
         <activity
             android:name=".test.test00_javabase.test01.CacheTestActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".test.test01_androidbase.test08.DialogTestActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

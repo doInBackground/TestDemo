@@ -39,7 +39,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试0:\n打开系统文件选择器,返回uri\n(Android10及以上取非图片音频视频,不能再自定义文件浏览器,必须使用系统内置文件选择器)"
+                android:text="测试0:\n展示源生AlertDialog."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +54,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试1:\n请求[存储]和[定位]权限."
+                android:text="测试1:\n测试控制源生AlertDialog的宽高和位置."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_0" />
@@ -69,7 +69,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试2:\n请求[管理所有文件]权限."
+                android:text="测试2:\n展示源生AlertDialog-单选对话框."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_1" />
@@ -84,7 +84,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试3:(跳转)\n文件的持久化保存."
+                android:text="测试3:\n展示源生AlertDialog-多选对话框."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_2" />
@@ -99,7 +99,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试4:\n通过浏览器打开链接."
+                android:text="测试4:\n展示源生ProgressDialog-(横向)进度条对话框."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_3" />
@@ -114,7 +114,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试5:\n通知测试: 5s后,发送Notification通知\n(状态栏通知|顶部横幅通知|锁屏通知)"
+                android:text="测试5:\n展示源生ProgressDialog-(环形)进度条对话框."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_4" />
@@ -124,11 +124,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试6:\n通知测试: 取消Notification通知"
+                android:text="测试6:\n"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_5" />
@@ -143,7 +144,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试7:\n2s后发生崩溃(测试前后台崩溃情况)"
+                android:text="测试7:\n"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_6" />
@@ -159,7 +160,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试8:(跳转)\nDialog测试"
+                android:text="测试8:\n"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_7" />
