@@ -45,63 +45,13 @@ public class JsonTestActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_0://Json转[普通对象].
-                //构建Json字符串:
-                String json0 = GsonUtils.toJson(new Person("WCL"));//Json字符串.
-                //Json字符串转对象(方式1):
-                Person person0_1 = GsonUtils.fromJson(json0, Person.class);
-                //Json字符串转对象(方式2):
-                Person person0_2 = GsonUtils.fromJson(json0, GsonUtils.getType(Person.class));
-                //打印.
-                String msg0 = "Json转[普通对象]:\n" + json0 + "\n方式一:\n" + person0_1 + "\n方式二:\n" + person0_2;
-                print(msg0);
+                test0();
                 break;
             case R.id.tv_1://Json转[单层多泛型对象].
-                //构建Json字符串:
-                String json1 = GsonUtils.toJson(new Result<Integer, String, Person>(29, "WCL", new Person("WCL")));//Json字符串.
-                //Json字符串转对象(方式1):
-                Result<Integer, String, Person> result1_1 = GsonUtils.fromJson(json1, Result.class);
-                //Json字符串转对象(方式2):
-                Result<Integer, String, Person> result1_2 = GsonUtils.fromJson(
-                        json1,
-                        GsonUtils.getType(
-                                Result.class, //参数1:总Type.
-                                Integer.class, //可变参数2:泛型1Type.
-                                String.class, //可变参数3:泛型2Type.
-                                Person.class //可变参数4:泛型3Type.
-                        )
-                );
-                //打印.
-                String msg1 = "Json转[单层多泛型对象]:\n" + json1 + "\n方式一:\n" + result1_1 + "\n方式二:\n" + result1_2;
-                print(msg1);
+                test1();
                 break;
             case R.id.tv_2://Json转[多层多泛型对象].
-                //List:
-                List<Person> personList = new ArrayList<>();
-                personList.add(new Person("List1"));
-                personList.add(new Person("List2"));
-                //Map:
-                Map<String, Person> personMap = new HashMap<>();
-                personMap.put("key1", new Person("Map1"));
-                personMap.put("key2", new Person("Map2"));
-                //数组:
-                Person[] personArr = new Person[]{new Person("Array1"), new Person("Array2")};
-                //构建Json字符串:
-                String json2 = GsonUtils.toJson(new Result<List<Person>, Map<String, Person>, Person[]>(personList, personMap, personArr));//Json字符串.
-                //Json字符串转对象(方式1):
-                Result<List<Person>, Map<String, Person>, Person[]> result2_1 = GsonUtils.fromJson(json2, Result.class);
-                //Json字符串转对象(方式2):
-                Result<Integer, String, Person> result2_2 = GsonUtils.fromJson(
-                        json2,
-                        GsonUtils.getType(
-                                Result.class, //参数1:总Type.
-                                GsonUtils.getListType(Person.class), //可变参数2:泛型1Type.
-                                GsonUtils.getMapType(String.class, Person.class), //可变参数3:泛型2Type.
-                                GsonUtils.getArrayType(Person.class) //可变参数4:泛型3Type.
-                        )
-                );
-                //打印.
-                String msg2 = "Json转[多层多泛型对象]:\n" + json2 + "\n方式一:\n" + result2_1 + "\n方式二:\n" + result2_2;
-                print(msg2);
+                test2();
                 break;
             case R.id.tv_3://
                 break;
@@ -142,6 +92,71 @@ public class JsonTestActivity extends AppCompatActivity {
         }
     }
 
+    //Json转[多层多泛型对象].
+    private void test2() {
+        //List:
+        List<Person> personList = new ArrayList<>();
+        personList.add(new Person("List1"));
+        personList.add(new Person("List2"));
+        //Map:
+        Map<String, Person> personMap = new HashMap<>();
+        personMap.put("key1", new Person("Map1"));
+        personMap.put("key2", new Person("Map2"));
+        //数组:
+        Person[] personArr = new Person[]{new Person("Array1"), new Person("Array2")};
+        //构建Json字符串:
+        String json = GsonUtils.toJson(new Result<List<Person>, Map<String, Person>, Person[]>(personList, personMap, personArr));//Json字符串.
+        //Json字符串转对象(方式1):
+        Result<List<Person>, Map<String, Person>, Person[]> result1 = GsonUtils.fromJson(json, Result.class);
+        //Json字符串转对象(方式2):
+        Result<Integer, String, Person> result2 = GsonUtils.fromJson(
+                json,
+                GsonUtils.getType(
+                        Result.class, //参数1:总Type.
+                        GsonUtils.getListType(Person.class), //可变参数2:泛型1Type.
+                        GsonUtils.getMapType(String.class, Person.class), //可变参数3:泛型2Type.
+                        GsonUtils.getArrayType(Person.class) //可变参数4:泛型3Type.
+                )
+        );
+        //打印.
+        String msg = "Json转[多层多泛型对象]:\n" + json + "\n方式一:\n" + result1 + "\n方式二:\n" + result2;
+        print(msg);
+    }
+
+    //Json转[单层多泛型对象].
+    private void test1() {
+        //构建Json字符串:
+        String json = GsonUtils.toJson(new Result<Integer, String, Person>(29, "WCL", new Person("WCL")));//Json字符串.
+        //Json字符串转对象(方式1):
+        Result<Integer, String, Person> result1 = GsonUtils.fromJson(json, Result.class);
+        //Json字符串转对象(方式2):
+        Result<Integer, String, Person> result2 = GsonUtils.fromJson(
+                json,
+                GsonUtils.getType(
+                        Result.class, //参数1:总Type.
+                        Integer.class, //可变参数2:泛型1Type.
+                        String.class, //可变参数3:泛型2Type.
+                        Person.class //可变参数4:泛型3Type.
+                )
+        );
+        //打印.
+        String msg = "Json转[单层多泛型对象]:\n" + json + "\n方式一:\n" + result1 + "\n方式二:\n" + result2;
+        print(msg);
+    }
+
+    //Json转[普通对象].
+    private void test0() {
+        //构建Json字符串:
+        String json = GsonUtils.toJson(new Person("WCL"));//Json字符串.
+        //Json字符串转对象(方式1):
+        Person person1 = GsonUtils.fromJson(json, Person.class);
+        //Json字符串转对象(方式2):
+        Person person2 = GsonUtils.fromJson(json, GsonUtils.getType(Person.class));
+        //打印.
+        String msg = "Json转[普通对象]:\n" + json + "\n方式一:\n" + person1 + "\n方式二:\n" + person2;
+        print(msg);
+    }
+
     //一键三连,在三个地方输出打印结果.
     private void print(String msg) {
         if (!TextUtils.isEmpty(msg)) {
@@ -172,7 +187,6 @@ public class JsonTestActivity extends AppCompatActivity {
             this.vData = vData;
         }
     }
-
 
     /**
      * @Author WCL

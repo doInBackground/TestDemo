@@ -20,6 +20,8 @@ import com.wcl.testdemo.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,13 +40,18 @@ public class CacheTestActivity extends AppCompatActivity {
      */
     @BindView(R.id.tv)
     TextView mTvConsole;
+    /**
+     * Comment: 以[外部沙箱根路径]为缓存路径的磁盘缓存对象.
+     */
+    private CacheDiskUtils mDiskUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cache_test);
         ButterKnife.bind(this);
-        initCacheUtils();//初始化缓存工具.
+        initCacheUtils(); //初始化:默认静态缓存工具.
+        mDiskUtils = CacheDiskUtils.getInstance(Objects.requireNonNull(Utils.getApp().getExternalCacheDir().getParentFile())); //磁盘缓存对象.
     }
 
     @OnClick({R.id.tv_0, R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10, R.id.tv_11, R.id.tv_12, R.id.tv_13, R.id.tv_14, R.id.tv_15, R.id.tv_16, R.id.tv_17, R.id.tv_18, R.id.tv_19, R.id.tv_20})
@@ -56,24 +63,11 @@ public class CacheTestActivity extends AppCompatActivity {
             case R.id.tv_1://二级缓存(将对象,从缓存中取出).
                 getObject();
                 break;
-            case R.id.tv_2://磁盘缓存测试(读取JSONObject对象).
-                //存值.
-                CacheDiskUtils diskUtils = CacheDiskUtils.getInstance(
-                        Utils.getApp().getExternalCacheDir().getParentFile() //外部沙箱根路径.
-                );
-                JSONObject jsonConfig = new JSONObject();
-                try {
-                    jsonConfig.put("debug", true);
-                    jsonConfig.put("environment", "UAT");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                diskUtils.put("config", jsonConfig);
-                //取值.
-                jsonConfig = diskUtils.getJSONObject("config");
-                print(jsonConfig.toString());
+            case R.id.tv_2://磁盘缓存测试(存JSONObject对象).
+                saveJSONObject2Disk();
                 break;
-            case R.id.tv_3://
+            case R.id.tv_3://磁盘缓存测试(取JSONObject对象).
+                getJSONObjectFromDisk();
                 break;
             case R.id.tv_4://
                 break;
@@ -112,7 +106,47 @@ public class CacheTestActivity extends AppCompatActivity {
         }
     }
 
-    //自定义初始化缓存工具(所有初始化都可省略,省略时即使用默认).
+    //磁盘缓存测试(取JSONObject对象).
+    private void getJSONObjectFromDisk() {
+        JSONObject jsonConfig = mDiskUtils.getJSONObject("config"); //取值.
+        print(jsonConfig.toString()); //打印.
+    }
+
+    //磁盘缓存测试(存JSONObject对象).
+    private void saveJSONObject2Disk() {
+        JSONObject jsonConfig = new JSONObject();
+        try {
+            jsonConfig.put("debug", true);
+            jsonConfig.put("environment", "UAT");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        mDiskUtils.put("config", jsonConfig); //存值.
+        print("磁盘缓存成功,可去下面路径查看:\n" + Utils.getApp().getExternalCacheDir().getParent());
+    }
+
+    //二级缓存(将对象,从缓存中取出).
+    private void getObject() {
+        String appName = CacheDoubleStaticUtils.getString("APP_NAME");
+        byte[] arr = CacheDoubleStaticUtils.getBytes("ARR");
+        StringBuilder sb = new StringBuilder()
+                .append("获取本地存储的二级缓存.\n")
+                .append("\nAPP_NAME: ")
+                .append(appName)
+                .append("\nARR: ")
+                .append(GsonUtils.toJson(arr));
+        print(sb.toString());
+    }
+
+    //二级缓存(将对象,缓存到内存及本地).
+    private void saveObject() {
+        //缓存数据(可存储类型:byte[],String,JSONObject,JSONArray,Bitmap,Drawable,Parcelable,Serializable).
+        CacheDoubleStaticUtils.put("ARR", new byte[]{1, 2, 3}); //存字节数组.
+        CacheDoubleStaticUtils.put("APP_NAME", getString(R.string.app_name)); //存String.
+        print("二级缓存成功,可去下面路径查看:\n" + Utils.getApp().getExternalCacheDir().getAbsolutePath());
+    }
+
+    //自定义初始化:默认静态缓存工具(所有初始化都可省略,省略时即使用默认).
     private void initCacheUtils() {
         //(1) TODO: 2023/12/11 内存缓存相关: [内存缓存工具:CacheMemoryUtils]和[静态内存缓存工具:CacheMemoryStaticUtils].
         //内存缓存工具:
@@ -136,27 +170,6 @@ public class CacheTestActivity extends AppCompatActivity {
         CacheDoubleUtils doubleUtils = CacheDoubleUtils.getInstance(memoryUtils, diskUtils);//[二级缓存工具]:
         //静态二级缓存工具:
         CacheDoubleStaticUtils.setDefaultCacheDoubleUtils(doubleUtils);//为[静态二级缓存工具]设置默认的[二级缓存工具],之后即可通过[静态二级缓存工具]的静态方法操作默认的[二级缓存工具]对应的非静态方法了.
-    }
-
-    //二级缓存(将对象,缓存到内存及本地).
-    private void saveObject() {
-        //缓存数据(可存储类型:byte[],String,JSONObject,JSONArray,Bitmap,Drawable,Parcelable,Serializable).
-        CacheDoubleStaticUtils.put("ARR", new byte[]{1, 2, 3}); //存字节数组.
-        CacheDoubleStaticUtils.put("APP_NAME", getString(R.string.app_name)); //存String.
-        print("二级缓存成功,可去下面路径查看:\n" + Utils.getApp().getExternalCacheDir().getAbsolutePath());
-    }
-
-    //二级缓存(将对象,从缓存中取出).
-    private void getObject() {
-        String appName = CacheDoubleStaticUtils.getString("APP_NAME");
-        byte[] arr = CacheDoubleStaticUtils.getBytes("ARR");
-        StringBuilder sb = new StringBuilder()
-                .append("获取本地存储的二级缓存.\n")
-                .append("\nAPP_NAME: ")
-                .append(appName)
-                .append("\nARR: ")
-                .append(GsonUtils.toJson(arr));
-        print(sb.toString());
     }
 
     //一键三连,在三个地方输出打印结果.
