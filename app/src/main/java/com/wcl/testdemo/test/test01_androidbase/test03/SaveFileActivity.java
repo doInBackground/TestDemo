@@ -1,8 +1,12 @@
 package com.wcl.testdemo.test.test01_androidbase.test03;
 
+import android.content.ContentUris;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +23,7 @@ import com.wcl.testdemo.R;
 import com.wcl.testdemo.utils.FileUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -40,12 +45,15 @@ public class SaveFileActivity extends AppCompatActivity {
      */
     @BindView(R.id.tv)
     TextView mTvConsole;
+    @BindView(R.id.tv_4)
+    TextView mTv4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_file);
         ButterKnife.bind(this);
+        mTv4.setText("测试4:\n将[特定系统相册](" + PathUtils.getExternalMoviesPath() + File.separator + AppUtils.getAppName() + ")路径下所有的视频文件拷贝到[沙箱]缓存路径.");
     }
 
     @OnClick({R.id.tv_0, R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10})
@@ -63,7 +71,8 @@ public class SaveFileActivity extends AppCompatActivity {
             case R.id.tv_3://保存文件到[下载路径]
                 save2Download();
                 break;
-            case R.id.tv_4://
+            case R.id.tv_4://将[特定系统相册](系统相册Movies目录下以本APP名称开头的文件夹)路径下所有的视频文件拷贝到[沙箱]缓存路径.
+                copyFromMovies();
                 break;
             case R.id.tv_5://
                 break;
@@ -78,6 +87,58 @@ public class SaveFileActivity extends AppCompatActivity {
             case R.id.tv_10://
                 break;
         }
+    }
+
+    //将[特定系统相册](系统相册Movies目录下以本APP名称开头的文件夹)路径下所有的视频文件拷贝到[沙箱]缓存路径.
+    private void copyFromMovies() {
+        StringBuilder sb = new StringBuilder();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {//Android10(29)及以上:
+            String[] projection = {
+                    MediaStore.Images.Media._ID, //数据库中的主键.
+                    MediaStore.Images.Media.DATA, //文件的绝对路径.
+                    MediaStore.Files.FileColumns.MIME_TYPE, //文件类型(可能为空).
+                    MediaStore.Files.FileColumns.SIZE, //文件大小.
+                    MediaStore.Files.FileColumns.TITLE //文件名称[不带后缀名].
+            };
+            String selection = MediaStore.Video.Media.DATA + " like ?"; //筛选条件.
+            String[] selectionArgs = {PathUtils.getExternalMoviesPath() + File.separator + AppUtils.getAppName() + "%"}; //筛选条件的参数:指定文件夹(系统相册Movies目录下以本APP名称开头的文件夹).
+            Cursor cursor = getContentResolver().query(
+                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI, //标识:表示查找视频文件.
+                    projection, //查数据库找到某文件后,需要的[文件信息]的数组.其余不需要的[文件信息]不返回,查询未返回的信息会报错.
+                    selection,
+                    selectionArgs,
+                    MediaStore.MediaColumns.DATE_ADDED + " DESC" //排序规则.
+            );
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
+                    String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA));
+                    String destName = com.blankj.utilcode.util.FileUtils.getFileName(path);
+                    sb.append("文件查询:\n(1) 文件ID: ").append(id).append("\n(2) 文件的[相册路径]: ").append(path);
+                    Uri uri = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id); //将数据库ID转为Uri.
+                    try {
+                        InputStream is = getContentResolver().openInputStream(uri); //相册文件的输入流.
+                        File tempFile = new File(PathUtils.getCachePathExternalFirst() + File.separator + AppUtils.getAppName(), destName); //沙箱中视频路径.
+                        boolean isSuccess = FileIOUtils.writeFileFromIS(tempFile, is); //将流拷贝到文件.
+                        sb.append("\n(3) 从[相册路径]拷贝到[沙箱]是否成功: ").append(isSuccess);
+                        if (isSuccess) {
+                            sb.append("\n(4) 拷贝到[沙箱]的文件路径: ").append(tempFile.getAbsolutePath());
+                        }
+                    } catch (FileNotFoundException e) {
+                        LogUtils.e("打开流报错:", e);
+                        e.printStackTrace();
+                    }
+                }
+                if (sb.length() <= 0) {
+                    sb.append("[特定系统相册]不存在或其中无内容.");
+                }
+            } else {
+                sb.append("查询出错!");
+            }
+        } else {
+            sb.append("本测试仅提供给Android10(29)及以上系统.");
+        }
+        print(sb.toString());
     }
 
     //保存文件到[下载路径]
