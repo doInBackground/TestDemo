@@ -72,9 +72,37 @@ public class TestDeviceActivity extends AppCompatActivity {
             case R.id.tv_3://局域网发现设备(客户端-结束寻找-服务端):
                 FindIpUtils.stopClient();
                 break;
-            case R.id.tv_4://
+            case R.id.tv_4://打开网络设置界面.
+                NetworkUtils.openWirelessSettings();
                 break;
-            case R.id.tv_5://
+            case R.id.tv_5://获取各种IP信息.
+                ThreadUtils.executeBySingle(//在单线程池执行任务.
+                        new ThreadUtils.SimpleTask<Object>() {//任务.
+                            @Override
+                            public Object doInBackground() throws Throwable {
+                                String domain = "baidu.com";
+                                StringBuilder sb = new StringBuilder();
+                                sb.append("获取[IP地址]: " + NetworkUtils.getIPAddress(true))
+                                        .append("\n获取[域名(" + domain + ")IP地址]: " + NetworkUtils.getDomainAddress(domain))
+                                        .append("\n根据WiFi获取[网络IP地址]: " + NetworkUtils.getIpAddressByWifi())
+                                        .append("\n根据WiFi获取[网关IP地址]: " + NetworkUtils.getGatewayByWifi())
+                                        .append("\n根据WiFi获取[子网掩码IP地址]: " + NetworkUtils.getNetMaskByWifi())
+                                        .append("\n根据WiFi获取[服务端IP地址]: " + NetworkUtils.getServerAddressByWifi());
+                                //在主线程更新展示界面文字.
+                                ThreadUtils.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        print(sb.toString());
+                                    }
+                                });
+                                return null;
+                            }
+
+                            @Override
+                            public void onSuccess(Object result) {
+
+                            }
+                        });
                 break;
             case R.id.tv_6://
                 break;
@@ -108,7 +136,6 @@ public class TestDeviceActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
     //一键三连,在三个地方输出打印结果.
     private void print(String msg) {

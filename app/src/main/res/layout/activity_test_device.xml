@@ -96,7 +96,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试4:\n"
+                android:text="测试4:\n打开网络设置界面."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_3" />
@@ -111,7 +111,7 @@
                 android:background="@drawable/selector_rectangle_blue_to_gray"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="测试5:\n"
+                android:text="测试5:\n获取各种IP信息."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_4" />
