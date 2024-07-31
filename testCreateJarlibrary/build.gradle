@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildFeatures {
+        buildConfig = false //标记导出为aar或jar时,不含BuildConfig文件.
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
+//    testImplementation 'junit:junit:4.13.2'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+//生成jar包:
+// 方式一:直接打包APK,会在本module中的"build/intermediates/"中某个文件夹(一般为"runtime_library_classes_jar/release/")下生成"classes.jar",即为可直接使用的jar包.
+// 方式二:在Terminal终端执行"gradlew makeJar"或".\gradlew makeJar",会调用以下代码,并生成jar包.
+task makeJar(type: Copy) {
+    delete 'build/outputs/jar/test.jar' //删除之前存在的文件.
+//    from('build/intermediates/bundles/release/') //设置拷贝的文件.
+//    from('build/intermediates/packaged-classes/release/') //设置拷贝的文件.
+    from('build/intermediates/runtime_library_classes_jar/release/') //设置拷贝的文件(该路径需传实际生成的"classes.jar"的父文件夹路径)[如果路径不正确,可以通过打包APK后,在本module中的"build/intermediates/"中带"jar"字眼的文件夹中找].
+    into('build/outputs/jar/') //代码打进jar包后(jar包)的文件目录,即拷贝后粘贴的目录.
+    //将classes.jar放入指定目录后. include,exclude参数来设置过滤. 我们只关心classes.jar这个文件.
+//    exclude('BuildConfig.class', 'R.class') //过滤不需要的class.(命令无效,原因未知.故为了删除jar中的'BuildConfig.class'采用了在上方android{}标签中加入"buildFeatures {buildConfig = false}"的方式)
+    include('classes.jar') //代码打进jar包.
+    rename('classes.jar', 'test.jar') //重命名.
+}
+makeJar.dependsOn(build)
