@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.wcl.testdemo.R;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Version
  * @Description GLSurfaceView界面.
  */
-public class GLSurfaceViewActivity extends AppCompatActivity {
+public class GLSurfaceViewActivity extends BaseActivity {
 
     private GLSurfaceView mGLSurfaceView;
     private static GLSurfaceView.Renderer mRenderer;

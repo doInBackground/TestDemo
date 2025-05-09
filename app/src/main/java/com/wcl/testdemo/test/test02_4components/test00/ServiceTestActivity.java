@@ -13,7 +13,7 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,7 +24,7 @@ import butterknife.OnClick;
  * @Version
  * @Description Service相关测试.
  */
-public class ServiceTestActivity extends AppCompatActivity {
+public class ServiceTestActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

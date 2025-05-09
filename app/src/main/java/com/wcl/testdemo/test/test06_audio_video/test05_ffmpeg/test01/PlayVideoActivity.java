@@ -16,7 +16,7 @@ import com.wcl.testdemo.R;
 
 import java.io.File;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -24,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Version
  * @Description 用FFmpeg软解播放视频的界面.
  */
-public class PlayVideoActivity extends AppCompatActivity {
+public class PlayVideoActivity extends BaseActivity {
 
     private Surface mSurface;
     private String mVideoFilePath = new File(PathUtils.getExternalAppDataPath(), "video").getAbsolutePath();//沙箱根路径中,即将要播放的视频文件video.

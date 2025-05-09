@@ -27,7 +27,7 @@ import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.activity.FFmpegTes
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -38,7 +38,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 测试: 音视频相关.
  */
-public class TestAudioAndVideoActivity extends AppCompatActivity {
+public class TestAudioAndVideoActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

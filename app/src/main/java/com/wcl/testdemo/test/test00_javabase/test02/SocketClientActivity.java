@@ -16,7 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -29,7 +29,7 @@ import static com.wcl.testdemo.test.test00_javabase.test02.SocketServiceActivity
  * @Version
  * @Description 双人局域网聊天(客户端)
  */
-class SocketClientActivity extends AppCompatActivity {
+class SocketClientActivity extends BaseActivity {
 
     public static final String INTENT_SERVICE_IP = "INTENT_SERVICE_IP";
 

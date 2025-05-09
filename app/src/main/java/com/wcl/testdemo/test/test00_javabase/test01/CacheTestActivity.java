@@ -22,7 +22,7 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,7 +33,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 缓存测试界面
  */
-public class CacheTestActivity extends AppCompatActivity {
+public class CacheTestActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

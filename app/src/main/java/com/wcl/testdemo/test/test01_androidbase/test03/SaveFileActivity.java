@@ -27,7 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -38,7 +38,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 测试文件的持久化保存.
  */
-public class SaveFileActivity extends AppCompatActivity {
+public class SaveFileActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

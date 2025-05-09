@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Version
  * @Description 测试自定义控件ToggleButton的界面.
  */
-public class TestToggleButtonActivity extends AppCompatActivity {
+public class TestToggleButtonActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

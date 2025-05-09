@@ -16,7 +16,7 @@ import com.wcl.testdemo.test.test06_audio_video.activity.TestAudioAndVideoActivi
 
 import java.util.ArrayList;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * @Version 1.0
  * @Description 测试Demo的主入口.
  */
-public class TestActivity extends AppCompatActivity implements TestAdapter.OnItemClickListener {
+public class TestActivity extends BaseActivity implements TestAdapter.OnItemClickListener {
 
     /**
      * Comment:列表即将展示的数据.

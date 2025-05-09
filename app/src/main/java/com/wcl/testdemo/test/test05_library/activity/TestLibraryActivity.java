@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.init.BaseActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -17,7 +17,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 测试: 三方库相关.
  */
-public class TestLibraryActivity extends AppCompatActivity {
+public class TestLibraryActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

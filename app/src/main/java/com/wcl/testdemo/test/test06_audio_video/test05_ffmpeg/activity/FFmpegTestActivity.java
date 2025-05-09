@@ -14,7 +14,7 @@ import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test02.PlayAudioAc
 import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test03.activity.MusicPlayerActivity;
 import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test04.activity.VideoPlayerActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,7 +25,7 @@ import butterknife.OnClick;
  * @Version
  * @Description OpenGL ES 测试界面.
  */
-public class FFmpegTestActivity extends AppCompatActivity {
+public class FFmpegTestActivity extends BaseActivity {
 
     static {
         System.loadLibrary("my-ffmpeg");

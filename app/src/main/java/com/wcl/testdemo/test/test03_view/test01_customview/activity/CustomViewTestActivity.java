@@ -11,7 +11,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test03_view.test01_customview.test00.TestToggleButtonActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -22,7 +22,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 自定义控件, 测试界面.
  */
-public class CustomViewTestActivity extends AppCompatActivity {
+public class CustomViewTestActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

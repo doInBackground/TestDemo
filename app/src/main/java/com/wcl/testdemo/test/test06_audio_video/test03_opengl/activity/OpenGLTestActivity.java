@@ -19,7 +19,7 @@ import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraXGLSu
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraXHelper;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.activity.OpenGLRecordActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import androidx.camera.core.CameraX;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +37,7 @@ import static com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.Came
  * @Version
  * @Description OpenGL ES 测试界面.
  */
-public class OpenGLTestActivity extends AppCompatActivity {
+public class OpenGLTestActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

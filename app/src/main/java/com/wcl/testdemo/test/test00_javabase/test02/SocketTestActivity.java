@@ -1,6 +1,6 @@
 package com.wcl.testdemo.test.test00_javabase.test02;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,7 +28,7 @@ import static com.wcl.testdemo.test.test00_javabase.test02.SocketClientActivity.
  * @Version
  * @Description 测试Socket.
  */
-public class SocketTestActivity extends AppCompatActivity {
+public class SocketTestActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

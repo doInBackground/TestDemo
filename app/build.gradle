@@ -6,6 +6,10 @@ plugins {
     id 'kotlin-android-extensions'
 }
 
+def version_name = rootProject.version_name
+def version_code = rootProject.version_code
+def custom_channel_code = "0" //自定义的标识渠道的编码.
+
 android {
 //    compileSdk 32 //为抽取变量,改为compileSdkVersion.
     compileSdkVersion "$COMPILE_SDK_VERSION"
@@ -16,8 +20,8 @@ android {
         minSdkVersion "$MIN_SDK_VERSION"
 //        targetSdk 32 //为抽取变量,改为targetSdkVersion.
         targetSdkVersion "$TARGET_SDK_VERSION"
-        versionName rootProject.ext.version_name
-        versionCode rootProject.ext.version_code
+        versionName version_name //原:rootProject.ext.version_name
+        versionCode version_code //原:rootProject.ext.version_code
 
 //        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -58,6 +62,7 @@ android {
 //                VIVO_APPID    : "vivo的APPID",
 //                HONOR_APPID   : "Honor的APP ID"
         ]
+        buildConfigField 'int', 'CUSTOM_CHANNEL_CODE', custom_channel_code //在"BuildConfig.java"中构建静态常量.
     }
 
     //[Native:关注点三]
@@ -98,7 +103,7 @@ android {
 
     buildTypes {
         release {
-            buildConfigField("boolean", "LOG_DEBUG", "false") //在BuildConfig中构建静态常量.
+            buildConfigField("boolean", "LOG_DEBUG", "false") //在"BuildConfig.java"中构建静态常量.
             debuggable false //默认false,表示APK运行时,不可以在AS端Logcat通过[进程名]来筛选查看指定进程的日志.
             minifyEnabled false //是否开启混淆.
             zipAlignEnabled false //是否压缩优化.
@@ -107,7 +112,7 @@ android {
             signingConfig signingConfigs.wei //签名配置通过signingConfigs中的wei来签名.
         }
         debug {
-            buildConfigField("boolean", "LOG_DEBUG", "true") //在BuildConfig中构建静态常量.
+            buildConfigField("boolean", "LOG_DEBUG", "true") //在"BuildConfig.java"中构建静态常量.
             debuggable true //默认true,表示APK运行时,可以在AS端Logcat通过[进程名]来筛选查看指定进程的日志.
             minifyEnabled false //是否开启混淆.
             zipAlignEnabled false //是否压缩优化.

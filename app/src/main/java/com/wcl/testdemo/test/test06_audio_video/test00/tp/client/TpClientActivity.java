@@ -11,7 +11,7 @@ import com.wcl.testdemo.R;
 import com.wcl.testdemo.utils.ScreenUtils;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Version
  * @Description 投屏客户端:显示界面.
  */
-public class TpClientActivity extends AppCompatActivity {
+public class TpClientActivity extends BaseActivity {
 
     public static final String INTENT_KEY_SERVICE_IP = "serviceIp";
     /**

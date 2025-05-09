@@ -16,7 +16,7 @@ import com.wcl.testdemo.R;
 
 import java.io.File;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -25,7 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Description 用FFmpeg软解, AudioTrack播放音频的界面.
  * 若主线程解码/主线程播放,就会有ANR问题.
  */
-public class PlayAudioActivity extends AppCompatActivity {
+public class PlayAudioActivity extends BaseActivity {
 
     private final String mAudioFilePath = new File(PathUtils.getExternalAppDataPath(), "audio").getAbsolutePath();//沙箱根路径中,即将要播放的音频文件audio.
     private volatile int mPlayState = 0;//0表示可以播放.

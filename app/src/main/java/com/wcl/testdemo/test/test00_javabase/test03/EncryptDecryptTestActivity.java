@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 加密解密测试界面.
  */
-public class EncryptDecryptTestActivity extends AppCompatActivity {
+public class EncryptDecryptTestActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

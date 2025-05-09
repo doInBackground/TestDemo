@@ -11,7 +11,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test06_audio_video.test04_opencv.test00.FaceRecognitionActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -22,7 +22,7 @@ import butterknife.OnClick;
  * @Version
  * @Description OpenGL ES 测试界面.
  */
-public class OpenCVTestActivity extends AppCompatActivity {
+public class OpenCVTestActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

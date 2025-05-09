@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,7 +26,7 @@ import butterknife.OnClick;
  * @Version
  * @Description Json测试界面.
  */
-public class JsonTestActivity extends AppCompatActivity {
+public class JsonTestActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

@@ -11,7 +11,7 @@ import com.blankj.utilcode.util.AppUtils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.utils.ScreenUtils;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
  * 使用Animation.setTarget(View)为View加载动画；
  * 使用Animation.start()开启动画；
  */
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     /**
      * Comment:开屏界面背景图.

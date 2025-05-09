@@ -12,7 +12,7 @@ import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.CameraXGLSurfaceView;
 import com.wcl.testdemo.test.test06_audio_video.test03_opengl.test08.widget.RecordButton;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -21,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Description 展示视频OpenGL特效及录制界面.
  */
 // TODO: 2023/7/7 OpenGLES使用案例.
-public class OpenGLRecordActivity extends AppCompatActivity implements RecordButton.OnRecordListener, RadioGroup.OnCheckedChangeListener {
+public class OpenGLRecordActivity extends BaseActivity implements RecordButton.OnRecordListener, RadioGroup.OnCheckedChangeListener {
 
     private CameraXGLSurfaceView mCameraXGLSurfaceView;
 

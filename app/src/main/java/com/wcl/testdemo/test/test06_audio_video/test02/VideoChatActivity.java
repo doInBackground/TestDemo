@@ -8,7 +8,7 @@ import android.view.View;
 import com.wcl.testdemo.R;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Version
  * @Description 视频通话界面.
  */
-public class VideoChatActivity extends AppCompatActivity implements ISocketLive.SocketCallback {
+public class VideoChatActivity extends BaseActivity implements ISocketLive.SocketCallback {
 
     public static final String INTENT_SERVER_IP = "INTENT_SERVER_IP";
 

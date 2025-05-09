@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.wcl.testdemo.R;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Version
  * @Description 展示处理后的摄像头数据的GLSurfaceView界面.
  */
-public class CameraXActivity extends AppCompatActivity {
+public class CameraXActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

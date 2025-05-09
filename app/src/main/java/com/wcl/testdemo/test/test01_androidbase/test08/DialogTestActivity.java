@@ -20,7 +20,7 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * (1)测试各种弹窗.
  * (2)控制源生Dialog的宽高和位置(顶部/底部/中间).
  */
-public class DialogTestActivity extends AppCompatActivity {
+public class DialogTestActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

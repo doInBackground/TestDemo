@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.wcl.testdemo.R;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Version
  * @Description 人脸识别界面.
  */
-public class FaceRecognitionActivity extends AppCompatActivity implements SurfaceHolder.Callback, Camera.PreviewCallback {
+public class FaceRecognitionActivity extends BaseActivity implements SurfaceHolder.Callback, Camera.PreviewCallback {
 
     private final String FACE_FILE_NAME = "lbpcascade_frontalface.xml";
     private NativeUtils mNativeUtils;

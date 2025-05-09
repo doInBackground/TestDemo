@@ -9,7 +9,7 @@ import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test03_view.test00.ScreenThemeActivity;
 import com.wcl.testdemo.test.test03_view.test01_customview.activity.CustomViewTestActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,7 +20,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 测试: 视图相关.
  */
-public class TestViewActivity extends AppCompatActivity {
+public class TestViewActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

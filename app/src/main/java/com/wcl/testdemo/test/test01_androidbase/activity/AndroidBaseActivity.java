@@ -45,7 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import androidx.core.app.NotificationCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +59,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
  * @Version
  * @Description 测试: Android基础.
  */
-public class AndroidBaseActivity extends AppCompatActivity {
+public class AndroidBaseActivity extends BaseActivity {
 
     /**
      * Comment: 请求码:通过系统文件选择器,选择文件的结果.

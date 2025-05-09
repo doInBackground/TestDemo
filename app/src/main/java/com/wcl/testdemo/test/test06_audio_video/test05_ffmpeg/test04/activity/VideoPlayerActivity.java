@@ -18,7 +18,7 @@ import com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test04.player.MNPl
 
 import java.io.File;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 /**
  * @Author WCL
@@ -26,7 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Version
  * @Description 视频播放器界面.
  */
-public class VideoPlayerActivity extends AppCompatActivity {
+public class VideoPlayerActivity extends BaseActivity {
 
     private String mVideoFilePath = new File(PathUtils.getExternalAppDataPath(), "video").getAbsolutePath();//沙箱根路径中,即将要播放的视频文件video.
     private MNPlayer mMNPlayer;

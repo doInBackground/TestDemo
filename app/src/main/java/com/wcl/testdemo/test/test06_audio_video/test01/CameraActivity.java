@@ -1,6 +1,6 @@
 package com.wcl.testdemo.test.test06_audio_video.test01;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +15,7 @@ import com.wcl.testdemo.R;
  * @Version
  * @Description
  */
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends BaseActivity {
 
     private CameraSurfaceView mCameraSurfaceView;
 

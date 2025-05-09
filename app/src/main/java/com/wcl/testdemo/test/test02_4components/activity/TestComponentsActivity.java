@@ -11,7 +11,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test02_4components.test00.ServiceTestActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -22,7 +22,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 测试: 四大组件相关.
  */
-public class TestComponentsActivity extends AppCompatActivity {
+public class TestComponentsActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

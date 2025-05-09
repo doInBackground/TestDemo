@@ -13,7 +13,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.utils.FindIpUtils;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,7 +24,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 测试: 设备相关.
  */
-public class TestDeviceActivity extends AppCompatActivity {
+public class TestDeviceActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

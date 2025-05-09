@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * (4)获取屏幕方向.
  * (3)获取状态栏高度.
  */
-public class ScreenThemeActivity extends AppCompatActivity {
+public class ScreenThemeActivity extends BaseActivity {
 
     /**
      * Comment: 启动Activity时Intent的键,值为Activity状态.

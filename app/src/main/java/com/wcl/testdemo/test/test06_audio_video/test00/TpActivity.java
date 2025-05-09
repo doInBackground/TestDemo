@@ -20,7 +20,7 @@ import com.wcl.testdemo.R;
 import com.wcl.testdemo.test.test06_audio_video.test00.tp.client.TpClientActivity;
 import com.wcl.testdemo.test.test06_audio_video.test00.tp.service.TpServerService;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,7 +34,7 @@ import static com.wcl.testdemo.test.test06_audio_video.test00.tp.service.TpServe
  * @Version
  * @Description 投屏测试界面.
  */
-public class TpActivity extends AppCompatActivity {
+public class TpActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.

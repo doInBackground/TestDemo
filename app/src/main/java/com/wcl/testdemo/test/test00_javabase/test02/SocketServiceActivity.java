@@ -18,7 +18,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,7 +35,7 @@ import butterknife.OnClick;
  * (*)客户端退出时,服务端的接收线程未关闭.
  * (*)ServerSocket和Socket的关闭释放.
  */
-class SocketServiceActivity extends AppCompatActivity {
+class SocketServiceActivity extends BaseActivity {
 
     public static final int SERVICE_PORT = 9999;
     @BindView(R.id.tv_title)

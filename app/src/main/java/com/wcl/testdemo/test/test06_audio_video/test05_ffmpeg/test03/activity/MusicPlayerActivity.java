@@ -25,7 +25,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -37,7 +37,7 @@ import static com.wcl.testdemo.test.test06_audio_video.test05_ffmpeg.test03.musi
  * @Version
  * @Description 音乐播放器界面.
  */
-public class MusicPlayerActivity extends AppCompatActivity implements DiscView.IDiscChangeListener, View.OnClickListener {
+public class MusicPlayerActivity extends BaseActivity implements DiscView.IDiscChangeListener, View.OnClickListener {
 
     public static final int MUSIC_MESSAGE = 0;
     public static final String PARAM_MUSIC_LIST = "PARAM_MUSIC_LIST";

@@ -15,7 +15,7 @@ import com.wcl.testdemo.test.test00_javabase.test02.SocketTestActivity;
 import com.wcl.testdemo.test.test00_javabase.test03.EncryptDecryptTestActivity;
 import com.wcl.testdemo.utils.MyTestNativeUtils;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,7 +26,7 @@ import butterknife.OnClick;
  * @Version
  * @Description 测试: Java基础.
  */
-public class JavaBaseActivity extends AppCompatActivity {
+public class JavaBaseActivity extends BaseActivity {
 
     /**
      * Comment: 用来输出测试结果的控制台.
