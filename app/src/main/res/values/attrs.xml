@@ -6,4 +6,15 @@
         <attr name="isOpen" format="boolean"></attr> <!-- 单个属性名及类型 -->
     </declare-styleable>
 
+    <!-- 开发皮肤主题功能时,控件的自定义属性. -->
+    <declare-styleable name="Themes"> <!-- 属性组名 -->
+        <attr name="colorAttrName" format="color" />
+        <attr name="integerAttrName" format="integer" />
+        <attr name="booleanAttrName" format="boolean" />
+        <attr name="dimensionAttrName" format="dimension" />
+        <attr name="floatAttrName" format="dimension" /><!-- float比较特殊,一般它会在代码中被引用,配置文件中多在dimens.xml中定义变量 -->
+        <attr name="stringAttrName" format="string" /><!-- string类型若不是引用而是字符串,在布局文件中使用正常,但代码里获取会有问题 -->
+        <attr name="referenceAttrName" format="reference" /><!-- reference主要对应drawable、mipmap资源 -->
+    </declare-styleable>
+
 </resources>

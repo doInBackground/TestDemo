@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.adapter.TestAdapter;
+import com.wcl.testdemo.bean.TestBean;
 import com.wcl.testdemo.test.test00_javabase.activity.JavaBaseActivity;
 import com.wcl.testdemo.test.test01_androidbase.activity.AndroidBaseActivity;
 import com.wcl.testdemo.test.test02_4components.activity.TestComponentsActivity;
@@ -16,7 +18,6 @@ import com.wcl.testdemo.test.test06_audio_video.activity.TestAudioAndVideoActivi
 
 import java.util.ArrayList;
 
-import com.wcl.testdemo.init.BaseActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 

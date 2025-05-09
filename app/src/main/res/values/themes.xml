@@ -27,4 +27,16 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+<!--    &lt;!&ndash;  白色风格  &ndash;&gt;-->
+<!--    <style name="AppThemeWhite" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        <item name="android:textColor">#000000</item>&lt;!&ndash; 全局文字颜色 &ndash;&gt;-->
+<!--        <item name="android:colorBackground">#FFFFFF</item>&lt;!&ndash; 可操作根布局外层布局的背景色 &ndash;&gt;-->
+<!--    </style>-->
+
+<!--    &lt;!&ndash;  黑色风格  &ndash;&gt;-->
+<!--    <style name="AppThemeBlack" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        <item name="android:textColor">#FFFFFF</item>&lt;!&ndash; 全局文字颜色 &ndash;&gt;-->
+<!--        <item name="android:colorBackground">#000000</item>&lt;!&ndash; 可操作根布局外层布局的背景色 &ndash;&gt;-->
+<!--    </style>-->
+
 </resources>

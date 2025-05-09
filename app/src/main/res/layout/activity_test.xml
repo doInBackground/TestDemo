@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".init.TestActivity">
 
+    <!-- 根据主题变化的自定义属性使用:"?attr/" -->
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000"
         android:gravity="center"
         android:padding="10dp"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
+        android:text="?attr/stringAttrName"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

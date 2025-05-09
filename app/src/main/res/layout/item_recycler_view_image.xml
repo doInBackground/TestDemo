@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selector_rectangle_white_to_999"
+    android:background="@drawable/selector_rectangle_blue_to_gray"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="5dp">
@@ -11,7 +11,7 @@
         android:id="@+id/iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher" />
+        android:src="?attr/referenceAttrName" />
 
     <TextView
         android:id="@+id/tv"

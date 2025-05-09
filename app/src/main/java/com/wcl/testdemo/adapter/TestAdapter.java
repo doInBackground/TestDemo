@@ -1,4 +1,4 @@
-package com.wcl.testdemo.init;
+package com.wcl.testdemo.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.bean.TestBean;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * @Version
  * @Description RecyclerView适配器Adapter.
  */
-class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
     private final Context mContext;
     private final List<TestBean> mList;
@@ -59,7 +60,7 @@ class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implemen
             ImageViewHolder imageViewHolder = (ImageViewHolder) holder;
             imageViewHolder.itemView.setTag(position);
             //设置数据
-            imageViewHolder.iv.setImageResource(R.mipmap.ic_launcher);
+//            imageViewHolder.iv.setImageResource(R.mipmap.ic_launcher);
             imageViewHolder.tv.setText(bean.getText());
         }
     }

@@ -9,4 +9,6 @@
 
     <!-- px -->
 
+    <dimen name="float_value">0.1</dimen>
+
 </resources>

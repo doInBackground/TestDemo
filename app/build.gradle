@@ -77,6 +77,7 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['src/main/cpp/libs'] //指定native层中需要用到的三方so路径(相对本gradle文件的路径),以供引入apk.
+            res.srcDirs = ['src/main/res', 'src/main/res-black'] //将换肤资源以"增加后缀"方式命名后,单独放到一个res目录,最后在此将该res目录声明到资源目录列表中.(个人规范,仅为方便管理)
         }
     }
 

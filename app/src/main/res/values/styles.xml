@@ -23,4 +23,32 @@
         <item name="android:thumb">@drawable/ic_music_seekbar_thumb</item>
     </style>
 
+    <!--  白色风格  -->
+    <style name="AppStyleWhite" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#000000</item><!-- 全局文字颜色 -->
+        <item name="android:colorBackground">#FFFFFF</item><!-- 可操作根布局外层布局的背景色 -->
+        <!-- 自定义属性-范例 -->
+        <item name="colorAttrName">@color/bt_bg</item>
+        <item name="integerAttrName">11</item>
+        <item name="booleanAttrName">true</item>
+        <item name="dimensionAttrName">99px</item>
+        <item name="floatAttrName">@dimen/float_value</item>
+        <item name="stringAttrName">@string/themes_type_white</item>
+        <item name="referenceAttrName">@mipmap/ic_launcher</item>
+    </style>
+
+    <!--  黑色风格  -->
+    <style name="AppStyleBlack" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">#FFFFFF</item><!-- 全局文字颜色 -->
+        <item name="android:colorBackground">#000000</item><!-- 可操作根布局外层布局的背景色 -->
+        <!-- 自定义属性-范例 -->
+        <item name="colorAttrName">@color/bt_bg_black</item>
+        <item name="integerAttrName">99</item>
+        <item name="booleanAttrName">false</item>
+        <item name="dimensionAttrName">99dp</item>
+        <item name="floatAttrName">@dimen/float_value_black</item>
+        <item name="stringAttrName">@string/themes_type_black</item>
+        <item name="referenceAttrName">@mipmap/ic_launcher_black</item>
+    </style>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.wcl.testdemo.init;
+package com.wcl.testdemo.bean;
 
 /**
  * @Author WCL

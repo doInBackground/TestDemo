@@ -22,18 +22,18 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.blankj.utilcode.constant.PermissionConstants;
-import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.CollectionUtils;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.NotificationUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ProcessUtils;
+import com.blankj.utilcode.util.SPStaticUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.blankj.utilcode.util.UtilsTransActivity;
 import com.wcl.testdemo.R;
-import com.wcl.testdemo.init.CricketActivity;
+import com.wcl.testdemo.constant.SPKeys;
 import com.wcl.testdemo.init.TestActivity;
 import com.wcl.testdemo.test.test01_androidbase.test03.SaveFileActivity;
 import com.wcl.testdemo.test.test01_androidbase.test08.DialogTestActivity;
@@ -45,7 +45,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+
 import com.wcl.testdemo.init.BaseActivity;
+
 import androidx.core.app.NotificationCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -181,7 +183,15 @@ public class AndroidBaseActivity extends BaseActivity {
             case R.id.tv_8://Dialog测试.
                 startActivity(new Intent(this, DialogTestActivity.class));
                 break;
-            case R.id.tv_9://
+            case R.id.tv_9://切换皮肤主题.
+                String themesType = SPStaticUtils.getString(SPKeys.THEMES_TYPE);
+                if (TextUtils.equals(themesType, "WHITE") || TextUtils.isEmpty(themesType)) {//默认主题.
+                    SPStaticUtils.put(SPKeys.THEMES_TYPE, "BLACK");
+                    ToastUtils.showShort("切换为[黑色]主题,重启生效");
+                } else if (TextUtils.equals(themesType, "BLACK")) {
+                    SPStaticUtils.put(SPKeys.THEMES_TYPE, "WHITE");
+                    ToastUtils.showShort("切换为[白色]主题,重启生效");
+                }
                 break;
             case R.id.tv_10://
                 break;

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">TestDemo</string>
+
+    <string name="themes_type_white">白色主题</string>
+    <string name="themes_type_black">黑色主题</string>
 </resources>
