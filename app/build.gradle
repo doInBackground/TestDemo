@@ -3,7 +3,7 @@ plugins {
     id 'com.jakewharton.butterknife'
 
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+//    id 'kotlin-android-extensions' //新版kotlin不再支持,故注释.
 }
 
 def version_name = rootProject.version_name
@@ -178,6 +178,13 @@ dependencies {
 //    implementation 'cn.jiguang.sdk.plugin:honor:5.2.0'
 //    //需要单独引入荣耀厂商 aar ，请下载官网 SDK 包并把 jpush-android-xxx-release/third-push/honor/libs 下的 aar 文件单独拷贝一份到应用 module/libs 下
 //    implementation(name: 'HiPushSdk-v7.0.1.103', ext: 'aar')
+
+    //网络请求框架:okhttp.
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+    //网络请求框架:retrofit(内置okhttp,但可能有点旧).
+    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
 
 }
 

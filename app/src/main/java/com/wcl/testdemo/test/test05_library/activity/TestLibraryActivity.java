@@ -1,11 +1,13 @@
 package com.wcl.testdemo.test.test05_library.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.init.BaseActivity;
+import com.wcl.testdemo.test.test05_library.test00.RetrofitTestActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +38,7 @@ public class TestLibraryActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_0://
+                startActivity(new Intent(this, RetrofitTestActivity.class));
                 break;
             case R.id.tv_1://
                 break;

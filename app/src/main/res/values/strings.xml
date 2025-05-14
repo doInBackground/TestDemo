@@ -3,4 +3,8 @@
 
     <string name="themes_type_white">白色主题</string>
     <string name="themes_type_black">黑色主题</string>
+
+    <string name="err_unknown">未知错误,请稍后再试!</string>
+    <string name="err_no_network">当前网络不可用,请检查网络或断开设备WiFi.</string>
+    <string name="err_no_login">登录失效,请重新登录!</string>
 </resources>
