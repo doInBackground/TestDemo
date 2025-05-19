@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="netease_toolbar_title" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textColor">@android:color/white</item>
@@ -25,8 +25,12 @@
 
     <!--  白色风格  -->
     <style name="AppStyleWhite" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="M">true</item><!-- 状态栏字体颜色(API-23-M):黑色 -->
+        <item name="android:windowTranslucentStatus">true</item><!-- 沉浸式 -->
+        <item name="android:windowTranslucentNavigation">true</item><!-- 沉浸式 -->
+        <item name="android:fitsSystemWindows">true</item><!-- 让"可操作根布局"的子布局(内容布局)避免被[状态栏]和[挖孔]遮挡 -->
         <item name="android:textColor">#000000</item><!-- 全局文字颜色 -->
-        <item name="android:colorBackground">#FFFFFF</item><!-- 可操作根布局外层布局的背景色 -->
+        <item name="android:colorBackground">#FFFFFF</item><!-- "可操作根布局"的父布局的背景色 -->
         <!-- 自定义属性-范例 -->
         <item name="colorAttrName">@color/bt_bg</item>
         <item name="integerAttrName">11</item>
@@ -39,8 +43,12 @@
 
     <!--  黑色风格  -->
     <style name="AppStyleBlack" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="M">false</item><!-- 状态栏字体颜色(API-23-M):白色 -->
+        <item name="android:windowTranslucentStatus">true</item><!-- 沉浸式 -->
+        <item name="android:windowTranslucentNavigation">true</item><!-- 沉浸式 -->
+        <item name="android:fitsSystemWindows">true</item><!-- 让"可操作根布局"的子布局(内容布局)避免被[状态栏]和[挖孔]遮挡 -->
         <item name="android:textColor">#FFFFFF</item><!-- 全局文字颜色 -->
-        <item name="android:colorBackground">#000000</item><!-- 可操作根布局外层布局的背景色 -->
+        <item name="android:colorBackground">#000000</item><!-- "可操作根布局"的父布局的背景色 -->
         <!-- 自定义属性-范例 -->
         <item name="colorAttrName">@color/bt_bg_black</item>
         <item name="integerAttrName">99</item>

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F00">
+    <!--  android:fitsSystemWindows="true"  :根布局添加此属性,可以让其子布局避免被[状态栏]和[挖孔]遮挡.  -->
 
     <TextView
         android:id="@+id/tv"

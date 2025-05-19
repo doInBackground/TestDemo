@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ActivityUtils;
@@ -21,6 +22,10 @@ import java.util.Locale;
 import java.util.Map;
 
 import com.wcl.testdemo.init.BaseActivity;
+
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -53,8 +58,14 @@ public class ScreenThemeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        EdgeToEdge.enable(this);//目的:让应用的界面内容能够延伸到屏幕的边缘.
         setContentView(R.layout.activity_screen_theme);
         ButterKnife.bind(this);
+//        ViewCompat.setOnApplyWindowInsetsListener(((ViewGroup)findViewById(android.R.id.content)).getChildAt(0), (v, insets) -> { //findViewById(R.id.main)
+//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+//            return insets;
+//        });//目的:避免"setContentView()"的根布局中的子布局(内容布局)被[状态栏]和[挖孔]遮挡.与主题设置中的<item name="android:fitsSystemWindows">true</item>相同.
     }
 
     @Override
