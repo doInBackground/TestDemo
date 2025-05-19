@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.bean.eventbus.EventLogon;
+import com.wcl.testdemo.bean.eventbus.EventLogout;
 import com.wcl.testdemo.test.test00_javabase.test00.JsonTestActivity;
 import com.wcl.testdemo.test.test00_javabase.test01.CacheTestActivity;
 import com.wcl.testdemo.test.test00_javabase.test02.SocketTestActivity;
@@ -16,6 +18,11 @@ import com.wcl.testdemo.test.test00_javabase.test03.EncryptDecryptTestActivity;
 import com.wcl.testdemo.utils.MyTestNativeUtils;
 
 import com.wcl.testdemo.init.BaseActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,6 +47,13 @@ public class JavaBaseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_base);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @OnClick({R.id.tv_0, R.id.tv_1, R.id.tv_2, R.id.tv_3, R.id.tv_4, R.id.tv_5, R.id.tv_6, R.id.tv_7, R.id.tv_8, R.id.tv_9, R.id.tv_10, R.id.tv_11, R.id.tv_12, R.id.tv_13, R.id.tv_14, R.id.tv_15, R.id.tv_16, R.id.tv_17, R.id.tv_18, R.id.tv_19, R.id.tv_20})
@@ -119,6 +133,16 @@ public class JavaBaseActivity extends BaseActivity {
             ToastUtils.showShort(msg);
             mTvConsole.setText(msg);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(EventLogon event) {//方法名不限,可自定义.
+        LogUtils.d("EventBusSubscribe", "订阅者[" + this.getClass().getSimpleName() + "], 粘性事件[" + event.getClass().getSimpleName() + "]");
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(EventLogout event) {//方法名不限,可自定义.
+        LogUtils.d("EventBusSubscribe", "订阅者[" + this.getClass().getSimpleName() + "], 粘性事件[" + event.getClass().getSimpleName() + "]");
     }
 
 }

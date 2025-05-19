@@ -33,21 +33,25 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.blankj.utilcode.util.UtilsTransActivity;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.bean.eventbus.EventLogon;
+import com.wcl.testdemo.bean.eventbus.EventLogout;
 import com.wcl.testdemo.constant.SPKeys;
+import com.wcl.testdemo.init.BaseActivity;
 import com.wcl.testdemo.init.TestActivity;
 import com.wcl.testdemo.test.test01_androidbase.test03.SaveFileActivity;
 import com.wcl.testdemo.test.test01_androidbase.test08.DialogTestActivity;
 import com.wcl.testdemo.utils.FileUtils;
 import com.wcl.testdemo.utils.dialog.MyDialogFragment;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-
-import com.wcl.testdemo.init.BaseActivity;
-
 import androidx.core.app.NotificationCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,6 +86,13 @@ public class AndroidBaseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_base);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -442,6 +453,18 @@ public class AndroidBaseActivity extends BaseActivity {
             ToastUtils.showShort(msg);
             mTvConsole.setText(msg);
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(EventLogon event) {//方法名不限,可自定义.
+        LogUtils.d("EventBusSubscribe", "订阅者[" + this.getClass().getSimpleName() + "], 粘性事件[" + event.getClass().getSimpleName() + "]");
+        EventBus.getDefault().removeStickyEvent(event);//移除"粘性事件".
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEvent(EventLogout event) {//方法名不限,可自定义.
+        LogUtils.d("EventBusSubscribe", "订阅者[" + this.getClass().getSimpleName() + "], 粘性事件[" + event.getClass().getSimpleName() + "]");
+        EventBus.getDefault().removeStickyEvent(event);//移除"粘性事件".
     }
 
 }

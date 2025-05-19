@@ -229,6 +229,9 @@
         <activity
             android:name=".test.test05_library.test00.RetrofitTestActivity"
             android:exported="false" />
+        <activity
+            android:name=".test.test05_library.test01.EventBusTestActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
