@@ -41,7 +41,7 @@ import com.wcl.testdemo.init.TestActivity;
 import com.wcl.testdemo.test.test01_androidbase.test03.SaveFileActivity;
 import com.wcl.testdemo.test.test01_androidbase.test08.DialogTestActivity;
 import com.wcl.testdemo.utils.FileUtils;
-import com.wcl.testdemo.utils.dialog.MyDialogFragment;
+import com.wcl.testdemo.utils.dialog.PermissionDialogFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -370,7 +370,8 @@ public class AndroidBaseActivity extends BaseActivity {
                                 .append("需要使用到以下权限:\r\n")
                                 .append("[存储权限][定位权限]")//需依具体情况改变.
                                 .append("\r\n接下来我们即将向您申请这些权限,请您同意以提升您的使用体验.");
-                        new MyDialogFragment().initDialog(sb, shouldRequest).show(activity);
+//                        new MyDialogFragment().initDialog(sb, shouldRequest).show(activity);//旧版:源生Dialog.
+                        new PermissionDialogFragment().initDialog(sb, shouldRequest).show(activity);//新版:自定义Dialog.
                     }
                 })
 //                .rationale(new PermissionUtils.OnRationaleListener() {//回调时机:第二次及以后被拒.

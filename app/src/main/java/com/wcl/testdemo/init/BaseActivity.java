@@ -49,6 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        float floatAttrName = typedArray.getFloat(4, 99.99f);
 //        String stringAttrName = typedArray.getString(5);
 //        Drawable referenceAttrName = typedArray.getDrawable(6);
+//        typedArray.recycle();//用完记得回收.
     }
 
 }
