@@ -9,13 +9,13 @@ import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wcl.testdemo.R;
+import com.wcl.testdemo.init.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.wcl.testdemo.init.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -53,7 +53,11 @@ public class JsonTestActivity extends BaseActivity {
             case R.id.tv_2://Json转[多层多泛型对象].
                 test2();
                 break;
-            case R.id.tv_3://
+            case R.id.tv_3://要转化的类中,成员变量有默认值的情况.
+                String json1 = GsonUtils.toJson(GsonUtils.fromJson("{\"age\":0,\"name\":\"WCL\"}", Person.class)); //变量缺少的情况(无"address"):不管类中对应引用类型变量是否有默认值,最后都为null.
+                String json2 = GsonUtils.toJson(GsonUtils.fromJson("{\"address\":null,\"age\":0,\"name\":\"WCL\"}", Person.class)); //变量为null的情况("address"为null):不管类中对应引用类型变量是否有默认值,最后都为null.
+                String msg = json1 + "\n" + json2;
+                print(msg);
                 break;
             case R.id.tv_4://
                 break;
@@ -198,7 +202,7 @@ public class JsonTestActivity extends BaseActivity {
 
         String name;
         int age;
-        String address;
+        String address = "中国";
 
         Person(String name) {
             this.name = name;

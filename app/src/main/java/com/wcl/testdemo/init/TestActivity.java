@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.wcl.testdemo.R;
 import com.wcl.testdemo.adapter.TestAdapter;
 import com.wcl.testdemo.bean.TestBean;
@@ -18,8 +19,11 @@ import com.wcl.testdemo.test.test06_audio_video.activity.TestAudioAndVideoActivi
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 /**
  * @Author WCL
@@ -108,6 +112,33 @@ public class TestActivity extends BaseActivity implements TestAdapter.OnItemClic
             }
         };
         recyclerView.setLayoutManager(layoutManager);//[三].设置LayoutManager.
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {//当前状态为停止滑动状态时.
+                    int lastPosition = -1;//当前RecyclerView显示出来的最后一个的item的position.
+                    RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+                    if (layoutManager != null) {
+                        if (layoutManager instanceof LinearLayoutManager) {
+                            lastPosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+                        } else if (layoutManager instanceof GridLayoutManager) {
+                            //通过LayoutManager找到当前显示的最后的item的position.
+                            lastPosition = ((GridLayoutManager) layoutManager).findLastVisibleItemPosition();
+                        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+                            //因为StaggeredGridLayoutManager的特殊性可能导致最后显示的item存在多个,所以这里取到的是一个数组,,得到这个数组后再取到数组中position值最大的那个就是最后显示的position值了.
+                            int[] lastPositions = new int[((StaggeredGridLayoutManager) layoutManager).getSpanCount()];
+                            ((StaggeredGridLayoutManager) layoutManager).findLastVisibleItemPositions(lastPositions);
+//                            lastPosition = findMax(lastPositions);//自写方法"findMax()":找到最大值.
+                        }
+                        //时判断界面显示的最后item的position是否等于itemCount总数-1也就是最后一个item的position,如果相等则说明已经滑动到最后了.
+                        if (lastPosition == layoutManager.getItemCount() - 1) {
+                            LogUtils.d("滑动到最底部了!!!");
+                        }
+                    }
+                }
+            }
+        });
     }
 
 }
